@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
 
 import styles from './styles';
@@ -48,6 +49,10 @@ function LandingPage(props) {
   );
 
 }
+
+LandingPage.propTypes = {
+  onPress: PropTypes.func.isRequired,
+};
 
 const enhance = compose(
   withProps({
