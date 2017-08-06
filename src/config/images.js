@@ -1,5 +1,5 @@
 const images = {
-  WALLPAPER: require('../assets/images/wallpaper_city.jpeg'),
+  harborLogo: require('../assets/images/yacht.png'),
 };
 
 export default images;

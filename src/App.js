@@ -18,5 +18,9 @@ Navigation.startSingleScreenApp({
   screen: {
     screen: screenRegistry.HOME_PAGE,
     title: 'Home Page',
+    navigatorStyle: {
+      navBarHidden: true,
+    },
   },
+  animationType: 'slide-down',
 });
