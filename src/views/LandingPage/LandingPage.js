@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { compose, withHandlers } from 'recompose';
 
 import styles from './styles';
+import fonts from '../../config/fonts';
 import images from '../../config/images';
 import { screenRegistry } from '../../screenRegistry';
 import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
@@ -55,6 +56,15 @@ LandingPage.propTypes = {
   onPress: PropTypes.func.isRequired,
 };
 
+/*
+ * Navigation style for pushed screen.
+ */
+const navigatorStyle = {
+  navBarTextFontFamily: fonts.primary.REGULAR,
+  navBarComponentAlignment: 'center',
+  navBarBackgroundColor: colors.SILVER,
+};
+
 const enhance = compose(
 
   withHandlers({
@@ -62,9 +72,8 @@ const enhance = compose(
       ownerProps.navigator.push({
         screen: screenRegistry.HOME_PAGE,
         backButtonHidden: true,
-        navigatorStyle: {
-          navBarHidden: true,
-        },
+        title: 'Test Harbor',
+        navigatorStyle,
       });
     },
   }),
