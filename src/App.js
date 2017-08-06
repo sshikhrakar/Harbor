@@ -16,8 +16,7 @@ registerScreens(store, Provider);
 
 Navigation.startSingleScreenApp({
   screen: {
-    screen: screenRegistry.HOME_PAGE,
-    title: 'Home Page',
+    screen: screenRegistry.LANDING_PAGE,
     navigatorStyle: {
       navBarHidden: true,
     },

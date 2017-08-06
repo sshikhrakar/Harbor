@@ -11,15 +11,15 @@ import styles from './styles';
 import images from '../../config/images';
 import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
 
-function LoginPage(props) {
+function LandingPage(props) {
 
   const { onPress } = props;
 
   return (
-    <View style={ styles.homePageContainer }>
+    <View style={ styles.landingPageContainer }>
       <View style={ styles.logoContainer}>
         <Image
-          style={ styles.homePageLogo }
+          style={ styles.landingPageLogo }
           source={ images.harborLogo }
           tintColor={ colors.GREY }
         />
@@ -57,4 +57,4 @@ const enhance = compose(
   }),
 );
 
-export default enhance(LoginPage);
+export default enhance(LandingPage);

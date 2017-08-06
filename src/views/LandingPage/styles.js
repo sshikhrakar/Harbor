@@ -4,7 +4,7 @@ import fonts from '../../config/fonts';
 import colors from '../../config/colors';
 
 const styles = StyleSheet.create({
-  homePageContainer: {
+  landingPageContainer: {
     flex: 1,
     backgroundColor: colors.SILVER,
   },
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  homePageLogo: {
+  landingPageLogo: {
     flex: 1,
     resizeMode: 'contain',
   },
