@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import fonts from '../../config/fonts';
-import colors from '../../config/colors';
-
 function HomePage() {
 
   return (
@@ -17,16 +14,5 @@ function HomePage() {
 HomePage.propTypes = {
 
 };
-
-/*
- * Navigation style for pushed screen.
- */
-HomePage.navigatorStyle = {
-  navBarTextFontSize: 20,
-  navBarTextFontFamily: fonts.primary.REGULAR,
-  navBarComponentAlignment: 'center',
-  navBarBackgroundColor: colors.SILVER,
-};
-
 
 export default HomePage;
