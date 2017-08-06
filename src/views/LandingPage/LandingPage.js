@@ -6,11 +6,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { compose, withHandlers } from 'recompose';
 
 import styles from './styles';
 import images from '../../config/images';
-import { screenRegistry } from '../../screenRegistry';
 import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
 
 function LandingPage(props) {
@@ -55,19 +53,6 @@ LandingPage.propTypes = {
   onPress: PropTypes.func.isRequired,
 };
 
-const enhance = compose(
 
-  withHandlers({
-    onPress: ownerProps => () => {
-      ownerProps.navigator.push({
-        screen: screenRegistry.HOME_PAGE,
-        backButtonHidden: true,
-        title: 'Test Harbor',
-      });
-    },
-  }),
-
-);
-
-export default enhance(LandingPage);
+export default LandingPage;
 

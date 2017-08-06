@@ -1,3 +1,3 @@
-import LandingPage from './LandingPage';
+import LandingPageContainer from './LandingPageContainer';
 
-export default LandingPage;
+export default LandingPageContainer;
