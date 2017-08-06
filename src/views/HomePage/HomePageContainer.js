@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import HomePage from './HomePage';
 import fonts from '../../config/fonts';
@@ -28,12 +29,14 @@ class HomePageContainer extends Component {
 
   render() {
     return (
-      <HomePage { ...this.props } />
+      <HomePage
+        projects={ this.props.projects }
+        { ...this.props }
+      />
     );
   }
 
 }
-
 /*
  * Navigation bar style parameters.
  */
@@ -56,5 +59,8 @@ HomePageContainer.navigatorButtons = {
   ],
 };
 
+const mapStateToProps = state => ({
+  projects: state.projects,
+});
 
-export default HomePageContainer;
+export default connect(mapStateToProps, null)(HomePageContainer);
