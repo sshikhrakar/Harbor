@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { compose, withProps } from 'recompose';
+import { compose, withHandlers } from 'recompose';
 
 import styles from './styles';
 import images from '../../config/images';
+import { screenRegistry } from '../../screenRegistry';
 import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
 
 function LandingPage(props) {
@@ -55,11 +56,20 @@ LandingPage.propTypes = {
 };
 
 const enhance = compose(
-  withProps({
-    onPress() {
-      console.log('Home button pressed.'); // eslint-disable-line no-console
+
+  withHandlers({
+    onPress: ownerProps => () => {
+      ownerProps.navigator.push({
+        screen: screenRegistry.HOME_PAGE,
+        backButtonHidden: true,
+        navigatorStyle: {
+          navBarHidden: true,
+        },
+      });
     },
   }),
+
 );
 
 export default enhance(LandingPage);
+
