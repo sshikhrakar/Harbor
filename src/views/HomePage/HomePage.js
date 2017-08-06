@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { compose, withProps } from 'recompose';
 
 import styles from './styles';
 import images from '../../config/images';
@@ -48,4 +49,12 @@ function LoginPage(props) {
 
 }
 
-export default LoginPage;
+const enhance = compose(
+  withProps({
+    onPress() {
+      console.log('Home button pressed.'); // eslint-disable-line no-console
+    },
+  }),
+);
+
+export default enhance(LoginPage);
