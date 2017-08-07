@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     alignItems: 'center',
+    paddingHorizontal: 20,
     justifyContent: 'flex-start',
   },
 
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
 
   subText: {
     fontSize: 16,
+    textAlign: 'center',
     fontFamily: fonts.primary.LIGHT,
   },
 });
