@@ -1,14 +1,14 @@
-import LandingPage from './LandingPage';
 import { compose, withHandlers } from 'recompose';
+
+import LandingPage from './LandingPage';
 import { screenRegistry } from '../../screenRegistry';
 
 const enhance = compose(
 
   withHandlers({
     onPress: ownerProps => () => {
-      ownerProps.navigator.push({
+      ownerProps.navigator.resetTo({
         screen: screenRegistry.HOME_PAGE,
-        backButtonHidden: true,
         title: 'Test Harbor',
       });
     },
@@ -17,4 +17,3 @@ const enhance = compose(
 );
 
 export default enhance(LandingPage);
-
