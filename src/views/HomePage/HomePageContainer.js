@@ -5,6 +5,7 @@ import HomePage from './HomePage';
 import fonts from '../../config/fonts';
 import images from '../../config/images';
 import colors from '../../config/colors';
+import { screenRegistry } from '../../screenRegistry';
 
 class HomePageContainer extends Component {
 
@@ -22,7 +23,13 @@ class HomePageContainer extends Component {
   onNavigatorEvent(event) {
     if (event.type === 'NavBarButtonPress') {
       if (event.id === 'addProject') {
-        console.log('Add button pressed.'); // eslint-disable-line no-console
+        this.props.navigator.showModal({
+          screen: screenRegistry.ADD_PROJECT_PAGE,
+          animationType: 'slide-up',
+          navigatorStyle: {
+            navBarHidden: true,
+          },
+        });
       }
     }
   }
@@ -37,6 +44,7 @@ class HomePageContainer extends Component {
   }
 
 }
+
 /*
  * Navigation bar style parameters.
  */
