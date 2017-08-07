@@ -17,12 +17,13 @@ const styles = StyleSheet.create({
 
   downArrowContainer: {
     flex: 0.5,
-    paddingTop: 6,
+    paddingTop: 12,
   },
 
   downArrowIcon: {
     flex: 1,
     resizeMode: 'contain',
+    paddingHorizontal: 30,
   },
 
   bodyContainer: {
