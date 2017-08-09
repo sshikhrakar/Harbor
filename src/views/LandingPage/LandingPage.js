@@ -16,6 +16,7 @@ function LandingPage(props) {
 
   const {
     emailText,
+    emailError,
     passwordText,
     setEmailText,
     setPasswordText,
@@ -46,6 +47,14 @@ function LandingPage(props) {
         <Text style={ styles.loginText }>
           LOGIN TO CONTINUE
         </Text>
+
+        {
+          emailError ?
+            <Text style={ styles.error }>
+              { emailError }
+            </Text>
+            : null
+        }
 
         <View style={ styles.emailPasswordContainer }>
           <TextInput

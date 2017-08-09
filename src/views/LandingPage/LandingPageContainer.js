@@ -3,24 +3,34 @@ import {
   withState,
   withHandlers,
 } from 'recompose';
+import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
-import { screenRegistry } from '../../screenRegistry';
+import { validators } from '../../utils';
+import { loginViaEmail } from '../../actions/loginActions';
+
+const mapDispatchToProps = {
+  loginViaEmail,
+};
 
 const enhance = compose(
+  withState('emailText', 'setEmailText', ''),
+  withState('passwordText', 'setPasswordText', ''),
+  withState('emailError', 'setEmailError', ''),
+
+  connect(null, mapDispatchToProps),
 
   withHandlers({
-    onPress: ownerProps => () => {
-      ownerProps.navigator.resetTo({
-        screen: screenRegistry.HOME_PAGE,
-        title: 'Test Harbor',
-      });
+    onLoginButtonPress: props => () => {
+      if (validators.isValidEmail(props.emailText)) {
+        props.setEmailError('');
+        props.loginViaEmail(props.emailText, props.passwordText);
+      } else {
+        props.setEmailError('Please enter a valid email address.');
+      }
     },
   }),
 
-  withState('emailText', 'setEmailText', ''),
-
-  withState('passwordText', 'setPasswordText', ''),
 );
 
 export default enhance(LandingPage);

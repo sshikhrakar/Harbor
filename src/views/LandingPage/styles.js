@@ -51,6 +51,13 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.REGULAR,
   },
 
+  error: {
+    fontSize: 14,
+    alignSelf: 'center',
+    color: colors.ERROR,
+    fontFamily: fonts.primary.LIGHT,
+  },
+
   emailPasswordContainer: {
     flex: 2,
     justifyContent: 'space-around',
