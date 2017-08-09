@@ -12,6 +12,19 @@ function isValidEmail(email) {
   return re.test(email);
 }
 
+/**
+ * Checks if password is valid.
+ *
+ * @param {String} password
+ * @returns {String}
+ */
+function isValidPassword(password) {
+  if (!password) return false;
+
+  return true;
+}
+
 export {
   isValidEmail,
+  isValidPassword,
 };
