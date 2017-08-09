@@ -16,7 +16,7 @@ function LandingPage(props) {
 
   const {
     emailText,
-    emailError,
+    errorText,
     passwordText,
     setEmailText,
     setPasswordText,
@@ -49,9 +49,9 @@ function LandingPage(props) {
         </Text>
 
         {
-          emailError ?
+          errorText ?
             <Text style={ styles.error }>
-              { emailError }
+              { errorText }
             </Text>
             : null
         }
@@ -94,6 +94,7 @@ function LandingPage(props) {
 
 LandingPage.propTypes = {
   emailText: PropTypes.string.isRequired,
+  errorText: PropTypes.string.isRequired,
   setEmailText: PropTypes.func.isRequired,
   passwordText: PropTypes.string.isRequired,
   setPasswordText: PropTypes.func.isRequired,

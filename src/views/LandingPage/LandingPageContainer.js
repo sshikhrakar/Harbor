@@ -16,17 +16,19 @@ const mapDispatchToProps = {
 const enhance = compose(
   withState('emailText', 'setEmailText', ''),
   withState('passwordText', 'setPasswordText', ''),
-  withState('emailError', 'setEmailError', ''),
+  withState('errorText', 'setErrorText', ''),
 
   connect(null, mapDispatchToProps),
 
   withHandlers({
     onLoginButtonPress: props => () => {
-      if (validators.isValidEmail(props.emailText)) {
-        props.setEmailError('');
-        props.loginViaEmail(props.emailText, props.passwordText);
+      if (!validators.isValidEmail(props.emailText)) {
+        props.setErrorText('Please enter a valid email address.');
+      } else if (!validators.isValidPassword(props.passwordText)) {
+        props.setErrorText('Please enter a valid password.');
       } else {
-        props.setEmailError('Please enter a valid email address.');
+        props.setErrorText('');
+        props.loginViaEmail(props.emailText, props.passwordText);
       }
     },
   }),
