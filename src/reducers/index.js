@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
+import auth from './auth';
+
 const rootReducer = combineReducers({
-  projects: (state = {}, action) => state, // eslint-disable-line
+  auth,
 });
 
 export default rootReducer;
