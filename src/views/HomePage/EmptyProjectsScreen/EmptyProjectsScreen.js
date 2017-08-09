@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import fonts from '../../../config/fonts';
+import colors from '../../../config/colors';
 import images from '../../../config/images';
 
 function EmptyProjectsScreen() {
@@ -22,19 +24,25 @@ function EmptyProjectsScreen() {
       <View style={ styles.textContainer }>
         <View style={ styles.mainTextContainer }>
           <Text style={ styles.mainText }>
-            { `You don't seem to have added any projects..` }
+            { `You don't seem to have been invited to any projects ...` }
           </Text>
         </View>
 
-        <View style={ styles.subTextContainer }>
-          <Text style={ styles.subText }>
-            { `Press the Add button on the top right to get started` }
-          </Text>
-        </View>
       </View>
     </View>
   );
 
 }
+
+/*
+ * Navigation bar style parameters.
+ */
+EmptyProjectsScreen.navigatorStyle = {
+  navBarTextFontSize: 20,
+  navBarTextFontFamily: fonts.primary.REGULAR,
+  navBarComponentAlignment: 'center',
+  navBarBackgroundColor: colors.SILVER,
+};
+
 
 export default EmptyProjectsScreen;

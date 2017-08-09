@@ -38,11 +38,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.REGULAR,
   },
 
-  subText: {
-    fontSize: 16,
-    textAlign: 'center',
-    fontFamily: fonts.primary.LIGHT,
-  },
 });
 
 export default styles;
