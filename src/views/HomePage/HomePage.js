@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import { branch, renderComponent } from 'recompose';
 
-import EmptyProjectsScreen from './EmptyProjectsScreen';
+import fonts from '../../config/fonts';
+import colors from '../../config/colors';
 
 function HomePage() {
 
@@ -19,9 +19,14 @@ HomePage.propTypes = {
   projects: PropTypes.array.isRequired,
 };
 
-const enhance = branch(
-  props => props.projects.length === 0,
-  renderComponent(EmptyProjectsScreen)
-);
+/*
+ * Navigation bar style parameters.
+ */
+HomePage.navigatorStyle = {
+  navBarTextFontSize: 20,
+  navBarTextFontFamily: fonts.primary.REGULAR,
+  navBarComponentAlignment: 'center',
+  navBarBackgroundColor: colors.SILVER,
+};
 
-export default enhance(HomePage);
+export default HomePage;
