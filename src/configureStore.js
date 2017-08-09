@@ -5,8 +5,13 @@ import { compose, createStore, applyMiddleware } from 'redux';
 
 import rootEpic from './epics';
 import rootReducer from './reducers';
+import { firebaseService }  from './services';
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const epicMiddleware = createEpicMiddleware(rootEpic, {
+  dependencies: {
+    firebaseService,
+  },
+});
 
 const middleware = [
   epicMiddleware,

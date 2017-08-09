@@ -7,15 +7,15 @@ import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
 import { validators } from '../../utils';
-import { loginViaEmail } from '../../actions/loginActions';
+import { loginViaEmail } from '../../actions/authActions';
 
 const mapDispatchToProps = {
   loginViaEmail,
 };
 
 const enhance = compose(
-  withState('emailText', 'setEmailText', ''),
-  withState('passwordText', 'setPasswordText', ''),
+  withState('emailText', 'setEmailText', 'srishanbhattarai@gmail.com'),
+  withState('passwordText', 'setPasswordText', '123456'),
   withState('errorText', 'setErrorText', ''),
 
   connect(null, mapDispatchToProps),

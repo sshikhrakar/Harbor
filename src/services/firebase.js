@@ -1,5 +1,10 @@
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Rx';
+
+import '../rx';
 import firebaseConfig from '../config/firebase';
+
+let firebaseInstance;
 
 /**
  * Initializes a firebase app.
@@ -8,7 +13,7 @@ import firebaseConfig from '../config/firebase';
  * @param {Object} config
  */
 function init(name, config = firebaseConfig) {
-  return firebase.initializeApp({
+  firebaseInstance = firebase.initializeApp({
     ...config,
   }, name);
 }
@@ -31,7 +36,9 @@ function getNumberOfApps() {
  * @returns {Observable}
  */
 function login(email, password) {
-  return firebase.auth().signInWithEmailAndPassword(email, password);
+  return Observable.fromPromise(
+    firebaseInstance.auth().signInWithEmailAndPassword(email, password)
+  );
 }
 
 /**
@@ -42,7 +49,7 @@ function login(email, password) {
  * @returns {Observable}
  */
 function signup(email, password) {
-  return firebase.auth().createUserWithEmailAndPassword(email, password);
+  return firebaseInstance.auth().createUserWithEmailAndPassword(email, password);
 }
 
 export {

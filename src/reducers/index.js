@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
-import projects from './projects';
-
 const rootReducer = combineReducers({
-  projects,
+  projects: (state = {}, action) => state, // eslint-disable-line
 });
 
 export default rootReducer;
