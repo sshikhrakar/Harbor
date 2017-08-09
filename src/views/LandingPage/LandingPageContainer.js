@@ -1,4 +1,8 @@
-import { compose, withHandlers } from 'recompose';
+import {
+  compose,
+  withState,
+  withHandlers,
+} from 'recompose';
 
 import LandingPage from './LandingPage';
 import { screenRegistry } from '../../screenRegistry';
@@ -14,6 +18,9 @@ const enhance = compose(
     },
   }),
 
+  withState('emailText', 'setEmailText', ''),
+
+  withState('passwordText', 'setPasswordText', ''),
 );
 
 export default enhance(LandingPage);

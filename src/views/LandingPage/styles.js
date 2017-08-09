@@ -6,11 +6,12 @@ import colors from '../../config/colors';
 const styles = StyleSheet.create({
   landingPageContainer: {
     flex: 1,
+    paddingVertical: 16,
     backgroundColor: colors.SILVER,
   },
 
   logoContainer: {
-    flex: 1,
+    flex: 2,
     paddingVertical: 28,
     paddingHorizontal: 18,
     alignItems: 'center',
@@ -23,44 +24,64 @@ const styles = StyleSheet.create({
   },
 
   greetingContainer: {
-    flex: 2,
-  },
-
-  greetingBox: {
-    flex: 1,
-    alignItems: 'center',
+    flex: 1.5,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 
   mainText: {
     fontSize: 36,
-    marginVertical: 10,
+    alignSelf: 'center',
     fontFamily: fonts.primary.REGULAR,
   },
 
   subText: {
     fontSize: 18,
-    marginVertical: 10,
     fontFamily: fonts.primary.LIGHT,
   },
 
-  buttonContainer: {
+  loginContainer: {
+    flex: 3,
+    paddingHorizontal: 24,
+  },
+
+  loginText: {
+    fontSize: 18,
+    alignSelf: 'center',
+    fontFamily: fonts.primary.REGULAR,
+  },
+
+  emailPasswordContainer: {
+    flex: 2,
+    justifyContent: 'space-around',
+  },
+
+  textInputField: {
+    height: 44,
+    borderWidth: 0.8,
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    borderColor: colors.ASBESTOS,
+    fontFamily: fonts.primary.REGULAR,
+  },
+
+  loginButtonContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingVertical: 10,
   },
 
   button: {
-    borderRadius: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
+    flex: 0.8,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.ASBESTOS,
   },
 
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontFamily: fonts.primary.REGULAR,
+  loginButtonText: {
+    fontSize: 20,
+    marginVertical: 5,
+    color: colors.SILVER,
+    fontFamily: fonts.primary.LIGHT,
   },
 
 });

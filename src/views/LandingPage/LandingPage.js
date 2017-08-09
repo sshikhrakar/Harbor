@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Image,
+  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -13,10 +14,17 @@ import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
 
 function LandingPage(props) {
 
-  const { onPress } = props;
+  const {
+    emailText,
+    passwordText,
+    setEmailText,
+    setPasswordText,
+    onLoginButtonPress,
+  } = props;
 
   return (
     <View style={ styles.landingPageContainer }>
+
       <View style={ styles.logoContainer}>
         <Image
           style={ styles.landingPageLogo }
@@ -26,33 +34,62 @@ function LandingPage(props) {
       </View>
 
       <View style={ styles.greetingContainer}>
-        <View style={ styles.greetingBox }>
-          <Text style={ styles.mainText }> Test Harbor </Text>
-          <Text style={ styles.subText }>
-            Share Android builds of React Native apps
-          </Text>
+        <Text style={ styles.mainText }>
+          HARBOR
+        </Text>
+        <Text style={ styles.subText }>
+          Share Android builds of React Native apps
+        </Text>
+      </View>
+
+      <View style={ styles.loginContainer }>
+        <Text style={ styles.loginText }>
+          LOGIN TO CONTINUE
+        </Text>
+
+        <View style={ styles.emailPasswordContainer }>
+          <TextInput
+            value={ emailText }
+            placeholder={ 'E-mail' }
+            onChangeText={ setEmailText }
+            style={ styles.textInputField }
+            keyboardType="email-address"
+            underlineColorAndroid={ 'transparent' }
+          />
+          <TextInput
+            value={ passwordText }
+            secureTextEntry= { true }
+            placeholder={ 'Password' }
+            style={ styles.textInputField }
+            onChangeText={ setPasswordText }
+            underlineColorAndroid={ 'transparent' }
+          />
         </View>
 
-        <View style={ styles.buttonContainer }>
+        <View style={ styles.loginButtonContainer }>
           <TouchableOpacity
             style={ styles.button }
-            opacity={ DEFAULT_BUTTON_OPACITY }
-            onPress={ onPress }
+            onPress= { onLoginButtonPress }
+            activeOpacity={ DEFAULT_BUTTON_OPACITY }
           >
-            <Text style={ styles.buttonText }> CONTINUE </Text>
+            <Text style={ styles.loginButtonText }>
+              LOGIN
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-
   );
 
 }
 
 LandingPage.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  emailText: PropTypes.string.isRequired,
+  setEmailText: PropTypes.func.isRequired,
+  passwordText: PropTypes.string.isRequired,
+  setPasswordText: PropTypes.func.isRequired,
+  onLoginButtonPress: PropTypes.func.isRequired,
 };
 
 
 export default LandingPage;
-
