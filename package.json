@@ -4,11 +4,13 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-    "precommit": "npm run lint",
+		"precommit": "npm run lint",
 		"test": "jest",
+    "test:watch": "jest --watch",
 		"lint": "eslint src/"
 	},
 	"dependencies": {
+		"firebase": "^4.2.0",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.1",
 		"react-native-navigation": "1.1.179",
@@ -21,7 +23,7 @@
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.2.3",
-		"babel-jest": "20.0.3",
+		"babel-jest": "^20.0.3",
 		"babel-preset-react-native": "2.1.0",
 		"eslint": "^4.3.0",
 		"eslint-plugin-react": "^7.1.0",
@@ -32,7 +34,9 @@
 		"redux-logger": "^3.0.6"
 	},
 	"jest": {
-		"preset": "react-native"
+		"preset": "react-native",
+    "verbose": true,
+    "collectCoverageFrom" : ["src/**/*.js"]
 	},
 	"rnpm": {
 		"assets": [
