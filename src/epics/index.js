@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable';
 
-import auth from './auth';
+import auth from './authEpic';
 
 export default combineEpics(
   auth,
