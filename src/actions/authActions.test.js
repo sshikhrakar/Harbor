@@ -1,7 +1,7 @@
-import * as authActions from '../auth';
-import * as actionTypes from '../actionTypes';
+import * as authActions from './authActions';
+import * as actionTypes from './actionTypes';
 
-describe('AUTH ACTION CREATORS', () => {
+describe('ACTION CREATORS: AUTH', () => {
 
   it('should create an action to login via email', () => {
     const email = 'test@test.com';

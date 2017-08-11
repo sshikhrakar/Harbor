@@ -6,7 +6,7 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"precommit": "npm run lint",
 		"test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest -u --watch",
 		"lint": "eslint src/"
 	},
 	"dependencies": {

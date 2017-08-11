@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 
   logoContainer: {
-    flex: 2,
+    flex: 1,
     paddingVertical: 28,
     paddingHorizontal: 18,
     alignItems: 'center',
@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
   },
 
   greetingContainer: {
-    flex: 1.5,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
 
@@ -42,13 +41,21 @@ const styles = StyleSheet.create({
 
   loginContainer: {
     flex: 3,
-    paddingHorizontal: 24,
+    padding: 24,
+    justifyContent: 'flex-start',
   },
 
   loginText: {
     fontSize: 18,
     alignSelf: 'center',
     fontFamily: fonts.primary.REGULAR,
+  },
+
+  link: {
+    fontSize: 14,
+    alignSelf: 'center',
+    fontFamily: fonts.primary.REGULAR,
+    color: colors.SOFT_BLUE,
   },
 
   error: {

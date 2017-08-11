@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { TextLink } from '../../components';
+
 import styles from './styles';
 import images from '../../config/images';
 import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
@@ -21,6 +23,7 @@ function LandingPage(props) {
     setEmailText,
     setPasswordText,
     onLoginButtonPress,
+    onCreateAccountPress,
   } = props;
 
   return (
@@ -47,6 +50,12 @@ function LandingPage(props) {
         <Text style={ styles.loginText }>
           LOGIN TO CONTINUE
         </Text>
+
+        <TextLink
+          onPress={ onCreateAccountPress }
+          text="Or, Create an Account."
+          style={ styles.link }
+        />
 
         {
           errorText ?
@@ -99,6 +108,7 @@ LandingPage.propTypes = {
   passwordText: PropTypes.string.isRequired,
   setPasswordText: PropTypes.func.isRequired,
   onLoginButtonPress: PropTypes.func.isRequired,
+  onCreateAccountPress: PropTypes.func.isRequired,
 };
 
 

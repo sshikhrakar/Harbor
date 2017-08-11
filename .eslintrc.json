@@ -30,7 +30,6 @@
     "react/jsx-uses-react": ["error"],
     "newline-before-return": ["error"],
     "linebreak-style": ["error", "unix"],
-    "complexity": ["error", { "max": 3 }],
     "spaced-comment": ["error", "always"],
     "indent": ["error", 2, {"SwitchCase": 1}],
     "object-curly-spacing": ["error", "always"],

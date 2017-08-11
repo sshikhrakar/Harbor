@@ -6,6 +6,7 @@ const colors = {
   ERROR: '#dd4b39',
   SILVER: '#ecf0f1',
   ASBESTOS: '#7f8c8d',
+  SOFT_BLUE: '#3498db',
 };
 
 export default colors;

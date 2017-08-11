@@ -1,5 +1,3 @@
 import TextLink from './TextLink';
 
-export {
-  TextLink,
-};
+export default TextLink;

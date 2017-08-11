@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
 import { validators } from '../../utils';
-import { loginViaEmail } from '../../actions/auth';
+import { loginViaEmail } from '../../actions/authActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
@@ -20,11 +20,12 @@ const mapDispatchToProps = {
 };
 
 const enhance = compose(
+  connect(mapStateToProps, mapDispatchToProps),
+
   withState('emailText', 'setEmailText', 'srishanbhattarai@gmail.com'),
   withState('passwordText', 'setPasswordText', '123456'),
   withState('errorText', 'setErrorText', ''),
 
-  connect(mapStateToProps, mapDispatchToProps),
 
   withHandlers({
     onLoginButtonPress: props => () => {
@@ -36,6 +37,10 @@ const enhance = compose(
         props.setErrorText('');
         props.loginViaEmail(props.emailText, props.passwordText);
       }
+    },
+
+    onCreateAccountPress: props => () => { // eslint-disable-line
+      console.log('onCreateAccountPress'); // eslint-disable-line
     },
   }),
 

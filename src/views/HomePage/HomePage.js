@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 
 import fonts from '../../config/fonts';
@@ -14,10 +13,6 @@ function HomePage() {
   );
 
 }
-
-HomePage.propTypes = {
-  projects: PropTypes.array.isRequired,
-};
 
 /*
  * Navigation bar style parameters.

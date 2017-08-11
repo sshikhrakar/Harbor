@@ -1,7 +1,7 @@
 import '../rx';
 import { Observable } from 'rxjs/Rx';
 import { LOGIN_VIA_EMAIL } from '../actions/actionTypes';
-import { loginViaEmailFulfilled, loginViaEmailErrored } from '../actions/auth';
+import { loginViaEmailFulfilled, loginViaEmailErrored } from '../actions/authActions';
 
 /**
  * Login epic.
