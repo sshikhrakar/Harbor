@@ -51,12 +51,6 @@ function LandingPage(props) {
           LOGIN TO CONTINUE
         </Text>
 
-        <TextLink
-          onPress={ onCreateAccountPress }
-          text="Or, Create an Account."
-          style={ styles.link }
-        />
-
         {
           errorText ?
             <Text style={ styles.error }>
@@ -95,6 +89,13 @@ function LandingPage(props) {
             </Text>
           </TouchableOpacity>
         </View>
+
+        <TextLink
+          onPress={ onCreateAccountPress }
+          text="Or, Create an Account."
+          style={ styles.link }
+        />
+
       </View>
     </View>
   );
