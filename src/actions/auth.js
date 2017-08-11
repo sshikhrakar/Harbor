@@ -27,10 +27,9 @@ export function loginViaEmail(email, password) {
  * @param {Object} payload
  * @returns {Object}
  */
-export function loginViaEmailFulfilled(payload) {
+export function loginViaEmailFulfilled() {
   return {
     type: LOGIN_VIA_EMAIL_FULFILLED,
-    payload,
   };
 }
 
@@ -40,9 +39,8 @@ export function loginViaEmailFulfilled(payload) {
  * @param {Object} payload
  * @returns {Object}
  */
-export function loginViaEmailErrored(payload) {
+export function loginViaEmailErrored() {
   return {
     type: LOGIN_VIA_EMAIL_ERRORED,
-    payload,
   };
 }
