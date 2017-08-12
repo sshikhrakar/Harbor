@@ -7,7 +7,7 @@ import rootEpic from './epics';
 import rootReducer from './reducers';
 import { firebaseService }  from './services';
 
-const epicMiddleware = createEpicMiddleware(rootEpic, {
+export const epicMiddleware = createEpicMiddleware(rootEpic, {
   dependencies: {
     firebaseService,
   },

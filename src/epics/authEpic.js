@@ -20,8 +20,8 @@ function loginEpic(action$, store, { firebaseService }) { // eslint-disable-line
     .ofType(LOGIN_VIA_EMAIL)
     .debounceTime(1000)
     .switchMap(({ payload }) => firebaseService.login(payload.email, payload.password))
-    .map(data => loginViaEmailFulfilled(data))
-    .catch(err => Observable.of(loginViaEmailErrored(err)));
+    .map(() => loginViaEmailFulfilled())
+    .catch(() => Observable.of(loginViaEmailErrored()));
 }
 
 export default loginEpic;
