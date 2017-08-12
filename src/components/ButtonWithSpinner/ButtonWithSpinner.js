@@ -27,6 +27,7 @@ function ButtonWithSpinner(props) {
         style={ styles.button }
         onPress= { onPress }
         activeOpacity={ activeOpacity }
+        disabled={ isLoading }
       >
         {
           !isLoading ?
