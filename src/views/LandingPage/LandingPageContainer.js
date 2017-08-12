@@ -27,9 +27,12 @@ const mapDispatchToProps = {
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
 
-  withState('emailText', 'setEmailText', 'srishanbhattarai@gmail.com'),
-  withState('passwordText', 'setPasswordText', '123456'),
   withState('errorText', 'setErrorText', ''),
+  withState('passwordText', 'setPasswordText', '123456'),
+  withState('emailText', 'setEmailText', 'srishanbhattarai@gmail.com'),
+  withState('createNewAccountEmailText', 'setCreateNewAccountPasswordText', '123456'),
+  withState('createAccountModalVisibility', 'setCreateAccountModalVisibility', false),
+  withState('createNewAccountEmailText', 'setCreateNewAccountEmailText', 'srishanbhattarai@gmail.com'),
 
   branch(
     props => props.isLoggedIn,
@@ -48,8 +51,13 @@ const enhance = compose(
       }
     },
 
-    onCreateAccountPress: props => () => { // eslint-disable-line
-      console.warn('onCreateAccountPress'); // eslint-disable-line
+    onCreateAccountPress: props => () => {
+      props.setCreateAccountModalVisibility(true);
+    },
+
+    onCreateAccountModalClose: props => () => {
+      props.setCreateNewAccountEmailText('');
+      props.setCreateNewAccountPasswordText('');
     },
   }),
 

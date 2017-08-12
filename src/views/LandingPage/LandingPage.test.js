@@ -11,11 +11,13 @@ describe('VIEWS: LandingPage', () => {
         isLoggingIn={ false }
         emailText="foobar@gmail.com"
         errorText=""
+        createAccountModalVisibility={ true }
         setEmailText={ (text) => this.setState({ emailText: text }) }
         passwordText="123456"
         setPasswordText={ (text) => this.setState({ passwordText: text }) }
         onLoginButtonPress={ () => true }
         onCreateAccountPress={ () => true }
+        onCreateAccountModalClose={ () => true }
       />
     ).toJSON();
 
