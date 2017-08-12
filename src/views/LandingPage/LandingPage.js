@@ -4,21 +4,21 @@ import {
   View,
   Image,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { TextLink } from '../../components';
+import { TextLink, ButtonWithSpinner } from '../../components';
 
 import styles from './styles';
 import images from '../../config/images';
-import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
+import colors from '../../config/colors';
 
 function LandingPage(props) {
 
   const {
     emailText,
     errorText,
+    isLoggingIn,
     passwordText,
     setEmailText,
     setPasswordText,
@@ -78,17 +78,11 @@ function LandingPage(props) {
           />
         </View>
 
-        <View style={ styles.loginButtonContainer }>
-          <TouchableOpacity
-            style={ styles.button }
-            onPress= { onLoginButtonPress }
-            activeOpacity={ DEFAULT_BUTTON_OPACITY }
-          >
-            <Text style={ styles.loginButtonText }>
-              LOGIN
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <ButtonWithSpinner
+          isLoading={ isLoggingIn }
+          text="LOGIN"
+          onPress={ onLoginButtonPress }
+        />
 
         <TextLink
           onPress={ onCreateAccountPress }

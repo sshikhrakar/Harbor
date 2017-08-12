@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   error: {
     fontSize: 14,
     alignSelf: 'center',
+    textAlign: 'center',
     color: colors.ERROR,
     fontFamily: fonts.primary.LIGHT,
   },

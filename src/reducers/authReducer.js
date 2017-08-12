@@ -34,6 +34,13 @@ function auth(state = initialState, action) {
         hasLoginErrored: true,
       };
 
+    case 'persist/REHYDRATE':
+      return {
+        ...state,
+        isLoggingIn: false,
+        hasLoginErrored: false,
+      };
+
     default:
       return state;
   }

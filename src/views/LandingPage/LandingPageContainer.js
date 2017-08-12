@@ -1,17 +1,22 @@
 import {
+  branch,
   compose,
   withState,
   lifecycle,
   withHandlers,
+  renderComponent,
 } from 'recompose';
 import { connect } from 'react-redux';
 
+import HomePage from '../HomePage';
 import LandingPage from './LandingPage';
+
 import { validators } from '../../utils';
 import { loginViaEmail } from '../../actions/authActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
+  isLoggingIn: state.auth.isLoggingIn,
   hasLoginErrored: state.auth.hasLoginErrored,
 });
 
@@ -26,6 +31,10 @@ const enhance = compose(
   withState('passwordText', 'setPasswordText', '123456'),
   withState('errorText', 'setErrorText', ''),
 
+  branch(
+    props => props.isLoggedIn,
+    renderComponent(HomePage),
+  ),
 
   withHandlers({
     onLoginButtonPress: props => () => {
@@ -40,7 +49,7 @@ const enhance = compose(
     },
 
     onCreateAccountPress: props => () => { // eslint-disable-line
-      console.log('onCreateAccountPress'); // eslint-disable-line
+      console.warn('onCreateAccountPress'); // eslint-disable-line
     },
   }),
 
