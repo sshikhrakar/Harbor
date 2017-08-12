@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"precommit": "npm run lint",
-		"test": "jest",
+		"precommit": "npm run lint; npm test",
+		"test": "jest -u",
     "test:watch": "jest -u --watch",
     "test:watch:cov": "jest -u --watch --coverage",
 		"lint": "eslint src/"
