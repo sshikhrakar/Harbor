@@ -97,6 +97,7 @@ function LandingPage(props) {
 }
 
 LandingPage.propTypes = {
+  isLoggingIn: PropTypes.bool.isRequired,
   emailText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   setEmailText: PropTypes.func.isRequired,
