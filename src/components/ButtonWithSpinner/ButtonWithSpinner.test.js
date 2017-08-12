@@ -7,7 +7,11 @@ describe('COMPONENTS: ButtonWithSpinner', () => {
 
   it('renders correctly', () => {
     const tree = renderer.create(
-      <ButtonWithSpinner text="TestButtonText" onPress={ () => { console.log('Button works!'); } }/> // eslint-disable-line no-console
+      <ButtonWithSpinner
+        text="TestButtonText"
+        onPress={ () => true }
+        isLoading={ true }
+      />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
