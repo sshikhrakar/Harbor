@@ -16,8 +16,8 @@ import { loginViaEmail } from '../../actions/authActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
-  isLoggingIn: state.auth.isLoggingIn,
-  hasLoginErrored: state.auth.hasLoginErrored,
+  isLoggingIn: state.ui.auth.isLoggingIn,
+  hasLoginErrored: state.ui.auth.hasLoginErrored,
 });
 
 const mapDispatchToProps = {

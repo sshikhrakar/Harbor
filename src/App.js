@@ -11,6 +11,7 @@ export const store = configureStore();
 
 persistStore(store, {
   storage: AsyncStorage,
+  blacklist: ['ui'],
 });
 
 registerScreens(store, Provider);
