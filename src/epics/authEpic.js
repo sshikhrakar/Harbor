@@ -1,5 +1,9 @@
-import '../rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
 import { Observable } from 'rxjs/Rx';
+
 import { LOGIN_VIA_EMAIL } from '../actions/actionTypes';
 import { loginViaEmailFulfilled, loginViaEmailErrored } from '../actions/authActions';
 

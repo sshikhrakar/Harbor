@@ -1,7 +1,6 @@
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Rx';
 
-import '../rx';
 import firebaseConfig from '../config/firebase';
 
 let firebaseInstance;
