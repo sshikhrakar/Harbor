@@ -36,6 +36,7 @@
 	},
 	"jest": {
 		"preset": "react-native",
+    "verbose": true,
     "collectCoverageFrom" : ["src/**/*.js"]
 	},
 	"rnpm": {
