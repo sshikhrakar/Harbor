@@ -18,7 +18,7 @@ describe('ACTION CREATORS: AUTH', () => {
   });
 
 
-  it('create an action that indicates successful login via email', () => {
+  it('should create an action that indicates successful login via email', () => {
     const expectedAction = {
       type: actionTypes.LOGIN_VIA_EMAIL_FULFILLED,
     };
@@ -27,7 +27,7 @@ describe('ACTION CREATORS: AUTH', () => {
   });
 
 
-  it('create an action that indicates unsuccessful login via email', () => {
+  it('should create an action that indicates unsuccessful login via email', () => {
     const expectedAction = {
       type: actionTypes.LOGIN_VIA_EMAIL_ERRORED,
     };
