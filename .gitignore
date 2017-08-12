@@ -64,4 +64,5 @@ ios/Podfile.lock
 yarn.lock
 
 # DEVICE SPECIFICS
-src/constants/connection.js
+src/config/firebase.js
+
