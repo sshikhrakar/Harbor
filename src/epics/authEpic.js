@@ -1,11 +1,19 @@
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mapTo';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import { Observable } from 'rxjs/Rx';
 
-import { LOGIN_VIA_EMAIL } from '../actions/actionTypes';
-import { loginViaEmailFulfilled, loginViaEmailErrored } from '../actions/authActions';
+import {
+  LOGIN_VIA_EMAIL,
+  SIGNUP_VIA_EMAIL,
+} from '../actions/actionTypes';
+import {
+  loginViaEmailErrored,
+  loginViaEmailFulfilled,
+  signupViaEmailErrored,
+  signupViaEmailFulfilled,
+} from '../actions/authActions';
 
 /**
  * Login epic.
@@ -19,9 +27,35 @@ function loginEpic(action$, store, { firebaseService }) { // eslint-disable-line
   return action$
     .ofType(LOGIN_VIA_EMAIL)
     .debounceTime(1000)
-    .switchMap(({ payload }) => firebaseService.login(payload.email, payload.password))
-    .map(() => loginViaEmailFulfilled())
-    .catch(() => Observable.of(loginViaEmailErrored()));
+    .switchMap(
+      ({ payload }) => firebaseService
+        .login(payload.email, payload.password)
+        .mapTo(loginViaEmailFulfilled())
+        .catch(() => Observable.of(loginViaEmailErrored()))
+    );
 }
 
-export default loginEpic;
+/**
+ * Signup epic.
+ *
+ * @param {Observable} action$
+ * @param {Object} store
+ * @param {Object} loginService
+ * @returns {Observable}
+ */
+function signupEpic(action$, store, { firebaseService }) { // eslint-disable-line no-unused-vars
+  return action$
+    .ofType(SIGNUP_VIA_EMAIL)
+    .debounceTime(1000)
+    .switchMap(
+      ({ payload }) => firebaseService
+        .signup(payload.email, payload.password)
+        .mapTo(signupViaEmailFulfilled())
+        .catch(() => Observable.of(signupViaEmailErrored()))
+    );
+}
+
+export {
+  loginEpic,
+  signupEpic,
+};
