@@ -12,8 +12,8 @@ import HomePage from '../HomePage';
 import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
+import { screenRegistry } from '../../screenRegistry';
 import { loginViaEmail } from '../../actions/authActions';
-import { setCreateAccountModalVisibility } from '../../actions/uiActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
@@ -24,7 +24,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loginViaEmail,
-  setCreateAccountModalVisibility,
 };
 
 const enhance = compose(
@@ -52,7 +51,13 @@ const enhance = compose(
     },
 
     onCreateAccountPress: props => () => {
-      props.setCreateAccountModalVisibility(true);
+      props.navigator.showModal({
+        screen: screenRegistry.NEW_ACCOUNT,
+        animationType: 'slide-up',
+        navigatorStyle: {
+          navBarHidden: true,
+        },
+      });
     },
   }),
 
