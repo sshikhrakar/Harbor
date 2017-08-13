@@ -6,6 +6,7 @@ import {
   signupViaEmail,
   signupViaEmailFulfilled,
   signupViaEmailErrored,
+  signupViaEmailCancelled,
 } from '../actions/authActions';
 
 describe('REDUCER: UI', () => {
@@ -20,13 +21,7 @@ describe('REDUCER: UI', () => {
 
     expect(
       uiReducer(undefined, loginViaEmail(email, password))
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isLoggingIn: true,
-      },
-    });
+    ).toMatchSnapshot();
   });
 
 
@@ -40,14 +35,7 @@ describe('REDUCER: UI', () => {
           hasLoginErrored: Math.random() > 0.5 ? false : true,
         },
       }, loginViaEmailFulfilled())
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isLoggingIn: false,
-        hasLoginErrored: false,
-      },
-    });
+    ).toMatchSnapshot();
   });
 
 
@@ -61,14 +49,7 @@ describe('REDUCER: UI', () => {
           hasLoginErrored: Math.random() > 0.5 ? true : false,
         },
       }, loginViaEmailErrored())
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isLoggingIn: false,
-        hasLoginErrored: true,
-      },
-    });
+    ).toMatchSnapshot();
   });
 
 
@@ -81,23 +62,17 @@ describe('REDUCER: UI', () => {
           isSigningUp: Math.random() > 0.5 ? true : false,
         },
       }, signupViaEmail())
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isSigningUp: true,
-      },
-    });
+    ).toMatchSnapshot();
   });
 
-  it('should set isSigningUp and hasSignUpErrored to false when signupViaEmailFulfilled is received', () => {
+  it('should set isSigningUp and hasSignupErrored to false when signupViaEmailFulfilled is received', () => {
     expect(
       uiReducer({
         ...initialState,
         auth: {
           ...initialState.auth,
           isSigningUp: Math.random() > 0.5 ? true : false,
-          hasSignUpErrored: Math.random() > 0.5 ? true : false,
+          hasSignupErrored: Math.random() > 0.5 ? true : false,
         },
       }, signupViaEmailFulfilled())
     ).toEqual({
@@ -105,29 +80,36 @@ describe('REDUCER: UI', () => {
       auth: {
         ...initialState.auth,
         isSigningUp: false,
-        hasSignUpErrored: false,
+        hasSignupErrored: false,
       },
     });
   });
 
-  it('should set isSigningUp to false and hasSignUpErrored to true when signupViaEmailErrored is received', () => {
+  it('should set isSigningUp to false and hasSignupErrored to true when signupViaEmailErrored is received', () => {
     expect(
       uiReducer({
         ...initialState,
         auth: {
           ...initialState.auth,
           isSigningUp: Math.random() > 0.5 ? true : false,
-          hasSignUpErrored: Math.random() > 0.5 ? true : false,
+          hasSignupErrored: Math.random() > 0.5 ? true : false,
         },
       }, signupViaEmailErrored())
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isSigningUp: false,
-        hasSignUpErrored: true,
-      },
-    });
+    ).toMatchSnapshot();
+  });
+
+
+  it('should set isSigningUp to false and hasSignupErrored to true when signupViaEmailErrored is received', () => {
+    expect(
+      uiReducer({
+        ...initialState,
+        auth: {
+          ...initialState.auth,
+          isSigningUp: Math.random() > 0.5 ? true : false,
+          hasSignupErrored: Math.random() > 0.5 ? true : false,
+        },
+      }, signupViaEmailCancelled())
+    ).toMatchSnapshot();
   });
 
 
