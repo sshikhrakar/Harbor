@@ -7,6 +7,7 @@ Object {
     "hasSignupErrored": false,
     "isLoggingIn": false,
     "isSigningUp": false,
+    "signupError": "",
   },
 }
 `;
@@ -18,6 +19,7 @@ Object {
     "hasSignupErrored": false,
     "isLoggingIn": false,
     "isSigningUp": false,
+    "signupError": "",
   },
 }
 `;
@@ -29,6 +31,7 @@ Object {
     "hasSignupErrored": false,
     "isLoggingIn": true,
     "isSigningUp": false,
+    "signupError": "",
   },
 }
 `;
@@ -40,6 +43,7 @@ Object {
     "hasSignupErrored": true,
     "isLoggingIn": false,
     "isSigningUp": false,
+    "signupError": "email already exists",
   },
 }
 `;
@@ -48,9 +52,10 @@ exports[`REDUCER: UI should set isSigningUp to false and hasSignupErrored to tru
 Object {
   "auth": Object {
     "hasLoginErrored": false,
-    "hasSignupErrored": true,
+    "hasSignupErrored": false,
     "isLoggingIn": false,
-    "isSigningUp": true,
+    "isSigningUp": false,
+    "signupError": "",
   },
 }
 `;
@@ -62,6 +67,7 @@ Object {
     "hasSignupErrored": false,
     "isLoggingIn": false,
     "isSigningUp": true,
+    "signupError": "",
   },
 }
 `;

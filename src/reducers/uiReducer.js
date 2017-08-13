@@ -6,6 +6,7 @@ export const initialState = {
     hasLoginErrored: false,
     isSigningUp: false,
     hasSignupErrored: false,
+    signupError: '',
   },
 };
 
@@ -56,6 +57,12 @@ function uiReducer(state = initialState, action) {
         auth: uiAuthReducer(state.auth, action),
       };
 
+    case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
+      return {
+        ...state,
+        auth: uiAuthReducer(state.auth, action),
+      };
+
     default:
       return state;
   }
@@ -95,12 +102,14 @@ function uiAuthReducer(state, action) {
     case actionTypes.SIGNUP_VIA_EMAIL:
       return {
         ...state,
+        signupError: '',
         isSigningUp: true,
       };
 
     case actionTypes.SIGNUP_VIA_EMAIL_FULFILLED:
       return {
         ...state,
+        signupError: '',
         isSigningUp: false,
         hasSignupErrored: false,
       };
@@ -110,11 +119,13 @@ function uiAuthReducer(state, action) {
         ...state,
         isSigningUp: false,
         hasSignupErrored: true,
+        signupError: action.payload.error,
       };
 
     case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
       return {
         ...state,
+        signupError: '',
         isSigningUp: false,
         hasSignupErrored: false,
       };

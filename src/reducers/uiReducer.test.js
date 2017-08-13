@@ -94,7 +94,10 @@ describe('REDUCER: UI', () => {
           isSigningUp: Math.random() > 0.5 ? true : false,
           hasSignupErrored: Math.random() > 0.5 ? true : false,
         },
-      }, signupViaEmailErrored())
+      }, signupViaEmailErrored({
+        code: 'duplicate id',
+        message: 'email already exists',
+      }))
     ).toMatchSnapshot();
   });
 
