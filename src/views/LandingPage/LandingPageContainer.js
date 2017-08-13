@@ -13,7 +13,7 @@ import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
 import { screenRegistry } from '../../screenRegistry';
-import { signupViaEmail } from '../../actions/authActions';
+import { loginViaEmail } from '../../actions/authActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  signupViaEmail,
+  loginViaEmail,
 };
 
 const enhance = compose(
