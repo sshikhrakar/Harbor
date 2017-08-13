@@ -13,17 +13,16 @@ import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
 import { screenRegistry } from '../../screenRegistry';
-import { loginViaEmail } from '../../actions/authActions';
+import { signupViaEmail } from '../../actions/authActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   isLoggingIn: state.ui.auth.isLoggingIn,
   hasLoginErrored: state.ui.auth.hasLoginErrored,
-  isCreateAccountModalVisible: state.ui.auth.isCreateAccountModalVisible,
 });
 
 const mapDispatchToProps = {
-  loginViaEmail,
+  signupViaEmail,
 };
 
 const enhance = compose(

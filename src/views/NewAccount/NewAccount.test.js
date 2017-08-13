@@ -1,13 +1,25 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 
-import NewAccount from './NewAccount';
-import { enhance } from './NewAccountContainer';
+import configureStore from '../../configureStore';
+import NewAccountContainer from './NewAccountContainer';
+
 
 describe('VIEWS: NewAccount', () => {
 
+  let mockStore;
+
+  beforeAll(() => {
+    mockStore = configureStore();
+  });
+
   it('should render correctly', () => {
-    const tree = renderer.create(enhance(<NewAccount />)).toJSON();
+    const tree = renderer.create(
+      <Provider store={ mockStore }>
+        <NewAccountContainer />
+      </Provider>
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
