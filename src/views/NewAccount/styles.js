@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 
   logoContainer: {
-    flex: 1,
+    flex: 0.5,
     paddingVertical: 28,
     paddingHorizontal: 18,
     alignItems: 'center',
@@ -58,17 +58,22 @@ const styles = StyleSheet.create({
 
   modalButtonsContainer: {
     flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 
   button: {
-    flex: 1,
+    flex: 0.4,
+    margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.ASBESTOS,
   },
 
   cancelButton: {
-    flex: 1,
+    flex: 0.4,
+    margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.CRIMSON_RED,
