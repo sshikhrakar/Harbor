@@ -21,6 +21,7 @@ describe('EPICS: auth', () => {
 
   beforeAll(() => {
     const email = 'foobar@gmail.com', password = 'foobar';
+
     loginAction$ = ActionsObservable.of(loginViaEmail(email, password));
     signupAction$ = ActionsObservable.of(signupViaEmail(email, password));
     

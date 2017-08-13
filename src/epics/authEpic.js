@@ -1,12 +1,14 @@
 import 'rxjs/add/operator/mapTo';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/debounceTime';
 import { Observable } from 'rxjs/Rx';
 
 import {
   LOGIN_VIA_EMAIL,
   SIGNUP_VIA_EMAIL,
+  SIGNUP_VIA_EMAIL_CANCELLED,
 } from '../actions/actionTypes';
 import {
   loginViaEmailErrored,
@@ -50,6 +52,7 @@ function signupEpic(action$, store, { firebaseService }) { // eslint-disable-lin
     .switchMap(
       ({ payload }) => firebaseService
         .signup(payload.email, payload.password)
+        .takeUntil(action$.ofType(SIGNUP_VIA_EMAIL_CANCELLED))
         .mapTo(signupViaEmailFulfilled())
         .catch(() => Observable.of(signupViaEmailErrored()))
     );

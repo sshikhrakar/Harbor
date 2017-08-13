@@ -5,7 +5,7 @@ export const initialState = {
     isLoggingIn: false,
     hasLoginErrored: false,
     isSigningUp: false,
-    hasSignUpErrored: false,
+    hasSignupErrored: false,
   },
 };
 
@@ -102,14 +102,21 @@ function uiAuthReducer(state, action) {
       return {
         ...state,
         isSigningUp: false,
-        hasSignUpErrored: false,
+        hasSignupErrored: false,
       };
 
     case actionTypes.SIGNUP_VIA_EMAIL_ERRORED:
       return {
         ...state,
         isSigningUp: false,
-        hasSignUpErrored: true,
+        hasSignupErrored: true,
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
+      return {
+        ...state,
+        isSigningUp: false,
+        hasSignupErrored: false,
       };
 
     default:
