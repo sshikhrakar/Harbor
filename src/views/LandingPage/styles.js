@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
     color: colors.SOFT_BLUE,
   },
 
+  disabledLink: {
+    fontSize: 14,
+    alignSelf: 'center',
+    fontFamily: fonts.primary.REGULAR,
+    color: colors.ASBESTOS,
+  },
+
   error: {
     fontSize: 14,
     alignSelf: 'center',

@@ -87,7 +87,8 @@ function LandingPage(props) {
         <TextLink
           onPress={ onCreateAccountPress }
           text="Or, Create an Account."
-          style={ styles.link }
+          disabled={ isLoggingIn }
+          style={ isLoggingIn ? styles.disabledLink : styles.link }
         />
 
       </View>

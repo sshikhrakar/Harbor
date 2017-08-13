@@ -6,12 +6,19 @@ import colors, { DEFAULT_BUTTON_OPACITY } from '../../config/colors';
 
 function TextLink(props) {
 
-  const { onPress, text, style, activeOpacity } = props;
+  const {
+    onPress,
+    disabled,
+    text,
+    style,
+    activeOpacity,
+  } = props;
 
   return (
     <TouchableOpacity
       onPress={ onPress }
       style={ styles.linkContainer }
+      disabled={ disabled }
       activeOpacity={ activeOpacity }
     >
       <Text style={ [styles.link, style] }> { text } </Text>
@@ -21,6 +28,7 @@ function TextLink(props) {
 }
 
 TextLink.propTypes = {
+  disabled: PropTypes.bool,
   style: Text.propTypes.style,
   activeOpacity: PropTypes.number,
   text: PropTypes.string.isRequired,
@@ -28,6 +36,7 @@ TextLink.propTypes = {
 };
 
 TextLink.defaultProps = {
+  disabled: false,
   activeOpacity: DEFAULT_BUTTON_OPACITY,
 };
 
