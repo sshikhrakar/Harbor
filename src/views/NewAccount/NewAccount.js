@@ -18,7 +18,9 @@ function NewAccount(props) {
   const {
     onSubmit,
     onCancel,
+    errorText,
     emailText,
+    signupError,
     isSigningUp,
     passwordText,
     setEmailText,
@@ -41,6 +43,18 @@ function NewAccount(props) {
           CREATE AN ACCOUNT
         </Text>
       </View>
+
+      {
+        errorText ?
+          <Text style={ styles.error }>
+            { errorText }
+          </Text>
+          : signupError ?
+            <Text style={ styles.error }>
+              { signupError }
+            </Text>
+            : null
+      }
 
       <View style={ styles.emailPasswordContainer }>
         <TextInput
@@ -71,6 +85,7 @@ function NewAccount(props) {
 
         <ButtonWithSpinner
           buttonStyle={ styles.cancelButton }
+          disabled={ isSigningUp }
           isLoading={ false }
           text="CANCEL"
           onPress={ onCancel }
@@ -83,6 +98,8 @@ function NewAccount(props) {
 }
 
 NewAccount.propTypes = {
+  errorText: PropTypes.string,
+  signupError: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   emailText: PropTypes.string.isRequired,
