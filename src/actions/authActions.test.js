@@ -61,9 +61,15 @@ describe('ACTION CREATORS: AUTH', () => {
   it('should create an action for unsuccessful sign up via email', () => {
     const expectedAction = {
       type: actionTypes.SIGNUP_VIA_EMAIL_ERRORED,
+      payload: {
+        error: 'email already exists',
+      },
     };
 
-    expect(authActions.signupViaEmailErrored()).toEqual(expectedAction);
+    expect(authActions.signupViaEmailErrored({
+      code: 'duplicate id',
+      message: 'email already exists',
+    })).toEqual(expectedAction);
   });
 
 });

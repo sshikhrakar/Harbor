@@ -82,18 +82,22 @@ export function signupViaEmailFulfilled() {
 /**
  * Dispatch when signup via email errors.
  *
+ * @param {String} error
  * @returns {Object}
  */
-export function signupViaEmailErrored() {
+export function signupViaEmailErrored(error) {
   return {
     type: SIGNUP_VIA_EMAIL_ERRORED,
+    payload: {
+      error: JSON.parse(JSON.stringify(error)).message,
+    },
   };
 }
 
 /**
  * Dispatch for signup cancelled.
  *
- * @returns {undefined}
+ * @returns {Object}
  */
 export function signupViaEmailCancelled() {
   return {
