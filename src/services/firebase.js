@@ -48,7 +48,9 @@ function login(email, password) {
  * @returns {Observable}
  */
 function signup(email, password) {
-  return firebaseInstance.auth().createUserWithEmailAndPassword(email, password);
+  return Observable.fromPromise(
+    firebaseInstance.auth().createUserWithEmailAndPassword(email, password)
+  );
 }
 
 export {
