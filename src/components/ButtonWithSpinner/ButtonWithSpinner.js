@@ -19,12 +19,18 @@ import fonts from '../../config/fonts';
  */
 function ButtonWithSpinner(props) {
 
-  const { text, onPress, isLoading, activeOpacity } = props;
+  const {
+    text,
+    onPress,
+    isLoading,
+    buttonStyle,
+    activeOpacity,
+  } = props;
 
   return (
     <View style={ styles.buttonContainer }>
       <TouchableOpacity
-        style={ styles.button }
+        style={ [styles.button, buttonStyle] }
         onPress= { onPress }
         activeOpacity={ activeOpacity }
         disabled={ isLoading }
@@ -43,6 +49,9 @@ function ButtonWithSpinner(props) {
 }
 
 ButtonWithSpinner.propTypes = {
+  buttonStyle: PropTypes.shape({
+    ...TouchableOpacity.propTypes,
+  }),
   text: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
