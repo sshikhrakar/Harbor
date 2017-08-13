@@ -13,15 +13,18 @@ import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
 import { loginViaEmail } from '../../actions/authActions';
+import { setCreateAccountModalVisibility } from '../../actions/uiActions';
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   isLoggingIn: state.ui.auth.isLoggingIn,
   hasLoginErrored: state.ui.auth.hasLoginErrored,
+  isCreateAccountModalVisible: state.ui.auth.isCreateAccountModalVisible,
 });
 
 const mapDispatchToProps = {
   loginViaEmail,
+  setCreateAccountModalVisibility,
 };
 
 const enhance = compose(
@@ -30,9 +33,6 @@ const enhance = compose(
   withState('errorText', 'setErrorText', ''),
   withState('passwordText', 'setPasswordText', '123456'),
   withState('emailText', 'setEmailText', 'srishanbhattarai@gmail.com'),
-  withState('createNewAccountEmailText', 'setCreateNewAccountPasswordText', '123456'),
-  withState('createAccountModalVisibility', 'setCreateAccountModalVisibility', false),
-  withState('createNewAccountEmailText', 'setCreateNewAccountEmailText', 'srishanbhattarai@gmail.com'),
 
   branch(
     props => props.isLoggedIn,
@@ -53,11 +53,6 @@ const enhance = compose(
 
     onCreateAccountPress: props => () => {
       props.setCreateAccountModalVisibility(true);
-    },
-
-    onCreateAccountModalClose: props => () => {
-      props.setCreateNewAccountEmailText('');
-      props.setCreateNewAccountPasswordText('');
     },
   }),
 

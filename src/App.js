@@ -3,7 +3,6 @@ import { AsyncStorage } from 'react-native';
 import { persistStore } from 'redux-persist';
 import { Navigation } from 'react-native-navigation';
 
-import { firebaseService } from './services';
 import configureStore from './configureStore';
 import registerScreens, { screenRegistry } from './screenRegistry';
 
@@ -15,8 +14,6 @@ persistStore(store, {
 });
 
 registerScreens(store, Provider);
-
-firebaseService.init('HARBOR');
 
 Navigation.startSingleScreenApp({
   screen: {
