@@ -79,7 +79,7 @@ exports[`VIEWS: NewAccount should render correctly 1`] = `
         }
       }
       underlineColorAndroid="transparent"
-      value=""
+      value="abcd"
     />
     <TextInput
       onChangeText={[Function]}
@@ -96,7 +96,7 @@ exports[`VIEWS: NewAccount should render correctly 1`] = `
         }
       }
       underlineColorAndroid="transparent"
-      value=""
+      value="abcdef"
     />
   </View>
   <View

@@ -1,26 +1,26 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-
-import configureStore from '../../configureStore';
-import NewAccountContainer from './NewAccountContainer';
-
+import NewAccount from './NewAccount';
 
 describe('VIEWS: NewAccount', () => {
 
-  let mockStore;
-
-  beforeAll(() => {
-    mockStore = configureStore();
-  });
-
   it('should render correctly', () => {
-    const tree = renderer.create(
-      <Provider store={ mockStore }>
-        <NewAccountContainer />
-      </Provider>
-    ).toJSON();
+    const onSubmit = jest.fn();
+    const onCancel = jest.fn();
 
+    const component = renderer.create(
+      <NewAccount
+        isSigningUp={ false }
+        onSubmit={ onSubmit }
+        onCancel={ onCancel }
+        emailText='abcd'
+        passwordText='abcdef'
+        setEmailText={ () => true }
+        setPasswordText={ () => true }
+      />
+    );
+
+    let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 

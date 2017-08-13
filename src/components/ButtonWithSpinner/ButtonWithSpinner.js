@@ -49,10 +49,8 @@ function ButtonWithSpinner(props) {
 }
 
 ButtonWithSpinner.propTypes = {
-  buttonStyle: PropTypes.shape({
-    ...TouchableOpacity.propTypes,
-  }),
   text: PropTypes.string.isRequired,
+  buttonStyle: View.propTypes.style,
   onPress: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   activeOpacity: PropTypes.number.isRequired,
