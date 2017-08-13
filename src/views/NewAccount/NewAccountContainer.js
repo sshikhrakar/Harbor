@@ -12,6 +12,7 @@ import { validators } from '../../utils';
 import { signupViaEmail, signupViaEmailCancelled } from '../../actions/authActions';
 
 const mapStateToProps = (state) => ({
+  isLoggedIn: state.auth.isLoggedIn,
   isSigningUp: state.ui.auth.isSigningUp,  
   signupError: state.ui.auth.signupError,
 });
@@ -24,8 +25,8 @@ const mapDispatchToProps = {
 export const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
 
-  withState('emailText', 'setEmailText', 'srishanbhattarai@hotmail.com'),
-  withState('passwordText', 'setPasswordText', '9841816353'),
+  withState('emailText', 'setEmailText', ''),
+  withState('passwordText', 'setPasswordText', ''),
   withState('errorText', 'setErrorText', ''),
 
   withHandlers({
@@ -52,6 +53,17 @@ export const enhance = compose(
   }),
 
   lifecycle({
+    componentWillReceiveProps(nextProps) {
+      // if loggedin status changes from false => true
+      // dismiss the modal, the branch in LandingPage is called,
+      // Homepage is shown.
+      if(!this.props.isLoggedIn && nextProps.isLoggedIn) { 
+        this.props.navigator.dismissModal({
+          animationType: 'slide-down',
+        });
+      } 
+    },
+
     componentWillUnmount() {
       this.props.signupViaEmailCancelled();
     },
