@@ -23,6 +23,7 @@ function ButtonWithSpinner(props) {
     text,
     onPress,
     isLoading,
+    disabled,
     buttonStyle,
     activeOpacity,
   } = props;
@@ -33,7 +34,7 @@ function ButtonWithSpinner(props) {
         style={ [styles.button, buttonStyle] }
         onPress= { onPress }
         activeOpacity={ activeOpacity }
-        disabled={ isLoading }
+        disabled={ disabled || isLoading }
       >
         {
           !isLoading ?
@@ -53,10 +54,12 @@ ButtonWithSpinner.propTypes = {
   buttonStyle: View.propTypes.style,
   onPress: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   activeOpacity: PropTypes.number.isRequired,
 };
 
 ButtonWithSpinner.defaultProps = {
+  disabled: false,
   activeOpacity: DEFAULT_BUTTON_OPACITY,
 };
 
