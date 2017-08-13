@@ -2,6 +2,9 @@ import {
   LOGIN_VIA_EMAIL,
   LOGIN_VIA_EMAIL_ERRORED,
   LOGIN_VIA_EMAIL_FULFILLED,
+  SIGNUP_VIA_EMAIL,
+  SIGNUP_VIA_EMAIL_ERRORED,
+  SIGNUP_VIA_EMAIL_FULFILLED,
 } from './actionTypes';
 
 /**
@@ -42,5 +45,46 @@ export function loginViaEmailFulfilled() {
 export function loginViaEmailErrored() {
   return {
     type: LOGIN_VIA_EMAIL_ERRORED,
+  };
+}
+
+/**
+ * Dispatch for login via email.
+ *
+ * @param {String} email
+ * @param {String} password
+ * @returns {Object}
+ */
+export function signupViaEmail(email, password) {
+  return {
+    type: SIGNUP_VIA_EMAIL,
+    payload: {
+      email,
+      password,
+    },
+  };
+}
+
+
+/**
+ * Dispatch for login via email.
+ *
+ * @returns {Object}
+ */
+export function signupViaEmailFulfilled() {
+  return {
+    type: SIGNUP_VIA_EMAIL_FULFILLED,
+  };
+}
+
+
+/**
+ * Dispatch for login via email.
+ *
+ * @returns {Object}
+ */
+export function signupViaEmailErrored() {
+  return {
+    type: SIGNUP_VIA_EMAIL_ERRORED,
   };
 }
