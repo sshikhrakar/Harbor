@@ -12,6 +12,7 @@ import HomePage from '../HomePage';
 import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
+import { screenRegistry } from '../../screenRegistry';
 import { loginViaEmail } from '../../actions/authActions';
 
 const mapStateToProps = state => ({
@@ -30,9 +31,6 @@ const enhance = compose(
   withState('errorText', 'setErrorText', ''),
   withState('passwordText', 'setPasswordText', '123456'),
   withState('emailText', 'setEmailText', 'srishanbhattarai@gmail.com'),
-  withState('createNewAccountEmailText', 'setCreateNewAccountPasswordText', '123456'),
-  withState('createAccountModalVisibility', 'setCreateAccountModalVisibility', false),
-  withState('createNewAccountEmailText', 'setCreateNewAccountEmailText', 'srishanbhattarai@gmail.com'),
 
   branch(
     props => props.isLoggedIn,
@@ -52,12 +50,13 @@ const enhance = compose(
     },
 
     onCreateAccountPress: props => () => {
-      props.setCreateAccountModalVisibility(true);
-    },
-
-    onCreateAccountModalClose: props => () => {
-      props.setCreateNewAccountEmailText('');
-      props.setCreateNewAccountPasswordText('');
+      props.navigator.showModal({
+        screen: screenRegistry.NEW_ACCOUNT,
+        animationType: 'slide-up',
+        navigatorStyle: {
+          navBarHidden: true,
+        },
+      });
     },
   }),
 

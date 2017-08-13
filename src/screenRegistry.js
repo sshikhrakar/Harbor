@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 
 import {
   HomePage,
+  NewAccount,
   LandingPage,
 } from './views';
 
@@ -9,8 +10,9 @@ import {
  * Registered namespaces for each view.
  */
 export const screenRegistry = {
-  HOME_PAGE: 'home_page',
-  LANDING_PAGE: 'landing_page',
+  HOME_PAGE: 'HOME_PAGE',
+  NEW_ACCOUNT: 'NEW_ACCOUNT',
+  LANDING_PAGE: 'LANDING_PAGE',
 };
 
 /**
@@ -21,6 +23,7 @@ export const screenRegistry = {
  */
 function registerScreens(store, Provider) {
   Navigation.registerComponent(screenRegistry.HOME_PAGE, () => HomePage, store, Provider);
+  Navigation.registerComponent(screenRegistry.NEW_ACCOUNT, () => NewAccount, store, Provider);
   Navigation.registerComponent(screenRegistry.LANDING_PAGE, () => LandingPage, store, Provider);
 }
 

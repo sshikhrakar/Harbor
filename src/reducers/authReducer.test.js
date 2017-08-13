@@ -1,4 +1,7 @@
-import { loginViaEmailFulfilled } from '../actions/authActions';
+import {
+  loginViaEmailFulfilled,
+  signupViaEmailFulfilled,
+} from '../actions/authActions';
 import authReducer, { initialState } from './authReducer';
 
 describe('REDUCER: AUTH', () => {
@@ -14,6 +17,12 @@ describe('REDUCER: AUTH', () => {
       ...initialState,
       isLoggedIn: true,
     });
+  });
+
+  it('should set logged in to true when signup is successful', () => {
+    expect(
+      authReducer(undefined, signupViaEmailFulfilled())
+    ).toMatchSnapshot(); 
   });
 
 });

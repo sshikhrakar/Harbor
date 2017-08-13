@@ -4,14 +4,15 @@ import fonts from '../../config/fonts';
 import colors from '../../config/colors';
 
 const styles = StyleSheet.create({
-  landingPageContainer: {
+  modalContainer: {
     flex: 1,
-    paddingVertical: 16,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
     backgroundColor: colors.SILVER,
   },
 
   logoContainer: {
-    flex: 1,
+    flex: 0.5,
     paddingVertical: 28,
     paddingHorizontal: 18,
     alignItems: 'center',
@@ -28,41 +29,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  mainText: {
-    fontSize: 36,
-    alignSelf: 'center',
-    fontFamily: fonts.primary.REGULAR,
-  },
-
   subText: {
     fontSize: 18,
     fontFamily: fonts.primary.LIGHT,
-  },
-
-  loginContainer: {
-    flex: 3,
-    padding: 24,
-    justifyContent: 'flex-start',
-  },
-
-  loginText: {
-    fontSize: 18,
-    alignSelf: 'center',
-    fontFamily: fonts.primary.REGULAR,
-  },
-
-  link: {
-    fontSize: 14,
-    alignSelf: 'center',
-    fontFamily: fonts.primary.REGULAR,
-    color: colors.SOFT_BLUE,
-  },
-
-  disabledLink: {
-    fontSize: 14,
-    alignSelf: 'center',
-    fontFamily: fonts.primary.REGULAR,
-    color: colors.ASBESTOS,
   },
 
   error: {
@@ -74,7 +43,7 @@ const styles = StyleSheet.create({
   },
 
   emailPasswordContainer: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'space-around',
   },
 
@@ -87,24 +56,29 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.REGULAR,
   },
 
-  loginButtonContainer: {
+  modalButtonsContainer: {
     flex: 1,
-    paddingVertical: 10,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 
   button: {
-    flex: 0.8,
+    flex: 0.4,
+    margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.ASBESTOS,
   },
 
-  loginButtonText: {
-    fontSize: 20,
-    marginVertical: 5,
-    color: colors.SILVER,
-    fontFamily: fonts.primary.LIGHT,
+  cancelButton: {
+    flex: 0.4,
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.CRIMSON_RED,
   },
+
 
 });
 

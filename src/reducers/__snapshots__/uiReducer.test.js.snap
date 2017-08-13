@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`REDUCER: UI should clear isLoggingIn and error when loginViaEmailFulfilled is received 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+}
+`;
+
+exports[`REDUCER: UI should set hasLoginErrored and clear isLoggingIn when loginViaEmailErrored is received 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": true,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+}
+`;
+
+exports[`REDUCER: UI should set isLoggingIn to true when loginViaEmail is received 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": true,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+}
+`;
+
+exports[`REDUCER: UI should set isSigningUp to false and hasSignupErrored to true when signupViaEmailErrored is received 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": true,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "email already exists",
+  },
+}
+`;
+
+exports[`REDUCER: UI should set isSigningUp to false and hasSignupErrored to true when signupViaEmailErrored is received 2`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+}
+`;
+
+exports[`REDUCER: UI should set isSigningUp to true when signupViaEmail is received 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": true,
+    "signupError": "",
+  },
+}
+`;

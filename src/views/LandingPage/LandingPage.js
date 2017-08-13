@@ -3,7 +3,6 @@ import {
   Text,
   View,
   Image,
-  Modal,
   TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -25,8 +24,6 @@ function LandingPage(props) {
     setPasswordText,
     onLoginButtonPress,
     onCreateAccountPress,
-    onCreateAccountModalClose,
-    createAccountModalVisibility,
   } = props;
 
   return (
@@ -48,18 +45,6 @@ function LandingPage(props) {
           Share Android builds of React Native apps
         </Text>
       </View>
-
-      <Modal
-        animationType={ 'slide' }
-        transparent={ false }
-        visible={ createAccountModalVisibility }
-        onRequestClose={ onCreateAccountModalClose }
-      >
-        <View>
-          <Text>Hello world</Text>
-        </View>
-      </Modal>
-
 
       <View style={ styles.loginContainer }>
         <Text style={ styles.loginText }>
@@ -102,7 +87,8 @@ function LandingPage(props) {
         <TextLink
           onPress={ onCreateAccountPress }
           text="Or, Create an Account."
-          style={ styles.link }
+          disabled={ isLoggingIn }
+          style={ isLoggingIn ? styles.disabledLink : styles.link }
         />
 
       </View>
@@ -120,8 +106,6 @@ LandingPage.propTypes = {
   setPasswordText: PropTypes.func.isRequired,
   onLoginButtonPress: PropTypes.func.isRequired,
   onCreateAccountPress: PropTypes.func.isRequired,
-  onCreateAccountModalClose: PropTypes.func.isRequired,
-  createAccountModalVisibility: PropTypes.bool.isRequired,
 };
 
 

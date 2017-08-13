@@ -2,6 +2,10 @@ import {
   LOGIN_VIA_EMAIL,
   LOGIN_VIA_EMAIL_ERRORED,
   LOGIN_VIA_EMAIL_FULFILLED,
+  SIGNUP_VIA_EMAIL,
+  SIGNUP_VIA_EMAIL_ERRORED,
+  SIGNUP_VIA_EMAIL_FULFILLED,
+  SIGNUP_VIA_EMAIL_CANCELLED,
 } from './actionTypes';
 
 /**
@@ -42,5 +46,61 @@ export function loginViaEmailFulfilled() {
 export function loginViaEmailErrored() {
   return {
     type: LOGIN_VIA_EMAIL_ERRORED,
+  };
+}
+
+/**
+ * Dispatch for signup via email.
+ *
+ * @param {String} email
+ * @param {String} password
+ * @returns {Object}
+ */
+export function signupViaEmail(email, password) {
+  return {
+    type: SIGNUP_VIA_EMAIL,
+    payload: {
+      email,
+      password,
+    },
+  };
+}
+
+
+/**
+ * Dispatch for successful signup via email.
+ *
+ * @returns {Object}
+ */
+export function signupViaEmailFulfilled() {
+  return {
+    type: SIGNUP_VIA_EMAIL_FULFILLED,
+  };
+}
+
+
+/**
+ * Dispatch when signup via email errors.
+ *
+ * @param {String} error
+ * @returns {Object}
+ */
+export function signupViaEmailErrored(error) {
+  return {
+    type: SIGNUP_VIA_EMAIL_ERRORED,
+    payload: {
+      error: JSON.parse(JSON.stringify(error)).message,
+    },
+  };
+}
+
+/**
+ * Dispatch for signup cancelled.
+ *
+ * @returns {Object}
+ */
+export function signupViaEmailCancelled() {
+  return {
+    type: SIGNUP_VIA_EMAIL_CANCELLED,
   };
 }

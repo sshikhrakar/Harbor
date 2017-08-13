@@ -17,7 +17,6 @@ describe('ACTION CREATORS: AUTH', () => {
     expect(authActions.loginViaEmail(email, password)).toEqual(expectedAction);
   });
 
-
   it('should create an action that indicates successful login via email', () => {
     const expectedAction = {
       type: actionTypes.LOGIN_VIA_EMAIL_FULFILLED,
@@ -33,6 +32,44 @@ describe('ACTION CREATORS: AUTH', () => {
     };
 
     expect(authActions.loginViaEmailErrored()).toEqual(expectedAction);
+  });
+
+  it('should create an action for signing up via email', () => {
+    const email = 'foobar@foobar.com';
+    const password = 'asdfghhh';
+
+    const expectedAction = {
+      type: actionTypes.SIGNUP_VIA_EMAIL,
+      payload: {
+        email,
+        password,
+      },
+    };
+
+    expect(authActions.signupViaEmail(email, password)).toEqual(expectedAction);
+  });
+
+  it('should create an action for successful sign up via email', () => {
+    const expectedAction = {
+      type: actionTypes.SIGNUP_VIA_EMAIL_FULFILLED,
+    };
+
+    expect(authActions.signupViaEmailFulfilled()).toEqual(expectedAction);
+  });
+
+
+  it('should create an action for unsuccessful sign up via email', () => {
+    const expectedAction = {
+      type: actionTypes.SIGNUP_VIA_EMAIL_ERRORED,
+      payload: {
+        error: 'email already exists',
+      },
+    };
+
+    expect(authActions.signupViaEmailErrored({
+      code: 'duplicate id',
+      message: 'email already exists',
+    })).toEqual(expectedAction);
   });
 
 });

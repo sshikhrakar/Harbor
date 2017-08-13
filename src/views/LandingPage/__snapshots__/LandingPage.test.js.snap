@@ -70,24 +70,6 @@ exports[`VIEWS: LandingPage should render correctly 1`] = `
       Share Android builds of React Native apps
     </Text>
   </View>
-  <Modal
-    animationType="slide"
-    hardwareAccelerated={false}
-    onRequestClose={[Function]}
-    transparent={false}
-    visible={true}
-  >
-    <View>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-      >
-        Hello world
-      </Text>
-    </View>
-  </Modal>
   <View
     style={
       Object {

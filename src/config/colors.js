@@ -7,6 +7,7 @@ const colors = {
   SILVER: '#ecf0f1',
   ASBESTOS: '#7f8c8d',
   SOFT_BLUE: '#3498db',
+  CRIMSON_RED: '#C91F37',
 };
 
 export default colors;

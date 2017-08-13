@@ -4,6 +4,9 @@ export const initialState = {
   auth: {
     isLoggingIn: false,
     hasLoginErrored: false,
+    isSigningUp: false,
+    hasSignupErrored: false,
+    signupError: '',
   },
 };
 
@@ -31,6 +34,30 @@ function uiReducer(state = initialState, action) {
       };
 
     case actionTypes.LOGIN_VIA_EMAIL_ERRORED:
+      return {
+        ...state,
+        auth: uiAuthReducer(state.auth, action),
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL:
+      return {
+        ...state,
+        auth: uiAuthReducer(state.auth, action),
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_FULFILLED:
+      return {
+        ...state,
+        auth: uiAuthReducer(state.auth, action),
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_ERRORED:
+      return {
+        ...state,
+        auth: uiAuthReducer(state.auth, action),
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
@@ -71,5 +98,39 @@ function uiAuthReducer(state, action) {
         isLoggingIn: false,
         hasLoginErrored: true,
       };
+
+    case actionTypes.SIGNUP_VIA_EMAIL:
+      return {
+        ...state,
+        signupError: '',
+        isSigningUp: true,
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_FULFILLED:
+      return {
+        ...state,
+        signupError: '',
+        isSigningUp: false,
+        hasSignupErrored: false,
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_ERRORED:
+      return {
+        ...state,
+        isSigningUp: false,
+        hasSignupErrored: true,
+        signupError: action.payload.error,
+      };
+
+    case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
+      return {
+        ...state,
+        signupError: '',
+        isSigningUp: false,
+        hasSignupErrored: false,
+      };
+
+    default:
+      return state;
   }
 }

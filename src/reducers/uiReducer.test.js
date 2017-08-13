@@ -1,5 +1,13 @@
 import uiReducer, { initialState } from './uiReducer';
-import { loginViaEmail, loginViaEmailFulfilled, loginViaEmailErrored } from '../actions/authActions';
+import {
+  loginViaEmail,
+  loginViaEmailFulfilled,
+  loginViaEmailErrored,
+  signupViaEmail,
+  signupViaEmailFulfilled,
+  signupViaEmailErrored,
+  signupViaEmailCancelled,
+} from '../actions/authActions';
 
 describe('REDUCER: UI', () => {
 
@@ -13,13 +21,7 @@ describe('REDUCER: UI', () => {
 
     expect(
       uiReducer(undefined, loginViaEmail(email, password))
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isLoggingIn: true,
-      },
-    });
+    ).toMatchSnapshot();
   });
 
 
@@ -33,14 +35,7 @@ describe('REDUCER: UI', () => {
           hasLoginErrored: Math.random() > 0.5 ? false : true,
         },
       }, loginViaEmailFulfilled())
-    ).toEqual({
-      ...initialState,
-      auth: {
-        ...initialState.auth,
-        isLoggingIn: false,
-        hasLoginErrored: false,
-      },
-    });
+    ).toMatchSnapshot();
   });
 
 
@@ -54,14 +49,71 @@ describe('REDUCER: UI', () => {
           hasLoginErrored: Math.random() > 0.5 ? true : false,
         },
       }, loginViaEmailErrored())
+    ).toMatchSnapshot();
+  });
+
+
+  it('should set isSigningUp to true when signupViaEmail is received', () => {
+    expect(
+      uiReducer({
+        ...initialState,
+        auth: {
+          ...initialState.auth,
+          isSigningUp: Math.random() > 0.5 ? true : false,
+        },
+      }, signupViaEmail())
+    ).toMatchSnapshot();
+  });
+
+  it('should set isSigningUp and hasSignupErrored to false when signupViaEmailFulfilled is received', () => {
+    expect(
+      uiReducer({
+        ...initialState,
+        auth: {
+          ...initialState.auth,
+          isSigningUp: Math.random() > 0.5 ? true : false,
+          hasSignupErrored: Math.random() > 0.5 ? true : false,
+        },
+      }, signupViaEmailFulfilled())
     ).toEqual({
       ...initialState,
       auth: {
         ...initialState.auth,
-        isLoggingIn: false,
-        hasLoginErrored: true,
+        isSigningUp: false,
+        hasSignupErrored: false,
       },
     });
   });
+
+  it('should set isSigningUp to false and hasSignupErrored to true when signupViaEmailErrored is received', () => {
+    expect(
+      uiReducer({
+        ...initialState,
+        auth: {
+          ...initialState.auth,
+          isSigningUp: Math.random() > 0.5 ? true : false,
+          hasSignupErrored: Math.random() > 0.5 ? true : false,
+        },
+      }, signupViaEmailErrored({
+        code: 'duplicate id',
+        message: 'email already exists',
+      }))
+    ).toMatchSnapshot();
+  });
+
+
+  it('should set isSigningUp to false and hasSignupErrored to true when signupViaEmailErrored is received', () => {
+    expect(
+      uiReducer({
+        ...initialState,
+        auth: {
+          ...initialState.auth,
+          isSigningUp: Math.random() > 0.5 ? true : false,
+          hasSignupErrored: Math.random() > 0.5 ? true : false,
+        },
+      }, signupViaEmailCancelled())
+    ).toMatchSnapshot();
+  });
+
 
 });

@@ -16,7 +16,9 @@ persistStore(store, {
 
 registerScreens(store, Provider);
 
-firebaseService.init('HARBOR');
+if (firebaseService.getNumberOfApps() === 0) {
+  firebaseService.init('HARBOR');
+}
 
 Navigation.startSingleScreenApp({
   screen: {
