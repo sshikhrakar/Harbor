@@ -52,9 +52,9 @@ function signupEpic(action$, store, { firebaseService }) { // eslint-disable-lin
     .switchMap(
       ({ payload }) => firebaseService
         .signup(payload.email, payload.password)
-        .takeUntil(action$.ofType(SIGNUP_VIA_EMAIL_CANCELLED))
         .mapTo(signupViaEmailFulfilled())
-        .catch(() => Observable.of(signupViaEmailErrored()))
+        .takeUntil(action$.ofType(SIGNUP_VIA_EMAIL_CANCELLED))
+        .catch((err) => Observable.of(signupViaEmailErrored(err)))
     );
 }
 
