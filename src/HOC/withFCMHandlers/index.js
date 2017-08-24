@@ -7,7 +7,7 @@ import FCM, { FCMEvent } from 'react-native-fcm';
  * @param {function} onTokenReceive - callback for when the token is received.
  * @returns {Function}
  */
-const withFCMHandlers = (onTokenReceive = () => true) => WrappedComponent => {
+const withFCMHandlers = () => WrappedComponent => {
   class EnhancedComponent extends Component {
 
     /**
@@ -15,7 +15,7 @@ const withFCMHandlers = (onTokenReceive = () => true) => WrappedComponent => {
      */
     componentDidMount() {
       FCM.getFCMToken().then(token => {
-        onTokenReceive(token);
+        this.props.registerFcmToken(token);
       });
 
       this.notificationListener = FCM.on(FCMEvent.Notification, notif => {
