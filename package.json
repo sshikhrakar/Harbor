@@ -15,6 +15,7 @@
     "firebase": "^4.2.0",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
+    "react-native-fcm": "^8.0.0",
     "react-native-navigation": "1.1.179",
     "react-redux": "5.0.5",
     "recompose": "0.24.0",
@@ -38,7 +39,9 @@
   "jest": {
     "preset": "react-native",
     "verbose": true,
-    "collectCoverageFrom" : ["src/**/*.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   },
   "rnpm": {
     "assets": [

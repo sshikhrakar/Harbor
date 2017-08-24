@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "333999136249",
+    "firebase_url": "https://harbor-c9a5f.firebaseio.com",
+    "project_id": "harbor-c9a5f",
+    "storage_bucket": "harbor-c9a5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333999136249:android:7811a09c4110f0ef",
+        "android_client_info": {
+          "package_name": "com.testharbor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333999136249-4vieesie3k02stch8a62jrh83rd0f18j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.testharbor",
+            "certificate_hash": "99fe45a1b30441d34edefdfba5269ba150421342"
+          }
+        },
+        {
+          "client_id": "333999136249-dhmft1lv4bu81op2do5l107jbb0b25ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnSCQfcFOoFDH4AnOhQiLYpEr4up4nlx4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333999136249-dhmft1lv4bu81op2do5l107jbb0b25ve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
