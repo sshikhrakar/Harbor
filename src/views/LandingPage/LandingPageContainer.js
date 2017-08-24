@@ -12,6 +12,7 @@ import HomePage from '../HomePage';
 import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
+import { withFCMHandlers } from '../../HOC';
 import { screenRegistry } from '../../screenRegistry';
 import { loginViaEmail } from '../../actions/authActions';
 
@@ -27,6 +28,8 @@ const mapDispatchToProps = {
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
+
+  withFCMHandlers(),
 
   withState('errorText', 'setErrorText', ''),
   withState('passwordText', 'setPasswordText', '123456'),

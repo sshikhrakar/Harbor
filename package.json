@@ -41,7 +41,8 @@
     "verbose": true,
     "collectCoverageFrom": [
       "src/**/*.js"
-    ]
+    ],
+    "setupFiles": ["./jest-config.js"]
   },
   "rnpm": {
     "assets": [
