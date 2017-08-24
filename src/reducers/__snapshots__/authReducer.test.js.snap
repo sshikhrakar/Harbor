@@ -2,6 +2,7 @@
 
 exports[`REDUCER: AUTH should set logged in to true when signup is successful 1`] = `
 Object {
+  "fcmTokenRegistered": false,
   "isLoggedIn": true,
 }
 `;

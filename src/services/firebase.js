@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 
 import firebaseConfig from '../config/firebase';
 
+let databaseInstance;
 let firebaseInstance;
 
 /**
@@ -15,6 +16,8 @@ function init(name, config = firebaseConfig) {
   firebaseInstance = firebase.initializeApp({
     ...config,
   }, name);
+
+  databaseInstance = firebaseInstance.database();
 }
 
 /**
@@ -53,10 +56,26 @@ function signup(email, password) {
   );
 }
 
+/**
+ * Register FCM token on the database.
+ *
+ * @param {String} token
+ * @returns {Observable}
+ */
+function registerToken(token) {
+  return Observable.fromPromise(
+    databaseInstance.ref('users/' + firebaseInstance.auth().currentUser.uid).update({
+      fcmTokens: {
+        [token]: true,
+      },
+    })
+  );
+}
+
 export {
   init,
   login,
   signup,
+  registerToken,
   getNumberOfApps,
 };
-
