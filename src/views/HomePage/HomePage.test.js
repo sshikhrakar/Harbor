@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import HomePage from './index';
+import HomePage from './HomePage';
 
 describe('HomePage View', () => {
 

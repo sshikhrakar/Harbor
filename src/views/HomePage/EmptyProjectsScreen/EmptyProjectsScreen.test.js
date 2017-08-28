@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import EmptyProjectsScreen from '../index';
+import EmptyProjectsScreen from './EmptyProjectsScreen';
 
 describe('EmptyProjectsScreen View', () => {
 

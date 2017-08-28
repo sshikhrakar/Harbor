@@ -22,7 +22,7 @@ describe('REDUCER: AUTH', () => {
   it('should set logged in to true when signup is successful', () => {
     expect(
       authReducer(undefined, signupViaEmailFulfilled())
-    ).toMatchSnapshot(); 
+    ).toMatchSnapshot();
   });
 
 });
