@@ -1,5 +1,8 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import FCM, { FCMEvent } from 'react-native-fcm';
+
+import { registerFcmToken } from '../../actions/fcmActions';
 
 /**
  * Adds FCM handlers. Only ever wraps the top level component.
@@ -38,7 +41,11 @@ const withFCMHandlers = () => WrappedComponent => {
 
   }
 
-  return EnhancedComponent;
+  const mapDispatchToProps = {
+    registerFcmToken,
+  };
+
+  return connect(null, mapDispatchToProps)(EnhancedComponent);
 };
 
 export default withFCMHandlers;

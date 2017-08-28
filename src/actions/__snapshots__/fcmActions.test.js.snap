@@ -5,7 +5,7 @@ Object {
   "payload": Object {
     "token": "foobarbaz1234foobarfaz1234",
   },
-  "type": "AUTH/FCM/REGISTER_FCM_TOKEN",
+  "type": "FCM/REGISTER_FCM_TOKEN",
 }
 `;
 
@@ -14,12 +14,12 @@ Object {
   "payload": Object {
     "err": undefined,
   },
-  "type": "AUTH/FCM/REGISTER_FCM_TOKEN_ERRORED",
+  "type": "FCM/REGISTER_FCM_TOKEN_ERRORED",
 }
 `;
 
 exports[`ACTION CREATORS: FCM should create registration success action 1`] = `
 Object {
-  "type": "AUTH/FCM/REGISTER_FCM_TOKEN_FULFILLED",
+  "type": "FCM/REGISTER_FCM_TOKEN_FULFILLED",
 }
 `;
