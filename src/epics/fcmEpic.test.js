@@ -38,7 +38,13 @@ describe('EPICS: FCM', () => {
       .toArray()
       .subscribe(actions => {
         expect(actions).toEqual([registerFcmTokenFulfilled()]);
-      }, errors => {
+      }, null);
+  });
+
+  it('should dispatch errored success action if fcm token is not registered', () => {
+    fcm.fcmTokenRegistrationEpic(registrationAction$, store, dependencies)
+      .toArray()
+      .subscribe(null, errors => {
         expect(errors).toEqual([registerFcmTokenErrored()]);
       });
   });
