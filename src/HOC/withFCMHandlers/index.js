@@ -4,8 +4,7 @@ import FCM, { FCMEvent } from 'react-native-fcm';
 /**
  * Adds FCM handlers. Only ever wraps the top level component.
  *
- * @param {function} onTokenReceive - callback for when the token is received.
- * @returns {Function}
+ * @returns {function}
  */
 const withFCMHandlers = () => WrappedComponent => {
   class EnhancedComponent extends Component {
