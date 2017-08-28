@@ -64,10 +64,8 @@ function signup(email, password) {
  */
 function registerToken(token) {
   return Observable.fromPromise(
-    databaseInstance.ref('users/' + firebaseInstance.auth().currentUser.uid).update({
-      fcmTokens: {
-        [token]: true,
-      },
+    databaseInstance.ref('users/' + firebaseInstance.auth().currentUser.uid + '/fcmTokens').update({
+      [token]: true,
     })
   );
 }
