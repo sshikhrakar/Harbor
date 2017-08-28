@@ -1,7 +1,6 @@
 import {
   LOGIN_VIA_EMAIL_FULFILLED,
   SIGNUP_VIA_EMAIL_FULFILLED,
-  REGISTER_FCM_TOKEN,
 } from '../actions/actionTypes';
 
 export const initialState = {
