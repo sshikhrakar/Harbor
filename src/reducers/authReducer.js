@@ -6,7 +6,6 @@ import {
 
 export const initialState = {
   isLoggedIn: false,
-  fcmTokenRegistered: false,
 };
 
 /**
@@ -29,12 +28,6 @@ function auth(state = initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
-      };
-
-    case REGISTER_FCM_TOKEN:
-      return {
-        ...state,
-        fcmTokenRegistered: true,
       };
 
     default:
