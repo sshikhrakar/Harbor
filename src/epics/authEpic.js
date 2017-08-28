@@ -9,15 +9,12 @@ import {
   LOGIN_VIA_EMAIL,
   SIGNUP_VIA_EMAIL,
   SIGNUP_VIA_EMAIL_CANCELLED,
-  REGISTER_FCM_TOKEN,
 } from '../actions/actionTypes';
 import {
   loginViaEmailErrored,
   loginViaEmailFulfilled,
   signupViaEmailErrored,
   signupViaEmailFulfilled,
-  registerFcmTokenFulfilled,
-  registerFcmTokenErrored,
 } from '../actions/authActions';
 
 /**
@@ -61,28 +58,7 @@ function signupEpic(action$, store, { firebaseService }) { // eslint-disable-lin
     );
 }
 
-/**
- * Register fcm tokens on the server.
- *
- * @param {Observable} action$
- * @param {Object} store
- * @param {Objecct} firebaseService
- * @returns {Observable}
- */
-function fcmTokenRegistrationEpic(action$, store, { firebaseService }) {
-  return action$
-    .ofType(REGISTER_FCM_TOKEN)
-    .debounceTime(1000)
-    .switchMap(
-      ({ payload }) => firebaseService
-        .registerToken(payload.token)
-        .mapTo(registerFcmTokenFulfilled())
-        .catch(err => Observable.of(registerFcmTokenErrored(err)))
-    );
-}
-
 export {
   loginEpic,
   signupEpic,
-  fcmTokenRegistrationEpic,
 };

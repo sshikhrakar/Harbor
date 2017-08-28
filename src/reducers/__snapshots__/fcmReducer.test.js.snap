@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`REDUCER: FCM should receive registerFcmTokenFulfilled action and set state 1`] = `
+Object {
+  "fcmTokenRegistered": true,
+}
+`;

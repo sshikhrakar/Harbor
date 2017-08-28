@@ -24,7 +24,7 @@ describe('EPICS: auth', () => {
 
     loginAction$ = ActionsObservable.of(loginViaEmail(email, password));
     signupAction$ = ActionsObservable.of(signupViaEmail(email, password));
-    
+
     const mockResponse = (email, password) => ({
       email,
       password,
