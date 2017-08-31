@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ACTIONS: projectActions should create a success action for all projects fetched 1`] = `
+Object {
+  "projects": "data",
+  "type": "PROJECTS/FETCH_ALL_PROJECTS_FULFILLED",
+}
+`;
+
+exports[`ACTIONS: projectActions should create an action to fetch all projects 1`] = `
+Object {
+  "type": "PROJECTS/FETCH_ALL_PROJECTS",
+}
+`;
+
+exports[`ACTIONS: projectActions should create an error action for all projects fetched 1`] = `
+Object {
+  "type": "PROJECTS/FETCH_ALL_PROJECTS_ERRORED",
+}
+`;

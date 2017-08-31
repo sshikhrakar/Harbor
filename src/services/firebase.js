@@ -70,10 +70,22 @@ function registerToken(token) {
   );
 }
 
+/**
+ * Fetch all projects from Firebase.
+ *
+ * @returns {Observable}
+ */
+function fetchAllProjects() {
+  return Observable.fromPromise(
+    databaseInstance.ref('projects/').once('value')
+  );
+}
+
 export {
   init,
   login,
   signup,
   registerToken,
   getNumberOfApps,
+  fetchAllProjects,
 };

@@ -22,10 +22,6 @@ if (firebaseService.getNumberOfApps() === 0) {
 
 Navigation.startSingleScreenApp({
   screen: {
-    screen: screenRegistry.LANDING_PAGE,
-    navigatorStyle: {
-      navBarHidden: true,
-    },
+    screen: screenRegistry.HOME_PAGE,
   },
-  animationType: 'slide-down',
 });
