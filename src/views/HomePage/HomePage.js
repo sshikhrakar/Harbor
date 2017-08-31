@@ -1,15 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import fonts from '../../config/fonts';
 import colors from '../../config/colors';
 
+import styles from './styles';
+import { ProjectOverviewCard } from '../../components';
+
 function HomePage() {
 
   return (
-    <View>
-      <Text> HomePage </Text>
-    </View>
+    <ScrollView style={ styles.mainContainer }>
+      <ProjectOverviewCard />
+      <ProjectOverviewCard />
+    </ScrollView>
   );
 
 }
