@@ -25,7 +25,7 @@ function init() {
  * @param {String} password
  * @returns {Observable}
  */
-function login(email: string, password: string): Observable {
+function login(email, password) {
   return Observable.fromPromise(
     firebaseInstance.auth().signInWithEmailAndPassword(email, password)
   );
