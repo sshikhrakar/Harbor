@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { ScrollView, RefreshControl } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 
 import fonts from '../../config/fonts';
 import colors from '../../config/colors';
@@ -24,19 +24,21 @@ function HomePage(props) {
           onRefresh={ fetchAllProjects }
         />
       }
-      style={ styles.mainContainer }>
+      contentContainerStyle={ styles.scrollViewContainer }>
+      <View style={ styles.mainContainer }>
 
-      {
-        projects && Object.keys(projects).map((project, key) =>
-          <ProjectOverviewCard
-            key={ key }
-            displayName={ projects[project].name }
-            versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
-            lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
-          />
-        )
-      }
+        {
+          projects && Object.keys(projects).map((project, key) =>
+            <ProjectOverviewCard
+              key={ key }
+              displayName={ projects[project].name }
+              versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
+              lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
+            />
+          )
+        }
 
+      </View>
     </ScrollView>
   );
 

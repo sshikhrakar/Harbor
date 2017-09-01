@@ -4,6 +4,10 @@ import fonts from '../../../config/fonts';
 import colors from '../../../config/colors';
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    flex: 1,
+  },
+
   emptyProjectsContainer: {
     flex: 1,
     backgroundColor: colors.SILVER,
@@ -29,6 +33,7 @@ const styles = StyleSheet.create({
   },
 
   mainTextContainer: {
+    flex: 1,
     marginVertical: 8,
   },
 
