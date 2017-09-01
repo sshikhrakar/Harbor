@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`REDUCER: PROJECTS should set projects key when FETCH_ALL_PROJECTS_FULFILLED is received 1`] = `
+Object {
+  "payload": Object {
+    "projects": "data",
+  },
+  "type": "PROJECTS/FETCH_ALL_PROJECTS_FULFILLED",
+}
+`;

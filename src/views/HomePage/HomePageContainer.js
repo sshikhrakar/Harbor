@@ -10,8 +10,12 @@ const mapDispatchToProps = {
   fetchAllProjects,
 };
 
+const mapStateToProps = state => ({
+  projects: state.projects,
+});
+
 const enhance = compose(
-  connect(null, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 
   lifecycle({
     componentDidMount() {

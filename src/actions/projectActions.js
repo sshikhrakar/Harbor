@@ -35,6 +35,8 @@ export function fetchAllProjectsErrored() {
 export function fetchAllProjectsFulfilled(projects) {
   return {
     type: FETCH_ALL_PROJECTS_FULFILLED,
-    projects,
+    payload: {
+      projects,
+    },
   };
 }

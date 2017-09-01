@@ -72,13 +72,6 @@ ProjectOverviewCard.propTypes = {
   projectIconUrl: PropTypes.string.isRequired,
 };
 
-ProjectOverviewCard.defaultProps = {
-  displayName: 'Sansaire (com.mobilesansaire)',
-  versionNumber: 'v1.0.1',
-  lastUpdatedAt: 'Wed, Aug 30, 2017',
-  onCardPress: () => true,
-};
-
 const styles = StyleSheet.create({
   mainContainer: {
     padding: 15,

@@ -2,7 +2,9 @@
 
 exports[`ACTIONS: projectActions should create a success action for all projects fetched 1`] = `
 Object {
-  "projects": "data",
+  "payload": Object {
+    "projects": "data",
+  },
   "type": "PROJECTS/FETCH_ALL_PROJECTS_FULFILLED",
 }
 `;
