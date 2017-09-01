@@ -2,7 +2,7 @@
  * Checks if email is valid.
  *
  * @param {String} email
- * @returns {String}
+ * @returns {Boolean}
  */
 function isValidEmail(email) {
   /* eslint-disable */
@@ -16,7 +16,7 @@ function isValidEmail(email) {
  * Checks if password is valid.
  *
  * @param {String} password
- * @returns {String}
+ * @returns {Boolean}
  */
 function isValidPassword(password) {
   if (!password) return false;
@@ -24,7 +24,19 @@ function isValidPassword(password) {
   return true;
 }
 
+/**
+ * Check if the object is empty.
+ *
+ * @param {Object} obj
+ * @returns {Boolean}
+ */
+function isEmptyObject(obj) {
+  return !Object.keys(obj).length && obj.constructor === Object;
+}
+
 export {
   isValidEmail,
+  isEmptyObject,
   isValidPassword,
 };
+

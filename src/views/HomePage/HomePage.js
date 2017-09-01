@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { ScrollView } from 'react-native';
+import { ScrollView, RefreshControl } from 'react-native';
 
 import fonts from '../../config/fonts';
 import colors from '../../config/colors';
@@ -10,7 +10,14 @@ import { ProjectOverviewCard } from '../../components';
 
 function HomePage(props) {
   return (
-    <ScrollView style={ styles.mainContainer }>
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={ props.isFetching }
+          onRefresh={ props.fetchAllProjects }
+        />
+      }
+      style={ styles.mainContainer }>
 
       {
         props.projects && Object.keys(props.projects).map((project, key) =>
@@ -18,7 +25,7 @@ function HomePage(props) {
             key={ key }
             displayName={ props.projects[project].name }
             versionNumber={ props.projects[project].currentVersionNumber || 'v1.0.0' }
-            lastUpdatedAt={ format(props.projects[project].metadata.lastReleasedOn) || 'N/A' }
+            lastUpdatedAt={ props.projects[project].metadata && format(props.projects[project].metadata.lastReleasedOn) || 'N/A' }
           />
         )
       }
@@ -28,8 +35,14 @@ function HomePage(props) {
 
 }
 
+/**
+ * A helper to transform UNIX timestamps to human readable form.
+ *
+ * @param {Date} date
+ * @returns {Date}
+ */
 const format = date => {
-  return moment(date * 1000, 'x').format('DD-MM-YYYY HH:MM:SS');
+  return moment(date * 1000, 'x').format('DD-MM-YYYY');
 };
 
 /*

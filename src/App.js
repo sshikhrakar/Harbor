@@ -21,8 +21,5 @@ firebaseService.init();
 Navigation.startSingleScreenApp({
   screen: {
     screen: screenRegistry.LANDING_PAGE,
-    navigatorStyle: {
-      navBarHidden: true,
-    },
   },
 });

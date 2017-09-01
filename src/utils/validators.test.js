@@ -1,4 +1,8 @@
-import { isValidEmail, isValidPassword } from './validators';
+import {
+  isValidEmail,
+  isEmptyObject,
+  isValidPassword,
+} from './validators';
 
 describe('UTILITY: VALIDATORS', () => {
 
@@ -18,6 +22,14 @@ describe('UTILITY: VALIDATORS', () => {
     const password = '';
 
     expect(isValidPassword(password)).toBe(false);
+  });
+
+  it('should return false for non-empty objects', () => {
+    expect(isEmptyObject({ a: 'b' })).toBe(false);
+  });
+
+  it('should return true for empty objects', () => {
+    expect(isEmptyObject({})).toBe(true);
   });
 
 });

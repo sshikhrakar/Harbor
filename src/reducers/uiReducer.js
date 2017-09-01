@@ -1,4 +1,17 @@
-import * as actionTypes from '../actions/actionTypes';
+import {
+  LOGIN_VIA_EMAIL,
+  LOGIN_VIA_EMAIL_ERRORED,
+  LOGIN_VIA_EMAIL_FULFILLED,
+
+  SIGNUP_VIA_EMAIL,
+  SIGNUP_VIA_EMAIL_ERRORED,
+  SIGNUP_VIA_EMAIL_FULFILLED,
+  SIGNUP_VIA_EMAIL_CANCELLED,
+
+  FETCH_ALL_PROJECTS,
+  FETCH_ALL_PROJECTS_ERRORED,
+  FETCH_ALL_PROJECTS_FULFILLED,
+} from '../actions/actionTypes';
 
 export const initialState = {
   auth: {
@@ -7,6 +20,10 @@ export const initialState = {
     isSigningUp: false,
     hasSignupErrored: false,
     signupError: '',
+  },
+  projects: {
+    isFetching: false,
+    hasErrored: false,
   },
 };
 
@@ -21,46 +38,64 @@ export const initialState = {
 function uiReducer(state = initialState, action) {
   switch(action.type) {
 
-    case actionTypes.LOGIN_VIA_EMAIL:
+    case LOGIN_VIA_EMAIL:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
       };
 
-    case actionTypes.LOGIN_VIA_EMAIL_FULFILLED:
+    case LOGIN_VIA_EMAIL_FULFILLED:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
       };
 
-    case actionTypes.LOGIN_VIA_EMAIL_ERRORED:
+    case LOGIN_VIA_EMAIL_ERRORED:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL:
+    case SIGNUP_VIA_EMAIL:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL_FULFILLED:
+    case SIGNUP_VIA_EMAIL_FULFILLED:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL_ERRORED:
+    case SIGNUP_VIA_EMAIL_ERRORED:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
+    case SIGNUP_VIA_EMAIL_CANCELLED:
       return {
         ...state,
         auth: uiAuthReducer(state.auth, action),
+      };
+
+    case FETCH_ALL_PROJECTS:
+      return {
+        ...state,
+        projects: uiProjectsReducer(state.projects, action),
+      };
+
+    case FETCH_ALL_PROJECTS_ERRORED:
+      return {
+        ...state,
+        projects: uiProjectsReducer(state.projects, action),
+      };
+
+    case FETCH_ALL_PROJECTS_FULFILLED:
+      return {
+        ...state,
+        projects: uiProjectsReducer(state.projects, action),
       };
 
     default:
@@ -79,34 +114,34 @@ export default uiReducer;
  */
 function uiAuthReducer(state, action) {
   switch(action.type) {
-    case actionTypes.LOGIN_VIA_EMAIL:
+    case LOGIN_VIA_EMAIL:
       return {
         ...state,
         isLoggingIn: true,
       };
 
-    case actionTypes.LOGIN_VIA_EMAIL_FULFILLED:
+    case LOGIN_VIA_EMAIL_FULFILLED:
       return {
         ...state,
         isLoggingIn: false,
         hasLoginErrored: false,
       };
 
-    case actionTypes.LOGIN_VIA_EMAIL_ERRORED:
+    case LOGIN_VIA_EMAIL_ERRORED:
       return {
         ...state,
         isLoggingIn: false,
         hasLoginErrored: true,
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL:
+    case SIGNUP_VIA_EMAIL:
       return {
         ...state,
         signupError: '',
         isSigningUp: true,
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL_FULFILLED:
+    case SIGNUP_VIA_EMAIL_FULFILLED:
       return {
         ...state,
         signupError: '',
@@ -114,7 +149,7 @@ function uiAuthReducer(state, action) {
         hasSignupErrored: false,
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL_ERRORED:
+    case SIGNUP_VIA_EMAIL_ERRORED:
       return {
         ...state,
         isSigningUp: false,
@@ -122,12 +157,49 @@ function uiAuthReducer(state, action) {
         signupError: action.payload.error,
       };
 
-    case actionTypes.SIGNUP_VIA_EMAIL_CANCELLED:
+    case SIGNUP_VIA_EMAIL_CANCELLED:
       return {
         ...state,
         signupError: '',
         isSigningUp: false,
         hasSignupErrored: false,
+      };
+
+
+
+    default:
+      return state;
+  }
+}
+
+/**
+ * Reducer for the ui.projects state slice.
+ *
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {Object}
+ */
+function uiProjectsReducer(state, action) {
+  switch(action.type) {
+    case FETCH_ALL_PROJECTS:
+      return {
+        ...state,
+        isFetching: true,
+        hasErrored: false,
+      };
+
+    case FETCH_ALL_PROJECTS_ERRORED:
+      return {
+        ...state,
+        isFetching: false,
+        hasErrored: true,
+      };
+
+    case FETCH_ALL_PROJECTS_FULFILLED:
+      return {
+        ...state,
+        isFetching: false,
+        hasErrored: true,
       };
 
     default:
