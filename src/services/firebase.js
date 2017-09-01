@@ -5,6 +5,15 @@ let databaseInstance;
 let firebaseInstance;
 
 /**
+ * Returns the current instance of firebase.
+ *
+ * @returns {Object}
+ */
+function getInstance() {
+  return firebaseInstance;
+}
+
+/**
  * Initializes a firebase app.
  *
  * @param {String} name
@@ -93,6 +102,7 @@ export {
   init,
   login,
   signup,
+  getInstance,
   registerToken,
   fetchDetailsForProject,
   fetchProjectListForUser,
