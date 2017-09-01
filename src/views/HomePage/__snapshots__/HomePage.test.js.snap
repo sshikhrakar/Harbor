@@ -1,14 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomePage View should render correctly 1`] = `
-<View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-  >
-     HomePage 
-  </Text>
-</View>
+<RCTScrollView
+  contentContainerStyle={undefined}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={undefined}
+      refreshing={undefined}
+    />
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ecf0f1",
+          "flex": 1,
+          "padding": 10,
+        }
+      }
+    />
+  </View>
+</RCTScrollView>
 `;

@@ -1,10 +1,17 @@
-import * as firebase from 'firebase';
+import firebase from 'react-native-firebase';
 import { Observable } from 'rxjs/Rx';
-
-import firebaseConfig from '../config/firebase';
 
 let databaseInstance;
 let firebaseInstance;
+
+/**
+ * Returns the current instance of firebase.
+ *
+ * @returns {Object}
+ */
+function getInstance() {
+  return firebaseInstance;
+}
 
 /**
  * Initializes a firebase app.
@@ -12,22 +19,12 @@ let firebaseInstance;
  * @param {String} name
  * @param {Object} config
  */
-function init(name, config = firebaseConfig) {
+function init() {
   firebaseInstance = firebase.initializeApp({
-    ...config,
-  }, name);
+    debug: true,
+  });
 
   databaseInstance = firebaseInstance.database();
-}
-
-/**
- * Returns the number of apps initialized by firebase.
- * Useful to check whether initalization is needed at the start of the app or not.
- *
- * @returns {Number}
- */
-function getNumberOfApps() {
-  return firebase.apps.length;
 }
 
 /**
@@ -70,10 +67,48 @@ function registerToken(token) {
   );
 }
 
+/**
+ * Fetch project list for user from Firebase.
+ *
+ * @returns {Promise}
+ */
+function fetchProjectListForUser() {
+  return databaseInstance.ref('members/' + firebaseInstance.auth().currentUser.uid).once('value');
+}
+
+/**
+ * Fetch details for one project.
+ *
+ * @param {String} projectId
+ * @returns {Promise}
+ */
+function fetchDetailsForProject(projectId) {
+  return databaseInstance.ref('projects/' + projectId).once('value');
+}
+
+/**
+ * A helper to sanitize a list of projects into an object of dynamic project keys.
+ *
+ * @param {Array} rawProjects - unsanitized project list.
+ * @returns {Object}
+ */
+function normalizeProjectListToObject(rawProjects) {
+  if (!rawProjects.length) return {};
+
+  const projects = rawProjects.map(p => p.val());
+
+  return projects.reduce(
+    (acc, current) => Object.assign(acc, { [current.name]: current }), {}
+  );
+}
+
 export {
   init,
   login,
   signup,
+  getInstance,
   registerToken,
-  getNumberOfApps,
+  fetchDetailsForProject,
+  fetchProjectListForUser,
+  normalizeProjectListToObject,
 };

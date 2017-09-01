@@ -11,21 +11,15 @@ export const store = configureStore();
 
 persistStore(store, {
   storage: AsyncStorage,
-  blacklist: ['ui'],
+  blacklist: ['ui', 'projects'],
 });
 
 registerScreens(store, Provider);
 
-if (firebaseService.getNumberOfApps() === 0) {
-  firebaseService.init('HARBOR');
-}
+firebaseService.init();
 
 Navigation.startSingleScreenApp({
   screen: {
     screen: screenRegistry.LANDING_PAGE,
-    navigatorStyle: {
-      navBarHidden: true,
-    },
   },
-  animationType: 'slide-down',
 });

@@ -2,6 +2,7 @@ export const DEFAULT_BUTTON_OPACITY = 0.7;
 
 const colors = {
   BLACK: '#000',
+  WHITE: 'white',
   GREY: '#95a5a6',
   ERROR: '#dd4b39',
   SILVER: '#ecf0f1',

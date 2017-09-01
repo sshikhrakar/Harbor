@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import FCM, { FCMEvent } from 'react-native-fcm';
 
+import * as firebaseService from '../../services/firebase';
 import { registerFcmToken } from '../../actions/fcmActions';
 
 /**
@@ -16,21 +16,13 @@ const withFCMHandlers = () => WrappedComponent => {
      * Wait for FCM token, call onTokenReceive with the value.
      */
     componentDidMount() {
-      FCM.getFCMToken().then(token => {
-        this.props.registerFcmToken(token);
-      });
-
-      this.notificationListener = FCM.on(FCMEvent.Notification, notif => {
-        if (notif.local_notification) {} // eslint-disable-line
-        if (notif.opened_from_tray) {} // eslint-disable-line
-      });
-    }
-
-    /**
-     * Remove token listeners.
-     */
-    componentWillUnmount() {
-      this.notificationListener.remove();
+      firebaseService
+        .getInstance()
+        .messaging()
+        .getToken()
+        .then(token => {
+          this.props.registerFcmToken(token);
+        });
     }
 
     render() {
