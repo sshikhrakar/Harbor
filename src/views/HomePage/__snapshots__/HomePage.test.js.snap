@@ -2,6 +2,12 @@
 
 exports[`HomePage View should render correctly 1`] = `
 <RCTScrollView
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={undefined}
+      refreshing={undefined}
+    />
+  }
   style={
     Object {
       "backgroundColor": "#ecf0f1",
@@ -10,6 +16,7 @@ exports[`HomePage View should render correctly 1`] = `
     }
   }
 >
+  <RCTRefreshControl />
   <View />
 </RCTScrollView>
 `;

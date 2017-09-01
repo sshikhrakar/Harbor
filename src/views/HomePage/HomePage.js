@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { ScrollView, RefreshControl } from 'react-native';
 
 import fonts from '../../config/fonts';
@@ -9,23 +10,29 @@ import styles from './styles';
 import { ProjectOverviewCard } from '../../components';
 
 function HomePage(props) {
+  const {
+    projects,
+    isFetching,
+    fetchAllProjects,
+  } = props;
+
   return (
     <ScrollView
       refreshControl={
         <RefreshControl
-          refreshing={ props.isFetching }
-          onRefresh={ props.fetchAllProjects }
+          refreshing={ isFetching }
+          onRefresh={ fetchAllProjects }
         />
       }
       style={ styles.mainContainer }>
 
       {
-        props.projects && Object.keys(props.projects).map((project, key) =>
+        projects && Object.keys(projects).map((project, key) =>
           <ProjectOverviewCard
             key={ key }
-            displayName={ props.projects[project].name }
-            versionNumber={ props.projects[project].currentVersionNumber || 'v1.0.0' }
-            lastUpdatedAt={ props.projects[project].metadata && format(props.projects[project].metadata.lastReleasedOn) || 'N/A' }
+            displayName={ projects[project].name }
+            versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
+            lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
           />
         )
       }
@@ -34,6 +41,12 @@ function HomePage(props) {
   );
 
 }
+
+HomePage.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  projects: PropTypes.object.isRequired,
+  fetchAllProjects: PropTypes.func.isRequired,
+};
 
 /**
  * A helper to transform UNIX timestamps to human readable form.
