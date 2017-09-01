@@ -18,11 +18,13 @@ export function fetchAllProjects() {
 /**
  * Error in fetching of all projects.
  *
+ * @param {Object} error
  * @returns {Object}
  */
-export function fetchAllProjectsErrored() {
+export function fetchAllProjectsErrored(error) {
   return {
     type: FETCH_ALL_PROJECTS_ERRORED,
+    error,
   };
 }
 

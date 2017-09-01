@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Rx';
 import { ActionsObservable } from 'redux-observable';
 
 import * as projects from './projectsEpic';
@@ -17,15 +16,31 @@ describe('EPICS: projects', () => {
 
   beforeAll(() => {
     mockdata = {
-      val: () => 'data',
+      val: () => ({ 1: 'a', 2: 'b', 3: 'c' }),
     };
 
     fetchAllProjectsAction$ = ActionsObservable.of(fetchAllProjects());
 
     dependencies = {
       firebaseService: {
-        fetchAllProjects() {
-          return Observable.of(mockdata);
+        fetchProjectListForUser() {
+          return Promise.resolve(mockdata);
+        },
+
+        fetchDetailsForProject(pid) {
+          return Promise.resolve({
+            val: () => ({
+              name: pid,
+            }),
+          });
+        },
+
+        normalizeProjectListToObject(arr) {
+          const obj = {};
+
+          arr.map(data => Object.assign(obj, { [data.name]: data }));
+
+          return obj;
         },
       },
     };
@@ -35,7 +50,7 @@ describe('EPICS: projects', () => {
     projects.fetchAllProjectsEpic(fetchAllProjectsAction$, store, dependencies)
       .toArray()
       .subscribe(null, e => {
-        expect(e).toEqual([fetchAllProjectsErrored()]);
+        expect(e).toEqual([fetchAllProjectsErrored(e)]);
       });
   });
 
@@ -43,7 +58,17 @@ describe('EPICS: projects', () => {
     projects.fetchAllProjectsEpic(fetchAllProjectsAction$, store, dependencies)
       .toArray()
       .subscribe(actions => {
-        expect(actions).toEqual([fetchAllProjectsFulfilled(mockdata.val())]);
+        expect(actions).toEqual([fetchAllProjectsFulfilled({
+          1: {
+            name: '1',
+          },
+          2: {
+            name: '2',
+          },
+          3: {
+            name: '3',
+          },
+        })]);
       });
   });
 

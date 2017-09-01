@@ -1,7 +1,6 @@
-import * as firebase from 'firebase';
+/* @flow */
+import firebase from 'react-native-firebase';
 import { Observable } from 'rxjs/Rx';
-
-import firebaseConfig from '../config/firebase';
 
 let databaseInstance;
 let firebaseInstance;
@@ -12,22 +11,12 @@ let firebaseInstance;
  * @param {String} name
  * @param {Object} config
  */
-function init(name, config = firebaseConfig) {
+function init() {
   firebaseInstance = firebase.initializeApp({
-    ...config,
-  }, name);
+    debug: true,
+  });
 
   databaseInstance = firebaseInstance.database();
-}
-
-/**
- * Returns the number of apps initialized by firebase.
- * Useful to check whether initalization is needed at the start of the app or not.
- *
- * @returns {Number}
- */
-function getNumberOfApps() {
-  return firebase.apps.length;
 }
 
 /**
@@ -37,7 +26,7 @@ function getNumberOfApps() {
  * @param {String} password
  * @returns {Observable}
  */
-function login(email, password) {
+function login(email: string, password: string): Observable {
   return Observable.fromPromise(
     firebaseInstance.auth().signInWithEmailAndPassword(email, password)
   );
@@ -71,14 +60,36 @@ function registerToken(token) {
 }
 
 /**
- * Fetch all projects from Firebase.
+ * Fetch project list for user from Firebase.
  *
- * @returns {Observable}
+ * @returns {Promise}
  */
-function fetchAllProjects() {
-  return Observable.fromPromise(
-    databaseInstance.ref('projects/').once('value')
-  );
+function fetchProjectListForUser() {
+  return databaseInstance.ref('members/' + firebaseInstance.auth().currentUser.uid).once('value');
+}
+
+/**
+ * Fetch details for one project.
+ *
+ * @param {String} projectId
+ * @returns {Promise}
+ */
+function fetchDetailsForProject(projectId) {
+  return databaseInstance.ref('projects/' + projectId).once('value');
+}
+
+/**
+ * A helper to sanitize a list of projects into an object of dynamic project keys.
+ *
+ * @param {Array} projects
+ * @returns {Object}
+ */
+function normalizeProjectListToObject(projects) {
+  const obj = {};
+
+  projects.map(project => Object.assign(obj, { [project.name]: project }));
+
+  return obj;
 }
 
 export {
@@ -86,6 +97,7 @@ export {
   login,
   signup,
   registerToken,
-  getNumberOfApps,
-  fetchAllProjects,
+  fetchDetailsForProject,
+  fetchProjectListForUser,
+  normalizeProjectListToObject,
 };

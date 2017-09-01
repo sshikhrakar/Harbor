@@ -17,6 +17,7 @@ Object {
 
 exports[`ACTIONS: projectActions should create an error action for all projects fetched 1`] = `
 Object {
+  "error": undefined,
   "type": "PROJECTS/FETCH_ALL_PROJECTS_ERRORED",
 }
 `;
