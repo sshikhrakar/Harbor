@@ -25,12 +25,11 @@ function fetchAllProjectsEpic(action$, store, { firebaseService }) { // eslint-d
       .fromPromise(firebaseService.fetchProjectListForUser())
       .flatMap(
         projList => {
-          const projListValues = projList.val();
-          if (!projListValues) return Observable.of([]);
+          if (!projList.val()) return Observable.of([]);
 
           return Observable
             .combineLatest(
-              ...Object.keys(projListValues).map(
+              ...Object.keys(projList.val()).map(
                 pid => Observable.fromPromise(firebaseService.fetchDetailsForProject(pid))
               )
             );
