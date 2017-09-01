@@ -14,7 +14,6 @@ function projectsReducer(state = initialState, action) {
 
     case FETCH_ALL_PROJECTS_FULFILLED:
       return {
-        ...state,
         ...action.payload.projects,
       };
 

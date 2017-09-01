@@ -35,12 +35,14 @@ describe('EPICS: projects', () => {
           });
         },
 
-        normalizeProjectListToObject(arr) {
-          const obj = {};
+        normalizeProjectListToObject(rawProjects) {
+          if (!rawProjects.length) return {};
 
-          arr.map(data => Object.assign(obj, { [data.name]: data }));
+          const projects = rawProjects.map(p => p.val());
 
-          return obj;
+          return projects.reduce(
+            (acc, current) => Object.assign(acc, { [current.name]: current }), {}
+          );
         },
       },
     };

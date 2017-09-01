@@ -1,67 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EmptyProjectsScreen View should render correctly 1`] = `
-<View
-  style={
+<RCTScrollView
+  contentContainerStyle={
     Object {
-      "backgroundColor": "#ecf0f1",
       "flex": 1,
     }
   }
->
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "flex-end",
-        "padding": 20,
-      }
-    }
-  >
-    <Image
-      source={1}
-      style={
-        Object {
-          "flex": 0.3,
-          "resizeMode": "contain",
-        }
-      }
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={undefined}
+      refreshing={undefined}
     />
-  </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "flex-start",
-        "paddingHorizontal": 20,
-      }
-    }
-  >
+  }
+>
+  <RCTRefreshControl />
+  <View>
     <View
       style={
         Object {
-          "marginVertical": 8,
+          "backgroundColor": "#ecf0f1",
+          "flex": 1,
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "fontFamily": "Lato-Regular",
-            "fontSize": 24,
-            "textAlign": "center",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-end",
+            "padding": 20,
           }
         }
       >
-        You don't seem to have been invited to any projects ...
-      </Text>
+        <Image
+          source={1}
+          style={
+            Object {
+              "flex": 0.3,
+              "resizeMode": "contain",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-start",
+            "paddingHorizontal": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "marginVertical": 8,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "fontFamily": "Lato-Regular",
+                "fontSize": 24,
+                "textAlign": "center",
+              }
+            }
+          >
+            You don't seem to have been invited to any projects ...
+          </Text>
+        </View>
+      </View>
     </View>
   </View>
-</View>
+</RCTScrollView>
 `;

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeAll';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
@@ -23,16 +24,19 @@ function fetchAllProjectsEpic(action$, store, { firebaseService }) { // eslint-d
     .switchMap(() => Observable
       .fromPromise(firebaseService.fetchProjectListForUser())
       .flatMap(
-        projList => Observable
-          .combineLatest(
-            ...Object.keys(projList.val()).map(
-              pid => Observable.fromPromise(firebaseService.fetchDetailsForProject(pid))
-            )
-          )
-      )
-      .map(data => fetchAllProjectsFulfilled(
-        firebaseService.normalizeProjectListToObject(data.map(d => d.val())))
-      )
+        projList => {
+          const projListValues = projList.val();
+          if (!projListValues) return Observable.of([]);
+
+          return Observable
+            .combineLatest(
+              ...Object.keys(projListValues).map(
+                pid => Observable.fromPromise(firebaseService.fetchDetailsForProject(pid))
+              )
+            );
+        })
+      .map(data => firebaseService.normalizeProjectListToObject(data))
+      .map(data => fetchAllProjectsFulfilled(data))
       .catch(e => Observable.of(fetchAllProjectsErrored(e)))
     );
 }

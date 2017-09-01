@@ -89,10 +89,14 @@ function fetchDetailsForProject(projectId) {
 /**
  * A helper to sanitize a list of projects into an object of dynamic project keys.
  *
- * @param {Array} projects
+ * @param {Array} rawProjects - unsanitized project list.
  * @returns {Object}
  */
-function normalizeProjectListToObject(projects) {
+function normalizeProjectListToObject(rawProjects) {
+  if (!rawProjects.length) return {};
+
+  const projects = rawProjects.map(p => p.val());
+
   return projects.reduce(
     (acc, current) => Object.assign(acc, { [current.name]: current }), {}
   );
