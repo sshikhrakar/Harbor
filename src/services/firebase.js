@@ -1,4 +1,3 @@
-/* @flow */
 import firebase from 'react-native-firebase';
 import { Observable } from 'rxjs/Rx';
 
@@ -85,11 +84,9 @@ function fetchDetailsForProject(projectId) {
  * @returns {Object}
  */
 function normalizeProjectListToObject(projects) {
-  const obj = {};
-
-  projects.map(project => Object.assign(obj, { [project.name]: project }));
-
-  return obj;
+  return projects.reduce(
+    (acc, current) => Object.assign(acc, { [current.name]: current }), {}
+  );
 }
 
 export {
