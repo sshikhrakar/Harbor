@@ -1,9 +1,9 @@
-import HomePage from './HomePage';
+import ProjectsList from './ProjectsList';
 import LandingPage from './LandingPage';
 import NewAccount from './NewAccount';
 
 export {
-  HomePage,
+  ProjectsList,
   LandingPage,
   NewAccount,
 };

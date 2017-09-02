@@ -8,7 +8,7 @@ import {
 } from 'recompose';
 import { connect } from 'react-redux';
 
-import HomePage from '../HomePage';
+import ProjectsList from '../ProjectsList';
 import LandingPage from './LandingPage';
 
 import { validators } from '../../utils';
@@ -34,7 +34,7 @@ const enhance = compose(
 
   branch(
     props => props.isLoggedIn,
-    renderComponent(HomePage),
+    renderComponent(ProjectsList),
   ),
 
   withHandlers({

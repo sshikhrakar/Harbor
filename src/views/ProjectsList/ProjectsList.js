@@ -9,7 +9,7 @@ import colors from '../../config/colors';
 import styles from './styles';
 import { ProjectOverviewCard } from '../../components';
 
-function HomePage(props) {
+function ProjectsList(props) {
   const {
     projects,
     isFetching,
@@ -44,7 +44,7 @@ function HomePage(props) {
 
 }
 
-HomePage.propTypes = {
+ProjectsList.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   projects: PropTypes.object.isRequired,
   fetchAllProjects: PropTypes.func.isRequired,
@@ -63,11 +63,11 @@ const format = date => {
 /*
  * Navigation bar style parameters.
  */
-HomePage.navigatorStyle = {
+ProjectsList.navigatorStyle = {
   navBarTextFontSize: 20,
   navBarTextFontFamily: fonts.primary.REGULAR,
   navBarComponentAlignment: 'center',
   navBarBackgroundColor: colors.SILVER,
 };
 
-export default HomePage;
+export default ProjectsList;

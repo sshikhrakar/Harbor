@@ -6,7 +6,7 @@ import {
   renderComponent,
 } from 'recompose';
 
-import HomePage from './HomePage';
+import ProjectsList from './ProjectsList';
 import { withFCMHandlers } from '../../HOC';
 import EmptyProjectsScreen from './EmptyProjectsScreen';
 import {
@@ -40,4 +40,4 @@ const enhance = compose(
   ),
 );
 
-export default enhance(HomePage);
+export default enhance(ProjectsList);
