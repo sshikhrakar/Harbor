@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
   Text,
   StyleSheet,
   Image,
+  Animated,
   TouchableOpacity,
 } from 'react-native';
 
@@ -18,50 +19,70 @@ import images from '../../config/images';
  * @param {Object} props
  * @returns {Component}
  */
-function ProjectOverviewCard(props) {
-  const {
-    displayName,
-    onCardPress,
-    versionNumber,
-    lastUpdatedAt,
-  } = props;
+class ProjectOverviewCard extends Component {
 
-  return (
-    <TouchableOpacity
-      onPress={ onCardPress }
-      style={ styles.mainContainer }>
-      <View style={ styles.projectIconContainer }>
-        <Image
-          resizeMethod='scale'
-          source={ images.fallbackProjectIcon }
-        />
-      </View>
+  constructor() {
+    super();
 
-      <View style={ styles.infoContainer }>
-        <View style={ styles.infoItem }>
-          <Text style={ styles.projectTitle }> { displayName } </Text>
-        </View>
+    this._animatedPosition = new Animated.Value(-100);
+  }
 
-        <View style={ styles.infoItem }>
-          <Text style={ styles.staticTitleText }> Version: </Text>
-          <Text style={ styles.subTitle }> { versionNumber } </Text>
-        </View>
+  componentDidMount() {
+    Animated.spring(this._animatedPosition, {
+      toValue: 0,
+      velocity: 0.01,
+      friction: 5,
+    }).start();
+  }
 
-        <View style={ styles.infoItem }>
-          <Text style={ styles.staticTitleText }> Last Update: </Text>
-          <Text style={ styles.subTitle }> { lastUpdatedAt } </Text>
-        </View>
-      </View>
+  render() {
+    const {
+      displayName,
+      onCardPress,
+      versionNumber,
+      lastUpdatedAt,
+    } = this.props;
 
-      <View style={ styles.projectIconContainer }>
-        <Image
-          resizeMethod='scale'
-          tintColor={ colors.GREY }
-          source={ images.rightArrowIcon }
-        />
-      </View>
-    </TouchableOpacity>
-  );
+    return (
+      <Animated.View style={{ left: this._animatedPosition }}>
+        <TouchableOpacity
+          onPress={ onCardPress }
+          style={ styles.mainContainer }>
+          <View style={ styles.projectIconContainer }>
+            <Image
+              resizeMethod='scale'
+              source={ images.fallbackProjectIcon }
+            />
+          </View>
+
+          <View style={ styles.infoContainer }>
+            <View style={ styles.infoItem }>
+              <Text style={ styles.projectTitle }> { displayName } </Text>
+            </View>
+
+            <View style={ styles.infoItem }>
+              <Text style={ styles.staticTitleText }> Version: </Text>
+              <Text style={ styles.subTitle }> { versionNumber } </Text>
+            </View>
+
+            <View style={ styles.infoItem }>
+              <Text style={ styles.staticTitleText }> Last Update: </Text>
+              <Text style={ styles.subTitle }> { lastUpdatedAt } </Text>
+            </View>
+          </View>
+
+          <View style={ styles.projectIconContainer }>
+            <Image
+              resizeMethod='scale'
+              tintColor={ colors.GREY }
+              source={ images.rightArrowIcon }
+            />
+          </View>
+        </TouchableOpacity>
+      </Animated.View>
+    );
+  }
+  
 }
 
 ProjectOverviewCard.propTypes = {
