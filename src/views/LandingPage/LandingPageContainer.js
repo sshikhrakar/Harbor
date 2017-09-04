@@ -61,6 +61,14 @@ const enhance = compose(
   }),
 
   lifecycle({
+    componentDidMount() {
+      if (!this.props.isLoggedIn) {
+        this.props.navigator.setStyle({
+          navBarHidden: true,
+        });
+      }
+    },
+
     componentWillReceiveProps(nextProps) {
       if (nextProps.hasLoginErrored) {
         this.setState({

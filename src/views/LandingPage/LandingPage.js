@@ -97,10 +97,6 @@ function LandingPage(props) {
 
 }
 
-LandingPage.navigatorStyle = {
-  navBarHidden: true,
-};
-
 LandingPage.propTypes = {
   isLoggingIn: PropTypes.bool.isRequired,
   emailText: PropTypes.string.isRequired,

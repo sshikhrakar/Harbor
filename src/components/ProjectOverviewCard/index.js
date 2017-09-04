@@ -82,15 +82,15 @@ class ProjectOverviewCard extends Component {
       </Animated.View>
     );
   }
-  
+
 }
 
 ProjectOverviewCard.propTypes = {
+  projectIconUrl: PropTypes.string,
   onCardPress: PropTypes.func.isRequired,
   displayName: PropTypes.string.isRequired,
   versionNumber: PropTypes.string.isRequired,
   lastUpdatedAt: PropTypes.string.isRequired,
-  projectIconUrl: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
