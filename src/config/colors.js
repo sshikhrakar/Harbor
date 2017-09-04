@@ -9,6 +9,8 @@ const colors = {
   ASBESTOS: '#7f8c8d',
   SOFT_BLUE: '#3498db',
   CRIMSON_RED: '#C91F37',
+  PROGRESS_BAR_TEXT: '#00aeef',
+  HORIZONTAL_PROGRESS_BAR: '#333333',
 };
 
 export default colors;
