@@ -3,6 +3,9 @@ package com.testharbor;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import com.rnfs.RNFSPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -25,27 +28,28 @@ import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 
 public class MainApplication extends NavigationApplication {
 
-    @Override
-    public boolean isDebug() {
-        // Make sure you are using BuildConfig from your own application
-        return BuildConfig.DEBUG;
-    }
+  @Override
+  public boolean isDebug() {
+    // Make sure you are using BuildConfig from your own application
+    return BuildConfig.DEBUG;
+  }
 
-    protected List<ReactPackage> getPackages() {
-        // Add additional packages you require here
-        // No need to add RnnPackage and MainReactPackage
-        return Arrays.<ReactPackage>asList(
-                new RNFirebasePackage(),  // <-- Add this line
-                // Add these packages as appropriate
-                new RNFirebaseAuthPackage(),
-                new RNFirebaseDatabasePackage(),
-                new RNFirebaseMessagingPackage(),
-                new RNFirebaseStoragePackage()
+  protected List<ReactPackage> getPackages() {
+    // Add additional packages you require here
+    // No need to add RnnPackage and MainReactPackage
+    return Arrays.<ReactPackage>asList(
+        new RNFSPackage(),
+        new RNFirebasePackage(),  // <-- Add this line
+        // Add these packages as appropriate
+        new RNFirebaseAuthPackage(),
+        new RNFirebaseDatabasePackage(),
+        new RNFirebaseMessagingPackage(),
+        new RNFirebaseStoragePackage()
         );
-    }
+  }
 
-    @Override
-    public List<ReactPackage> createAdditionalReactPackages() {
-        return getPackages();
-    }
+  @Override
+  public List<ReactPackage> createAdditionalReactPackages() {
+    return getPackages();
+  }
 }
