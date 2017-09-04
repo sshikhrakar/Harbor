@@ -3,8 +3,11 @@ import {
   compose,
   branch,
   lifecycle,
+  withHandlers,
   renderComponent,
 } from 'recompose';
+
+import * as downloadService from '../../services/downloadService';
 
 import ProjectsList from './ProjectsList';
 import { withFCMHandlers } from '../../HOC';
@@ -27,6 +30,19 @@ const enhance = compose(
   withFCMHandlers(),
 
   connect(mapStateToProps, mapDispatchToProps),
+
+  withHandlers({
+    onProjectListItemClicked: props => project => {
+      const { lastReleasedOn } = project.metadata;
+      const downloadUrl = project.uploads[lastReleasedOn].download_url;
+
+      downloadService.downloadApk({
+        projectName: project.name,
+        releaseTimestamp: lastReleasedOn,
+        url: downloadUrl,
+      });
+    },
+  }),
 
   lifecycle({
     componentDidMount() {

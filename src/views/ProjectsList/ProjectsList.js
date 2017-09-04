@@ -7,6 +7,7 @@ import fonts from '../../config/fonts';
 import colors from '../../config/colors';
 
 import styles from './styles';
+import BottomDock from '../BottomDock';
 import { ProjectOverviewCard } from '../../components';
 
 function ProjectsList(props) {
@@ -14,32 +15,39 @@ function ProjectsList(props) {
     projects,
     isFetching,
     fetchAllProjects,
+    onProjectListItemClicked,
   } = props;
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={ isFetching }
-          onRefresh={ fetchAllProjects }
-        />
-      }
-      contentContainerStyle={ styles.scrollViewContainer }>
-      <View style={ styles.mainContainer }>
-
-        {
-          projects && Object.keys(projects).map((project, key) =>
-            <ProjectOverviewCard
-              key={ key }
-              displayName={ projects[project].name }
-              versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
-              lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
-            />
-          )
+    <View style={ styles.contentContainerStyle }>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={ isFetching }
+            onRefresh={ fetchAllProjects }
+          />
         }
+        contentContainerStyle={ styles.scrollViewContainer }>
+        <View style={ styles.mainContainer }>
 
-      </View>
-    </ScrollView>
+          {
+            projects && Object.keys(projects).map((project, key) =>
+              <ProjectOverviewCard
+                key={ key }
+                displayName={ projects[project].name }
+                onCardPress={
+                  () => onProjectListItemClicked(projects[project])
+                }
+                versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
+                lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
+              />
+            )
+          }
+
+        </View>
+      </ScrollView>
+      <BottomDock />
+    </View>
   );
 
 }
