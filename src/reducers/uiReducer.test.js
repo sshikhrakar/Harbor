@@ -8,6 +8,13 @@ import {
   signupViaEmailErrored,
   signupViaEmailCancelled,
 } from '../actions/authActions';
+import {
+  fetchAllProjects,
+  fetchAllProjectsFulfilled,
+  fetchAllProjectsErrored,
+
+  setSelectedProject,
+} from '../actions/projectActions';
 
 describe('REDUCER: UI', () => {
 
@@ -115,5 +122,28 @@ describe('REDUCER: UI', () => {
     ).toMatchSnapshot();
   });
 
+  it('should set selectedProject', () => {
+    expect(
+      uiReducer(initialState, setSelectedProject('projectKey'))
+    ).toMatchSnapshot();
+  });
+
+  it('should set loading values for fetchAllProject', () => {
+    expect(
+      uiReducer(initialState, fetchAllProjects())
+    ).toMatchSnapshot();
+  });
+
+  it('should set loading values for fetchAllProjectsFulfilled', () => {
+    expect(
+      uiReducer(initialState, fetchAllProjectsFulfilled())
+    ).toMatchSnapshot();
+  });
+
+  it('should set loading values for fetchAllProjectsErrored', () => {
+    expect(
+      uiReducer(initialState, fetchAllProjectsErrored())
+    ).toMatchSnapshot();
+  });
 
 });

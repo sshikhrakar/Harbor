@@ -12,6 +12,7 @@ Object {
   "projects": Object {
     "hasErrored": false,
     "isFetching": false,
+    "selectedProject": null,
   },
 }
 `;
@@ -28,6 +29,7 @@ Object {
   "projects": Object {
     "hasErrored": false,
     "isFetching": false,
+    "selectedProject": null,
   },
 }
 `;
@@ -44,6 +46,7 @@ Object {
   "projects": Object {
     "hasErrored": false,
     "isFetching": false,
+    "selectedProject": null,
   },
 }
 `;
@@ -60,6 +63,7 @@ Object {
   "projects": Object {
     "hasErrored": false,
     "isFetching": false,
+    "selectedProject": null,
   },
 }
 `;
@@ -76,6 +80,7 @@ Object {
   "projects": Object {
     "hasErrored": false,
     "isFetching": false,
+    "selectedProject": null,
   },
 }
 `;
@@ -92,6 +97,75 @@ Object {
   "projects": Object {
     "hasErrored": false,
     "isFetching": false,
+    "selectedProject": null,
+  },
+}
+`;
+
+exports[`REDUCER: UI should set loading values for fetchAllProject 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+  "projects": Object {
+    "hasErrored": false,
+    "isFetching": true,
+    "selectedProject": null,
+  },
+}
+`;
+
+exports[`REDUCER: UI should set loading values for fetchAllProjectsErrored 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+  "projects": Object {
+    "hasErrored": true,
+    "isFetching": false,
+    "selectedProject": null,
+  },
+}
+`;
+
+exports[`REDUCER: UI should set loading values for fetchAllProjectsFulfilled 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+  "projects": Object {
+    "hasErrored": true,
+    "isFetching": false,
+    "selectedProject": null,
+  },
+}
+`;
+
+exports[`REDUCER: UI should set selectedProject 1`] = `
+Object {
+  "auth": Object {
+    "hasLoginErrored": false,
+    "hasSignupErrored": false,
+    "isLoggingIn": false,
+    "isSigningUp": false,
+    "signupError": "",
+  },
+  "projects": Object {
+    "hasErrored": false,
+    "isFetching": false,
+    "selectedProject": "projectKey",
   },
 }
 `;

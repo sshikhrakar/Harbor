@@ -14,6 +14,7 @@ function ProjectsList(props) {
     projects,
     isFetching,
     fetchAllProjects,
+    onProjectListItemClicked,
   } = props;
 
   return (
@@ -31,6 +32,7 @@ function ProjectsList(props) {
           projects && Object.keys(projects).map((project, key) =>
             <ProjectOverviewCard
               key={ key }
+              onCardPress= { () => onProjectListItemClicked(projects[project].name) }
               displayName={ projects[project].name }
               versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
               lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
