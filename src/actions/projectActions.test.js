@@ -2,6 +2,8 @@ import {
   fetchAllProjects,
   fetchAllProjectsErrored,
   fetchAllProjectsFulfilled,
+
+  setSelectedProject,
 } from './projectActions';
 
 describe('ACTIONS: projectActions', () => {
@@ -18,4 +20,7 @@ describe('ACTIONS: projectActions', () => {
     expect(fetchAllProjectsFulfilled('data')).toMatchSnapshot();
   });
 
+  it('create an action that sets selectedProject', () => {
+    expect(setSelectedProject('data')).toMatchSnapshot();
+  });
 });

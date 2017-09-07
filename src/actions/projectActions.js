@@ -2,6 +2,8 @@ import {
   FETCH_ALL_PROJECTS,
   FETCH_ALL_PROJECTS_ERRORED,
   FETCH_ALL_PROJECTS_FULFILLED,
+
+  SET_SELECTED_PROJECT,
 } from './actionTypes';
 
 /**
@@ -39,6 +41,21 @@ export function fetchAllProjectsFulfilled(projects) {
     type: FETCH_ALL_PROJECTS_FULFILLED,
     payload: {
       projects,
+    },
+  };
+}
+
+/**
+ * Set a project as target, with its primary key.
+ *
+ * @param {String} projectKey
+ * @returns {Object}
+ */
+export function setSelectedProject(projectKey) {
+  return {
+    type: SET_SELECTED_PROJECT,
+    payload: {
+      project: projectKey,
     },
   };
 }

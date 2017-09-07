@@ -10,12 +10,12 @@ import { HorizontalProgressBar } from '../../components';
  * @param {Object} props
  * @returns {jsx}
  */
-function BottomDock(props) {
+function BottomDock(props) { // eslint-disable-line
   return (
     <HorizontalProgressBar
       value={ 0.5 }
       text="Downloading ..."
-      onPress={ () => console.warn('pressed') }
+      onPress={ () => true}
     />
   );
 }

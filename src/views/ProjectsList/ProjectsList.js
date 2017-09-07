@@ -34,10 +34,8 @@ function ProjectsList(props) {
             projects && Object.keys(projects).map((project, key) =>
               <ProjectOverviewCard
                 key={ key }
+                onCardPress= { () => onProjectListItemClicked(projects[project]) }
                 displayName={ projects[project].name }
-                onCardPress={
-                  () => onProjectListItemClicked(projects[project])
-                }
                 versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
                 lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
               />

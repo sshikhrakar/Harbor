@@ -6,13 +6,19 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 
-import { FETCH_ALL_PROJECTS } from '../actions/actionTypes';
-import { fetchAllProjectsErrored, fetchAllProjectsFulfilled } from '../actions/projectActions';
+import {
+  DOWNLOAD_STARTED, // eslint-disable-line
+  FETCH_ALL_PROJECTS,
+} from '../actions/actionTypes';
+import {
+  fetchAllProjectsErrored,
+  fetchAllProjectsFulfilled,
+} from '../actions/projectActions';
 
 /**
  * Fetch all projects. Map to success/failure actions.
  *
- * @param {Object} action$
+ * @param {Observable} action$
  * @param {Object} store
  * @param {Object} firebaseService
  * @returns {Observable}
@@ -38,6 +44,18 @@ function fetchAllProjectsEpic(action$, store, { firebaseService }) { // eslint-d
       .map(data => fetchAllProjectsFulfilled(data))
       .catch(e => Observable.of(fetchAllProjectsErrored(e)))
     );
+}
+
+/**
+ * Download an apk for a service.
+ *
+ * @param {Observable} action$
+ * @param {Object} store
+ * @param {Object} downloadService
+ * @returns {Observable}
+ */
+function downloadApkForProjectEpic(action$, store, { downloadService })  { // eslint-disable-line
+  return action$;
 }
 
 export {

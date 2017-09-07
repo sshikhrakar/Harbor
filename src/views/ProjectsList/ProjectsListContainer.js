@@ -12,13 +12,13 @@ import * as downloadService from '../../services/downloadService';
 import ProjectsList from './ProjectsList';
 import { withFCMHandlers } from '../../HOC';
 import EmptyProjectsScreen from './EmptyProjectsScreen';
-import {
-  fetchAllProjects,
-} from '../../actions/projectActions';
+
 import { validators } from '../../utils';
+import { fetchAllProjects, setSelectedProject } from '../../actions/projectActions';
 
 const mapDispatchToProps = {
   fetchAllProjects,
+  setSelectedProject,
 };
 
 const mapStateToProps = state => ({
@@ -32,7 +32,7 @@ const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
 
   withHandlers({
-    onProjectListItemClicked: props => project => {
+    onProjectListItemClicked: props => project => { // eslint-disable-line
       const { lastReleasedOn } = project.metadata;
       const downloadUrl = project.uploads[lastReleasedOn].download_url;
 

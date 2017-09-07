@@ -11,6 +11,8 @@ import {
   FETCH_ALL_PROJECTS,
   FETCH_ALL_PROJECTS_ERRORED,
   FETCH_ALL_PROJECTS_FULFILLED,
+
+  SET_SELECTED_PROJECT,
 } from '../actions/actionTypes';
 
 export const initialState = {
@@ -24,6 +26,7 @@ export const initialState = {
   projects: {
     isFetching: false,
     hasErrored: false,
+    selectedProject: null,
   },
 };
 
@@ -98,6 +101,12 @@ function uiReducer(state = initialState, action) {
         projects: uiProjectsReducer(state.projects, action),
       };
 
+    case SET_SELECTED_PROJECT:
+      return {
+        ...state,
+        projects: uiProjectsReducer(state.projects, action),
+      };
+
     default:
       return state;
   }
@@ -165,8 +174,6 @@ function uiAuthReducer(state, action) {
         hasSignupErrored: false,
       };
 
-
-
     default:
       return state;
   }
@@ -200,6 +207,12 @@ function uiProjectsReducer(state, action) {
         ...state,
         isFetching: false,
         hasErrored: true,
+      };
+
+    case SET_SELECTED_PROJECT:
+      return {
+        ...state,
+        selectedProject: action.payload.project,
       };
 
     default:

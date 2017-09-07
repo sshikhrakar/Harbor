@@ -1,15 +1,19 @@
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 
+import { hideElementIf } from '../../HOC';
+
 import BottomDock from './BottomDock';
 
 const mapStateToProps = state => ({
-  currentDownload: state.meta.downloads.current,
-  isDownloading: state.meta.downlods.isDownloading,
+  currentDownload: state.downloads.current,
+  isDownloading: state.downloads.isDownloading,
 });
 
 const enhance = compose(
-  connect(mapStateToProps, null)
+  connect(mapStateToProps, null),
+
+  hideElementIf(props => !props.currentDownload),
 );
 
 export default enhance(BottomDock);

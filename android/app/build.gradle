@@ -140,10 +140,6 @@ dependencies {
     compile project(':react-native-navigation')
 
     // RNFirebase required dependencies
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
-
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.facebook.react:react-native:+'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
