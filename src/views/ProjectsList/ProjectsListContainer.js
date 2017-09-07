@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import {
   compose,
   branch,
@@ -34,7 +35,14 @@ const enhance = compose(
 
   withHandlers({
     onProjectListItemClicked: props => project => {
-      props.startDownload(project);
+      if (props.isDownloading) {
+        Alert.alert(
+          'You cannot do that',
+          'A download is already in progress. Please wait for it to finish before starting another one.'
+        );
+      } else {
+        props.startDownload(project);
+      }
     },
   }),
 

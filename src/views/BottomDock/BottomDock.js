@@ -10,7 +10,7 @@ import { HorizontalProgressBar } from '../../components';
  * @param {Object} props
  * @returns {jsx}
  */
-function BottomDock(props) { // eslint-disable-line
+function BottomDock(props) {
   const { currentDownload } = props;
 
   return (
