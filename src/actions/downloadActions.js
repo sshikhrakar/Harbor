@@ -9,13 +9,15 @@ import {
  * Start a download.
  *
  * @param {Object} project
+ * @param {String} timestamp - which of the upload timestamps to download.
  * @returns {Object}
  */
-export function startDownload(project) {
+export function startDownload(project, timestamp) {
   return {
     type: DOWNLOAD_STARTED,
     payload: {
       project,
+      timestamp,
     },
   };
 }
@@ -24,13 +26,15 @@ export function startDownload(project) {
  * Stop a download.
  *
  * @param {Object} project
+ * @param {String} timestamp
  * @returns {Object}
  */
-export function completeDownload(project) {
+export function completeDownload(project, timestamp) {
   return {
     type: DOWNLOAD_COMPLETED,
     payload: {
       project,
+      timestamp,
     },
   };
 }
