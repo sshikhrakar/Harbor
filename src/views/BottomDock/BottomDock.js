@@ -11,13 +11,19 @@ import { HorizontalProgressBar } from '../../components';
  * @returns {jsx}
  */
 function BottomDock(props) { // eslint-disable-line
+  const { currentDownload } = props;
+
   return (
     <HorizontalProgressBar
-      value={ 0.5 }
-      text="Downloading ..."
+      value={ currentDownload.progress }
+      text={ composeDownloadText(currentDownload.progress) }
       onPress={ () => true}
     />
   );
+}
+
+function composeDownloadText(progress) {
+  return `Downloading... ${(progress * 100).toFixed(2)}%`;
 }
 
 export default BottomDock;

@@ -1,19 +1,25 @@
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeAll';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import {
-  DOWNLOAD_STARTED, // eslint-disable-line
+  DOWNLOAD_STARTED,
   FETCH_ALL_PROJECTS,
 } from '../actions/actionTypes';
 import {
   fetchAllProjectsErrored,
   fetchAllProjectsFulfilled,
 } from '../actions/projectActions';
+import {
+  completeDownload,
+  downloadErrored,
+  updateCurrentDownloadProgress,
+} from '../actions/downloadActions';
 
 /**
  * Fetch all projects. Map to success/failure actions.
@@ -54,10 +60,29 @@ function fetchAllProjectsEpic(action$, store, { firebaseService }) { // eslint-d
  * @param {Object} downloadService
  * @returns {Observable}
  */
-function downloadApkForProjectEpic(action$, store, { downloadService })  { // eslint-disable-line
-  return action$;
+function startDownloadEpic(action$, store, { downloadService }) {
+  return action$
+    .distinctUntilChanged()
+    .ofType(DOWNLOAD_STARTED)
+    .debounceTime(1000)
+    .switchMap(({ payload }) => {
+      const { name, metadata, uploads } = payload.project;
+      const downloadJob = downloadService.downloadApk({
+        projectName: name,
+        releaseTimestamp: metadata.lastReleasedOn,
+        url: uploads[metadata.lastReleasedOn].download_url,
+        onBegin: () => store.dispatch(updateCurrentDownloadProgress(0)),
+        onProgress: ({ bytesWritten, contentLength }) => store.dispatch(updateCurrentDownloadProgress(bytesWritten / contentLength)),
+      });
+
+      return Observable
+        .fromPromise(downloadJob.promise)
+        .mapTo(completeDownload(payload.project))
+        .catch(err => Observable.of(downloadErrored(err)));
+    });
 }
 
 export {
+  startDownloadEpic,
   fetchAllProjectsEpic,
 };

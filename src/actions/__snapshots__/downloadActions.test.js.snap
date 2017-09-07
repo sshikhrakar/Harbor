@@ -11,6 +11,9 @@ Object {
 
 exports[`ACTIONS: DOWNLOAD should create an action to stop a download 1`] = `
 Object {
+  "payload": Object {
+    "project": undefined,
+  },
   "type": "DOWNLOAD/DOWNLOAD_COMPLETE",
 }
 `;
@@ -20,6 +23,6 @@ Object {
   "payload": Object {
     "progress": 50,
   },
-  "type": undefined,
+  "type": "DOWNLOAD/UPDATE_CURRENT_DOWNLOAD_PROGRESS",
 }
 `;
