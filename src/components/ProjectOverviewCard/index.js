@@ -41,6 +41,7 @@ class ProjectOverviewCard extends Component {
       onCardPress,
       versionNumber,
       lastUpdatedAt,
+      projectIconUrl,
     } = this.props;
 
     return (
@@ -51,7 +52,8 @@ class ProjectOverviewCard extends Component {
           <View style={ styles.projectIconContainer }>
             <Image
               resizeMethod='scale'
-              source={ images.fallbackProjectIcon }
+              style={ styles.projectIcon }
+              source={ projectIconUrl ? { uri: projectIconUrl } : images.fallbackProjectIcon }
             />
           </View>
 
@@ -112,6 +114,8 @@ const styles = StyleSheet.create({
   },
 
   projectIcon: {
+    width: 50,
+    height: 50,
     alignSelf: 'center',
   },
 
