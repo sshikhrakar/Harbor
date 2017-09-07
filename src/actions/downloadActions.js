@@ -1,5 +1,6 @@
 import {
   DOWNLOAD_STARTED,
+  DOWNLOAD_ERRORED,
   DOWNLOAD_COMPLETED,
   UPDATE_CURRENT_DOWNLOAD_PROGRESS,
 } from '../actions/actionTypes';
@@ -22,11 +23,30 @@ export function startDownload(project) {
 /**
  * Stop a download.
  *
+ * @param {Object} project
  * @returns {Object}
  */
-export function completeDownload() {
+export function completeDownload(project) {
   return {
     type: DOWNLOAD_COMPLETED,
+    payload: {
+      project,
+    },
+  };
+}
+
+/**
+ * Download has errored.
+ *
+ * @param {Object} error
+ * @returns {Object}
+ */
+export function downloadErrored(error) {
+  return {
+    type: DOWNLOAD_ERRORED,
+    payload: {
+      error,
+    },
   };
 }
 

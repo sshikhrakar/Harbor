@@ -7,6 +7,7 @@ import * as projects from './projectsEpic';
 export default combineEpics(
   auth.loginEpic,
   auth.signupEpic,
+  projects.startDownloadEpic,
   fcm.fcmTokenRegistrationEpic,
   projects.fetchAllProjectsEpic,
 );

@@ -7,16 +7,16 @@ import {
   renderComponent,
 } from 'recompose';
 
-import * as downloadService from '../../services/downloadService';
-
 import ProjectsList from './ProjectsList';
 import { withFCMHandlers } from '../../HOC';
 import EmptyProjectsScreen from './EmptyProjectsScreen';
 
 import { validators } from '../../utils';
+import { startDownload } from '../../actions/downloadActions';
 import { fetchAllProjects, setSelectedProject } from '../../actions/projectActions';
 
 const mapDispatchToProps = {
+  startDownload,
   fetchAllProjects,
   setSelectedProject,
 };
@@ -24,6 +24,7 @@ const mapDispatchToProps = {
 const mapStateToProps = state => ({
   projects: state.projects,
   isFetching: state.ui.projects.isFetching,
+  isDownloading: state.downloads.isDownloading,
 });
 
 const enhance = compose(
@@ -33,14 +34,7 @@ const enhance = compose(
 
   withHandlers({
     onProjectListItemClicked: props => project => { // eslint-disable-line
-      const { lastReleasedOn } = project.metadata;
-      const downloadUrl = project.uploads[lastReleasedOn].download_url;
-
-      downloadService.downloadApk({
-        projectName: project.name,
-        releaseTimestamp: lastReleasedOn,
-        url: downloadUrl,
-      });
+      props.startDownload(project);
     },
   }),
 

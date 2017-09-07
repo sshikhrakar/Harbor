@@ -6,14 +6,14 @@ import { hideElementIf } from '../../HOC';
 import BottomDock from './BottomDock';
 
 const mapStateToProps = state => ({
-  currentDownload: state.downloads.current,
   isDownloading: state.downloads.isDownloading,
+  currentDownload: state.downloads.currentDownload,
 });
 
 const enhance = compose(
   connect(mapStateToProps, null),
 
-  hideElementIf(props => !props.currentDownload),
+  hideElementIf(props => !props.isDownloading),
 );
 
 export default enhance(BottomDock);
