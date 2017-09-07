@@ -27,14 +27,16 @@ export function startDownload(project, timestamp) {
  *
  * @param {Object} project
  * @param {String} timestamp
+ * @param {String} apkPath
  * @returns {Object}
  */
-export function completeDownload(project, timestamp) {
+export function completeDownload(project, timestamp, apkPath) {
   return {
     type: DOWNLOAD_COMPLETED,
     payload: {
       project,
       timestamp,
+      apkPath,
     },
   };
 }

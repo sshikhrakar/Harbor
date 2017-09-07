@@ -67,7 +67,10 @@ function startDownloadEpic(action$, store, { downloadService }) {
     .debounceTime(1000)
     .switchMap(({ payload }) => {
       const { name, uploads } = payload.project;
+      const filepath = downloadService.getTargetPath(name, payload.timestamp);
+
       const downloadJob = downloadService.downloadApk({
+        filepath,
         projectName: name,
         releaseTimestamp: payload.timestamp,
         url: uploads[payload.timestamp].download_url,
@@ -77,7 +80,7 @@ function startDownloadEpic(action$, store, { downloadService }) {
 
       return Observable
         .fromPromise(downloadJob.promise)
-        .mapTo(completeDownload(payload.project, payload.timestamp))
+        .mapTo(completeDownload(payload.project, payload.timestamp, filepath))
         .catch(err => Observable.of(downloadErrored(err)));
     });
 }

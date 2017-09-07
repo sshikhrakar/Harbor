@@ -20,7 +20,7 @@ function downloadFileFromURL(url) {
   };
 
   this.withFilename = filename => {
-    this.toFile = RNFS.DocumentDirectoryPath + `/${filename}`;
+    this.toFile = filename;
 
     return this;
   };
@@ -57,6 +57,16 @@ function downloadFileFromURL(url) {
   return this;
 }
 
+/**
+ * Base path for downloads.
+ *
+ * @returns {String}
+ */
+function getBasePath() {
+  return RNFS.DocumentDirectoryPath;
+}
+
 export {
+  getBasePath,
   downloadFileFromURL,
 };
