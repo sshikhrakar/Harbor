@@ -17,11 +17,17 @@ function BottomDock(props) { // eslint-disable-line
     <HorizontalProgressBar
       value={ currentDownload.progress }
       text={ composeDownloadText(currentDownload.progress) }
-      onPress={ () => true}
+      onPress={ () => true }
     />
   );
 }
 
+/**
+ * Text for the bottom dock.
+ *
+ * @param {Number} progress
+ * @returns {String}
+ */
 function composeDownloadText(progress) {
   return `Downloading... ${(progress * 100).toFixed(2)}%`;
 }
