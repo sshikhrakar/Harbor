@@ -66,18 +66,18 @@ function startDownloadEpic(action$, store, { downloadService }) {
     .ofType(DOWNLOAD_STARTED)
     .debounceTime(1000)
     .switchMap(({ payload }) => {
-      const { name, metadata, uploads } = payload.project;
+      const { name, uploads } = payload.project;
       const downloadJob = downloadService.downloadApk({
         projectName: name,
-        releaseTimestamp: metadata.lastReleasedOn,
-        url: uploads[metadata.lastReleasedOn].download_url,
+        releaseTimestamp: payload.timestamp,
+        url: uploads[payload.timestamp].download_url,
         onBegin: () => store.dispatch(updateCurrentDownloadProgress(0)),
         onProgress: ({ bytesWritten, contentLength }) => store.dispatch(updateCurrentDownloadProgress(bytesWritten / contentLength)),
       });
 
       return Observable
         .fromPromise(downloadJob.promise)
-        .mapTo(completeDownload(payload.project))
+        .mapTo(completeDownload(payload.project, payload.timestamp))
         .catch(err => Observable.of(downloadErrored(err)));
     });
 }

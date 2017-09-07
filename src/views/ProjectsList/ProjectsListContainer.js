@@ -41,7 +41,14 @@ const enhance = compose(
           'A download is already in progress. Please wait for it to finish before starting another one.'
         );
       } else {
-        props.startDownload(project);
+        if (!project.metadata) {
+          Alert.alert(
+            'No updates available',
+            'There aren\'t any builds available for this project right now.'
+          );
+        } else {
+          props.startDownload(project, project.metadata.lastReleasedOn);
+        }
       }
     },
   }),

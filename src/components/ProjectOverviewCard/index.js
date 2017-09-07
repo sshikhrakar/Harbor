@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   projectIconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: 8,
   },
 
   projectIcon: {
@@ -116,7 +117,6 @@ const styles = StyleSheet.create({
 
   infoContainer: {
     flex: 1,
-    alignItems: 'center',
   },
 
   infoItem: {

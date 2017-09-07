@@ -4,6 +4,7 @@ exports[`ACTIONS: DOWNLOAD should create an action to  start a download 1`] = `
 Object {
   "payload": Object {
     "project": undefined,
+    "timestamp": undefined,
   },
   "type": "DOWNLOAD/DOWNLOAD_STARTED",
 }
@@ -13,8 +14,9 @@ exports[`ACTIONS: DOWNLOAD should create an action to stop a download 1`] = `
 Object {
   "payload": Object {
     "project": undefined,
+    "timestamp": undefined,
   },
-  "type": "DOWNLOAD/DOWNLOAD_COMPLETE",
+  "type": "DOWNLOAD/DOWNLOAD_COMPLETED",
 }
 `;
 
