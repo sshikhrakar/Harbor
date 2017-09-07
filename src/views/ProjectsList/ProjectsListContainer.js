@@ -33,7 +33,7 @@ const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
 
   withHandlers({
-    onProjectListItemClicked: props => project => { // eslint-disable-line
+    onProjectListItemClicked: props => project => {
       props.startDownload(project);
     },
   }),
