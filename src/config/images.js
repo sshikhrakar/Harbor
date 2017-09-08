@@ -5,7 +5,7 @@ const images = {
   rightArrowIcon: require('../assets/images/rightArrowIcon.png'),
   fallbackProjectIcon: require('../assets/images/proj_icon.png'),
   indifferentEmoji: require('../assets/images/indifferent_emoji.png'),
-  installIcon: require('../assets/images/greenTickIcon.png'),
+  installIcon: require('../assets/images/success.png'),
   downloadingIcon: require('../assets/images/syncArrowsIcon.png'),
   downloadIcon: require('../assets/images/downloadIcon.png'),
 };

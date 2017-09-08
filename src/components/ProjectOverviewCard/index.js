@@ -77,7 +77,6 @@ class ProjectOverviewCard extends Component {
           <View style={ styles.projectIconContainer }>
             <Image
               resizeMethod='scale'
-              tintColor={ colors.GREY }
               style={ styles.downloadIcon }
               source={ downloadIcon }
             />
