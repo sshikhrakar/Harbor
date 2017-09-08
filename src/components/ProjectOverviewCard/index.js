@@ -39,6 +39,7 @@ class ProjectOverviewCard extends Component {
     const {
       displayName,
       onCardPress,
+      downloadIcon,
       versionNumber,
       lastUpdatedAt,
       projectIconUrl,
@@ -77,6 +78,13 @@ class ProjectOverviewCard extends Component {
             <Image
               resizeMethod='scale'
               tintColor={ colors.GREY }
+              style={ styles.downloadIcon }
+              source={ downloadIcon }
+            />
+          </View>
+
+          <View style={ styles.projectIconContainer }>
+            <Image
               source={ images.rightArrowIcon }
             />
           </View>
@@ -89,6 +97,7 @@ class ProjectOverviewCard extends Component {
 
 ProjectOverviewCard.propTypes = {
   projectIconUrl: PropTypes.string,
+  downloadIcon: PropTypes.number,
   onCardPress: PropTypes.func.isRequired,
   displayName: PropTypes.string.isRequired,
   versionNumber: PropTypes.string.isRequired,
@@ -116,6 +125,12 @@ const styles = StyleSheet.create({
   projectIcon: {
     width: 50,
     height: 50,
+    alignSelf: 'center',
+  },
+
+  downloadIcon: {
+    width: 25,
+    height: 25,
     alignSelf: 'center',
   },
 
