@@ -26,6 +26,7 @@ const mapDispatchToProps = {
 const mapStateToProps = state => ({
   projects: state.projects,
   isFetching: state.ui.projects.isFetching,
+  downloadedProjects: state.downloads.projects,
   isDownloading: state.downloads.isDownloading,
 });
 
@@ -53,13 +54,24 @@ const enhance = compose(
       }
     },
 
+    /**
+     * Get proper icon for each project in the list.
+     * Different icons contingent upon if the project:
+     *  - has already been downloaded
+     *  - is being downloaded
+     *  - has a download available
+     *  - has no downloads available
+     *
+     * @param {Object} props
+     * @returns {function}
+     */
     getDownloadIcon: props => project => { // eslint-disable-line
       try {
-        if(project.uploads[project.metadata.lastReleasedOn].downloaded) {
+        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
           return images.installIcon;
         }
 
-        if(project.uploads[project.metadata.lastReleasedOn].downloading) {
+        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloading) {
           return images.downloadingIcon;
         }
 

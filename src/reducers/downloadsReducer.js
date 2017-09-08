@@ -105,7 +105,7 @@ function projectsReducer(state, action) {
  * @param {Object} action
  * @returns {Object}
  */
-function projectReducer(state, action) {
+function projectReducer(state = {}, action) {
   switch(action.type) {
 
     case DOWNLOAD_STARTED:
@@ -114,7 +114,6 @@ function projectReducer(state, action) {
         uploads: {
           ...state.uploads,
           [action.payload.timestamp]: {
-            ...state.uploads[action.payload.timestamp],
             downloading: true,
           },
         },

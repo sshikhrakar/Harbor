@@ -13,6 +13,7 @@ Object {
 exports[`ACTIONS: DOWNLOAD should create an action to stop a download 1`] = `
 Object {
   "payload": Object {
+    "apkPath": undefined,
     "project": undefined,
     "timestamp": undefined,
   },
