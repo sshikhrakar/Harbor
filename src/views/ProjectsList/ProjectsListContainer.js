@@ -42,16 +42,29 @@ const enhance = compose(
           'You cannot do that',
           'A download is already in progress. Please wait for it to finish before starting another one.'
         );
-      } else {
-        if (!project.metadata) {
-          Alert.alert(
-            'No updates available',
-            'There aren\'t any builds available for this project right now.'
-          );
-        } else {
-          props.startDownload(project, project.metadata.lastReleasedOn);
-        }
+
+        return;
       }
+
+      if (!project.metadata) {
+        Alert.alert(
+          'No updates available',
+          'There aren\'t any builds available for this project right now.'
+        );
+
+        return;
+      }
+
+      if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
+        Alert.alert(
+          'Up to date',
+          'You already have the latest build for this project.'
+        );
+
+        return;
+      }
+
+      props.startDownload(project, project.metadata.lastReleasedOn);
     },
 
     /**
