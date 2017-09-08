@@ -14,6 +14,7 @@ function ProjectsList(props) {
   const {
     projects,
     isFetching,
+    getDownloadIcon,
     fetchAllProjects,
     onProjectListItemClicked,
   } = props;
@@ -35,6 +36,7 @@ function ProjectsList(props) {
               <ProjectOverviewCard
                 key={ key }
                 displayName={ projects[project].name }
+                downloadIcon={ getDownloadIcon(projects[project]) }
                 projectIconUrl={ projects[project].iconUrl }
                 onCardPress= { () => onProjectListItemClicked(projects[project]) }
                 versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }

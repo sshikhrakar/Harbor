@@ -13,6 +13,7 @@ import { withFCMHandlers } from '../../HOC';
 import EmptyProjectsScreen from './EmptyProjectsScreen';
 
 import { validators } from '../../utils';
+import images from '../../config/images';
 import { startDownload } from '../../actions/downloadActions';
 import { fetchAllProjects, setSelectedProject } from '../../actions/projectActions';
 
@@ -49,6 +50,22 @@ const enhance = compose(
         } else {
           props.startDownload(project, project.metadata.lastReleasedOn);
         }
+      }
+    },
+
+    getDownloadIcon: props => project => { // eslint-disable-line
+      try {
+        if(project.uploads[project.metadata.lastReleasedOn].downloaded) {
+          return images.installIcon;
+        }
+
+        if(project.uploads[project.metadata.lastReleasedOn].downloading) {
+          return images.downloadingIcon;
+        }
+
+        return images.downloadIcon;
+      } catch (e) { // eslint-disable-line
+        return null;
       }
     },
   }),
