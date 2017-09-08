@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import fonts from '../../config/fonts';
-import colors from '../../config/colors';
 import images from '../../config/images';
 
 /**
