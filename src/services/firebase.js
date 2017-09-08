@@ -98,7 +98,7 @@ function normalizeProjectListToObject(rawProjects) {
   const projects = rawProjects.map(p => p.val());
 
   return projects.reduce(
-    (acc, current) => Object.assign(acc, { [current.name]: current }), {}
+    (acc, current) => Object.assign(acc, { [current.packageName]: current }), {}
   );
 }
 

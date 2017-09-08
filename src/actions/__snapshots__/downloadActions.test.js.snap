@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ACTIONS: DOWNLOAD should create an action to  start a download 1`] = `
+Object {
+  "payload": Object {
+    "project": undefined,
+    "timestamp": undefined,
+  },
+  "type": "DOWNLOAD/DOWNLOAD_STARTED",
+}
+`;
+
+exports[`ACTIONS: DOWNLOAD should create an action to stop a download 1`] = `
+Object {
+  "payload": Object {
+    "apkPath": undefined,
+    "project": undefined,
+    "timestamp": undefined,
+  },
+  "type": "DOWNLOAD/DOWNLOAD_COMPLETED",
+}
+`;
+
+exports[`ACTIONS: DOWNLOAD should update the progress for current download 1`] = `
+Object {
+  "payload": Object {
+    "progress": 50,
+  },
+  "type": "DOWNLOAD/UPDATE_CURRENT_DOWNLOAD_PROGRESS",
+}
+`;

@@ -1,4 +1,6 @@
-import { FETCH_ALL_PROJECTS_FULFILLED } from '../actions/actionTypes';
+import {
+  FETCH_ALL_PROJECTS_FULFILLED,
+} from '../actions/actionTypes';
 
 export const initialState = {};
 

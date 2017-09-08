@@ -39,8 +39,10 @@ class ProjectOverviewCard extends Component {
     const {
       displayName,
       onCardPress,
+      downloadIcon,
       versionNumber,
       lastUpdatedAt,
+      projectIconUrl,
     } = this.props;
 
     return (
@@ -51,7 +53,8 @@ class ProjectOverviewCard extends Component {
           <View style={ styles.projectIconContainer }>
             <Image
               resizeMethod='scale'
-              source={ images.fallbackProjectIcon }
+              style={ styles.projectIcon }
+              source={ projectIconUrl ? { uri: projectIconUrl } : images.fallbackProjectIcon }
             />
           </View>
 
@@ -74,7 +77,13 @@ class ProjectOverviewCard extends Component {
           <View style={ styles.projectIconContainer }>
             <Image
               resizeMethod='scale'
-              tintColor={ colors.GREY }
+              style={ styles.downloadIcon }
+              source={ downloadIcon }
+            />
+          </View>
+
+          <View style={ styles.projectIconContainer }>
+            <Image
               source={ images.rightArrowIcon }
             />
           </View>
@@ -82,15 +91,16 @@ class ProjectOverviewCard extends Component {
       </Animated.View>
     );
   }
-  
+
 }
 
 ProjectOverviewCard.propTypes = {
+  projectIconUrl: PropTypes.string,
+  downloadIcon: PropTypes.number,
   onCardPress: PropTypes.func.isRequired,
   displayName: PropTypes.string.isRequired,
   versionNumber: PropTypes.string.isRequired,
   lastUpdatedAt: PropTypes.string.isRequired,
-  projectIconUrl: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -108,15 +118,23 @@ const styles = StyleSheet.create({
   projectIconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: 8,
   },
 
   projectIcon: {
+    width: 50,
+    height: 50,
+    alignSelf: 'center',
+  },
+
+  downloadIcon: {
+    width: 25,
+    height: 25,
     alignSelf: 'center',
   },
 
   infoContainer: {
     flex: 1,
-    alignItems: 'center',
   },
 
   infoItem: {

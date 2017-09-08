@@ -133,15 +133,13 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-firebase')
+    compile project(':react-native-fs')
     compile fileTree(dir: "libs", include: ["*.jar"])
     // From node_modules
     compile project(':react-native-navigation')
 
     // RNFirebase required dependencies
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
-
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.facebook.react:react-native:+'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
