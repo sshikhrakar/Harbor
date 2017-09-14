@@ -8,7 +8,7 @@ import colors from '../../config/colors';
 
 import styles from './styles';
 import BottomDock from '../BottomDock';
-import { ProjectOverviewCard } from '../../components';
+import { ProjectOverviewCard, HorizontalSeparator } from '../../components';
 
 function ProjectsList(props) {
   const {
@@ -33,15 +33,23 @@ function ProjectsList(props) {
 
           {
             projects && Object.keys(projects).map((project, key) =>
-              <ProjectOverviewCard
+              <View
                 key={ key }
-                displayName={ projects[project].name }
-                downloadIcon={ getDownloadIcon(projects[project]) }
-                projectIconUrl={ projects[project].iconUrl }
-                onCardPress= { () => onProjectListItemClicked(projects[project]) }
-                versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
-                lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
-              />
+                style={ styles.contentContainerStyle }
+              >
+                <ProjectOverviewCard
+                  displayName={ projects[project].name }
+                  downloadIcon={ getDownloadIcon(projects[project]) }
+                  projectIconUrl={ projects[project].iconUrl }
+                  onCardPress= { () => onProjectListItemClicked(projects[project]) }
+                  versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
+                  lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
+                />
+                <HorizontalSeparator
+                  thickness={ 0.5 }
+                  color={ colors.GRAY_SEPARATOR }
+                />
+              </View>
             )
           }
 

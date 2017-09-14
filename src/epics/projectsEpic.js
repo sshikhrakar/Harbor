@@ -10,6 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import {
   DOWNLOAD_STARTED,
   FETCH_ALL_PROJECTS,
+  INSTALL_APK,
 } from '../actions/actionTypes';
 import {
   fetchAllProjectsErrored,
@@ -20,6 +21,10 @@ import {
   downloadErrored,
   updateCurrentDownloadProgress,
 } from '../actions/downloadActions';
+import {
+  installApkFulfilled,
+  installApkErrored,
+} from '../actions/apkActions';
 
 /**
  * Fetch all projects. Map to success/failure actions.
@@ -81,11 +86,30 @@ function startDownloadEpic(action$, store, { downloadService }) {
       return Observable
         .fromPromise(downloadJob.promise)
         .mapTo(completeDownload(payload.project, payload.timestamp, filepath))
-        .catch(err => Observable.of(downloadErrored(err)));
+        .catch(err => Observable.of(downloadErrored(err, payload.project)));
     });
+}
+
+/**
+ * Trigger the install of an APK.
+ *
+ * @param {Observable} action$
+ * @param {Object} store
+ * @param {Object} apkService
+ * @returns {Observable}
+ */
+function triggerApkInstall(action$, store, { apkService }) { // eslint-disable-line
+  return action$
+    .ofType(INSTALL_APK)
+    .switchMap(({ payload }) => {
+      return Observable.fromPromise(apkService.triggerInstall(payload.apkPath));
+    })
+    .mapTo(installApkFulfilled())
+    .catch(() => Observable.of(installApkErrored()));
 }
 
 export {
   startDownloadEpic,
   fetchAllProjectsEpic,
+  triggerApkInstall,
 };

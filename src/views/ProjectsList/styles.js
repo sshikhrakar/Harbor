@@ -5,12 +5,11 @@ import colors from '../../config/colors';
 const styles = StyleSheet.create({
   contentContainerStyle: {
     flex: 1,
+    backgroundColor: colors.LIGHT_SILVER,
   },
 
   mainContainer: {
     flex: 1,
-    padding: 10,
-    backgroundColor: colors.SILVER,
   },
 });
 

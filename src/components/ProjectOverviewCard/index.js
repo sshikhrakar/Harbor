@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import fonts from '../../config/fonts';
-import colors from '../../config/colors';
 import images from '../../config/images';
 
 /**
@@ -105,14 +104,9 @@ ProjectOverviewCard.propTypes = {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    padding: 15,
     width: '100%',
-    borderRadius: 6,
+    paddingVertical: 20,
     flexDirection: 'row',
-    elevation: 3,
-    marginVertical: 5,
-    borderColor: colors.ASBESTOS,
-    backgroundColor: colors.WHITE,
   },
 
   projectIconContainer: {
@@ -122,8 +116,8 @@ const styles = StyleSheet.create({
   },
 
   projectIcon: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     alignSelf: 'center',
   },
 
@@ -148,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   projectTitle: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: fonts.primary.SEMI_BOLD,
   },
 

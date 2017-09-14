@@ -10,4 +10,5 @@ export default combineEpics(
   projects.startDownloadEpic,
   fcm.fcmTokenRegistrationEpic,
   projects.fetchAllProjectsEpic,
+  projects.triggerApkInstall,
 );

@@ -63,10 +63,32 @@ function downloadFileFromURL(url) {
  * @returns {String}
  */
 function getBasePath() {
-  return RNFS.DocumentDirectoryPath;
+  return RNFS.ExternalStorageDirectoryPath + '/com/testharbor';
+}
+
+/**
+ * Creates dir at path.
+ *
+ * @param {String} path
+ * @returns {Promise}
+ */
+function mkdir(path) {
+  return RNFS.mkdir(path);
+}
+
+/**
+ * Check if directory specified by the path exists.
+ *
+ * @param {String} path
+ * @returns {Promise}
+ */
+function exists(path) {
+  return RNFS.exists(path);
 }
 
 export {
+  mkdir,
+  exists,
   getBasePath,
   downloadFileFromURL,
 };

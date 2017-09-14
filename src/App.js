@@ -28,7 +28,7 @@ Navigation.startSingleScreenApp({
       navBarTextFontSize: 20,
       navBarTitleTextCentered: true,
       navBarComponentAlignment: 'center',
-      navBarBackgroundColor: colors.SILVER,
+      navBarBackgroundColor: colors.WHITE,
       navBarTextFontFamily: fonts.primary.REGULAR,
     },
   },

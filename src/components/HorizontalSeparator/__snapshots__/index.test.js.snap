@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`COMPONENTS: HorizontalSeparator should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderColor": "red",
+      "borderWidth": 1,
+      "width": "100%",
+    }
+  }
+/>
+`;
