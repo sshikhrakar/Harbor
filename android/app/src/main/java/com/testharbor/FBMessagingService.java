@@ -49,7 +49,7 @@ public class FBMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setContentInfo(title)
                 .setLargeIcon(icon)
-                .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark);
+                .setSmallIcon(R.drawable.ic_stat_yacht);
 
         try {
             String picture_url = map.get("picture_url");
