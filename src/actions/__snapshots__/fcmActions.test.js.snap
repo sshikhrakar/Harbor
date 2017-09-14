@@ -2,9 +2,6 @@
 
 exports[`ACTION CREATORS: FCM should create registration action 1`] = `
 Object {
-  "payload": Object {
-    "token": "foobarbaz1234foobarfaz1234",
-  },
   "type": "FCM/REGISTER_FCM_TOKEN",
 }
 `;

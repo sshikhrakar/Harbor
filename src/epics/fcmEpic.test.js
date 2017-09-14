@@ -10,7 +10,16 @@ import * as fcm from './fcmEpic';
 describe('EPICS: FCM', () => {
 
   let dependencies = null;
-  const store = null;
+  const store = {
+    getState() {
+      return {
+        fcm: {
+          fcmTokenRegistered: true,
+        },
+      };
+    },
+  };
+
   let registrationAction$;
 
   beforeAll(() => {
@@ -25,6 +34,12 @@ describe('EPICS: FCM', () => {
 
     dependencies = {
       firebaseService: {
+        getToken() {
+          return Observable.fromPromise(
+            Promise.resolve('SomeRandomToken')
+          );
+        },
+
         registerToken(token) {
           return Observable.of(mockResponse(token));
         },

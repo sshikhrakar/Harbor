@@ -9,18 +9,19 @@ import {
 } from 'recompose';
 
 import ProjectsList from './ProjectsList';
-import { withFCMHandlers } from '../../HOC';
 import EmptyProjectsScreen from './EmptyProjectsScreen';
 
 import { validators } from '../../utils';
 import images from '../../config/images';
 import { startDownload } from '../../actions/downloadActions';
+import { registerFcmToken } from '../../actions/fcmActions.js';
 import { fetchAllProjects, setSelectedProject } from '../../actions/projectActions';
 
 const mapDispatchToProps = {
   startDownload,
   fetchAllProjects,
   setSelectedProject,
+  registerFcmToken,
 };
 
 const mapStateToProps = state => ({
@@ -31,8 +32,6 @@ const mapStateToProps = state => ({
 });
 
 const enhance = compose(
-  withFCMHandlers(),
-
   connect(mapStateToProps, mapDispatchToProps),
 
   withHandlers({
@@ -102,6 +101,7 @@ const enhance = compose(
 
   lifecycle({
     componentDidMount() {
+      this.props.registerFcmToken();
       this.props.fetchAllProjects();
     },
   }),

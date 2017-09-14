@@ -1,6 +1,9 @@
 import firebase from 'react-native-firebase';
 import { Observable } from 'rxjs/Rx';
 
+import { store } from '../App';
+import { refreshFcmToken } from '../actions/fcmActions';
+
 let databaseInstance;
 let firebaseInstance;
 
@@ -25,6 +28,17 @@ function init() {
   });
 
   databaseInstance = firebaseInstance.database();
+  firebaseInstance.messaging().onTokenRefresh(onTokenRefresh);
+}
+
+/**
+ * When FCM token is refreshed, we dispatch an action to indicate the event.
+ * fcmEpic handles the update.
+ *
+ * @param {String} token
+ */
+function onTokenRefresh(token) {
+  store.dispatch(refreshFcmToken(token));
 }
 
 /**
@@ -37,6 +51,17 @@ function init() {
 function login(email, password) {
   return Observable.fromPromise(
     firebaseInstance.auth().signInWithEmailAndPassword(email, password)
+  );
+}
+
+/**
+ * Gets an FCM token.
+ *
+ * @returns {Observable}
+ */
+function getToken() {
+  return Observable.fromPromise(
+    getInstance().messaging().getToken()
   );
 }
 
@@ -106,6 +131,7 @@ export {
   init,
   login,
   signup,
+  getToken,
   getInstance,
   registerToken,
   fetchDetailsForProject,
