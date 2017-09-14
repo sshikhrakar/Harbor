@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ACTIONS: APK should create a errored action for apk install 1`] = `
+Object {
+  "type": "APK/INSTALL_APK_ERRORED",
+}
+`;
+
+exports[`ACTIONS: APK should create a fulfilled action for apk install 1`] = `
+Object {
+  "type": "APK/INSTALL_APK_FULFILLED",
+}
+`;
+
+exports[`ACTIONS: APK should create an action that triggers apk install 1`] = `
+Object {
+  "payload": Object {
+    "path": "/sdcard/com/testharbor/something.apk",
+  },
+  "type": "APK/INSTALL_APK",
+}
+`;

@@ -45,12 +45,14 @@ export function completeDownload(project, timestamp, apkPath) {
  * Download has errored.
  *
  * @param {Object} error
+ * @param {Object} project
  * @returns {Object}
  */
-export function downloadErrored(error) {
+export function downloadErrored(error, project) {
   return {
     type: DOWNLOAD_ERRORED,
     payload: {
+      project,
       error,
     },
   };
