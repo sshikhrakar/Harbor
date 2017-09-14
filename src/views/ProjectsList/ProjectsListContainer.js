@@ -55,16 +55,21 @@ const enhance = compose(
         return;
       }
 
-      if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
-        Alert.alert(
-          'Up to date',
-          'You already have the latest build for this project.'
-        );
+      try {
+        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
+          Alert.alert(
+            'Up to date',
+            'You already have the latest build for this project.'
+          );
 
-        return;
+          return;
+        }
+      } catch (e) {
+        /* The above block may fail when no builds have been downloaded for project, and several object keys are
+         * undefined in that case. */
+        props.startDownload(project, project.metadata.lastReleasedOn);
       }
 
-      props.startDownload(project, project.metadata.lastReleasedOn);
     },
 
     /**
