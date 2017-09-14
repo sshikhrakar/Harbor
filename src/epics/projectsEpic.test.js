@@ -6,12 +6,18 @@ import {
   fetchAllProjectsErrored,
   fetchAllProjectsFulfilled,
 } from '../actions/projectActions';
+import {
+  installApk,
+  installApkErrored,
+  installApkFulfilled,
+} from '../actions/apkActions';
 
 describe('EPICS: projects', () => {
 
   const store = null;
   let dependencies;
   let fetchAllProjectsAction$;
+  let installApkAction$;
   let mockdata;
 
   beforeAll(() => {
@@ -20,6 +26,7 @@ describe('EPICS: projects', () => {
     };
 
     fetchAllProjectsAction$ = ActionsObservable.of(fetchAllProjects());
+    installApkAction$ = ActionsObservable.of(installApk('path'));
 
     dependencies = {
       firebaseService: {
@@ -43,6 +50,12 @@ describe('EPICS: projects', () => {
           return projects.reduce(
             (acc, current) => Object.assign(acc, { [current.name]: current }), {}
           );
+        },
+      },
+
+      apkService: {
+        triggerInstall(path) {
+          return Promise.resolve(path);
         },
       },
     };
@@ -73,5 +86,22 @@ describe('EPICS: projects', () => {
         })]);
       });
   });
+
+  it('should dispatch install fulfilled action when apk trigger is done. ', () => {
+    projects.triggerApkInstall(installApkAction$, store, dependencies)
+      .toArray()
+      .subscribe(actions => {
+        expect(actions).toEqual([installApkFulfilled()]);
+      });
+  });
+
+  it('should dispatch install errored action when apk trigger errors. ', () => {
+    projects.triggerApkInstall(installApkAction$, store, dependencies)
+      .toArray()
+      .subscribe(null, e => {
+        expect(e).toEqual([installApkErrored()]);
+      });
+  });
+
 
 });
