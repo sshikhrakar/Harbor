@@ -37,6 +37,7 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
+        new BridgeModules(),
         new RNFSPackage(),
         new RNFirebasePackage(),  // <-- Add this line
         // Add these packages as appropriate
