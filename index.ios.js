@@ -7,5 +7,4 @@ function TestHarbor() {
   return <App />;
 }
 
-
 AppRegistry.registerComponent('TestHarbor', () => TestHarbor);
