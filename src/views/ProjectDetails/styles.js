@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 
   boldText: {
     fontSize: 20,
+    color: colors.BLACK,
     fontFamily: fonts.primary.SEMI_BOLD,
   },
 
@@ -51,10 +52,10 @@ const styles = StyleSheet.create({
   },
 
   installButton: {
-    padding: 5,
+    elevation: 8,
     paddingHorizontal: 15,
-    backgroundColor: colors.BLUE,
     justifyContent: 'center',
+    backgroundColor: colors.BLUE,
   },
 
   installButtonText: {

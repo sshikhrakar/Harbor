@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import fonts from '../../config/fonts';
+import colors from '../../config/colors';
 import images from '../../config/images';
 
 /**
@@ -143,6 +144,7 @@ const styles = StyleSheet.create({
 
   projectTitle: {
     fontSize: 18,
+    color: colors.BLACK,
     fontFamily: fonts.primary.SEMI_BOLD,
   },
 
