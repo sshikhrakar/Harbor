@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 
   infoContainer: {
-    flex: 2,
+    flex: 1.5,
     justifyContent: 'center',
   },
 
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
+    flex: 1,
     paddingVertical: 10,
   },
 
@@ -62,6 +63,38 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.WHITE,
     fontFamily: fonts.primary.BOLD,
+  },
+
+  bodyContainer: {
+    flex: 1,
+  },
+
+  buildItemContainer: {
+    padding: 10,
+  },
+
+  title: {
+    paddingVertical: 10,
+  },
+
+  changelog: {
+    paddingVertical: 5,
+  },
+
+  buildTitleText: {
+    fontSize: 18,
+    color: colors.BLACK,
+    fontFamily: fonts.primary.SEMI_BOLD,
+  },
+
+  buildSubTitleText: {
+    fontSize: 14,
+    fontFamily: fonts.primary.SEMI_BOLD,
+  },
+
+  buildNormalText: {
+    fontSize: 14,
+    fontFamily: fonts.primary.REGULAR,
   },
 });
 

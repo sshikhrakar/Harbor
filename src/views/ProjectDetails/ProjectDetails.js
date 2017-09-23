@@ -1,6 +1,7 @@
 import React from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 
 import { HorizontalSeparator, ButtonWithSpinner } from '../../components';
 
@@ -15,9 +16,8 @@ import colors from '../../config/colors';
  */
 function ProjectDetails(props) {
   const {
-    iconUrl,
     name,
-    packageName,
+    iconUrl,
   } = props.selectedProject;
 
   return (
@@ -36,25 +36,56 @@ function ProjectDetails(props) {
             <Text style={styles.boldText}> {name} </Text>
           </View>
           <View style={styles.infoItem}>
-            <Text style={styles.normalText}> {packageName} </Text>
+            <Text style={styles.normalText}> Srishan Bhattarai </Text>
           </View>
         </View>
 
-        <View style={ styles.buttonContainer }>
+        <View style={styles.buttonContainer}>
           <ButtonWithSpinner
             text="INSTALL"
-            buttonStyle={ styles.installButton }
-            textStyle={ styles.installButtonText }
-            isLoading={ false }
-            onPress={ () => true }
+            buttonStyle={styles.installButton}
+            textStyle={styles.installButtonText}
+            isLoading={false}
+            onPress={() => true}
           />
         </View>
       </View>
 
-      <HorizontalSeparator
-        thickness={0.8}
-        color={colors.GRAY_SEPARATOR}
-      />
+      <HorizontalSeparator thickness={1.2} color={colors.GRAY_SEPARATOR} />
+
+      <ScrollView style={styles.bodyContainer}>
+        {
+          Object.keys(props.selectedProject.uploads).map((ts, key) =>
+            <View key={key}>
+              <View style={styles.buildItemContainer}>
+                <View style={styles.title}>
+                  <Text style={styles.buildTitleText}>
+                    {
+                      'Version: ' + props.selectedProject.uploads[ts].version
+                    }
+                  </Text>
+                  <Text style={styles.buildSubTitleText}>
+                    {
+                      format(ts)
+                    }
+                  </Text>
+                </View>
+
+                <View style={styles.changelog}>
+                  <Text style={styles.buildNormalText}>
+                    {
+                      props.selectedProject.uploads[ts].changelog ?
+                        props.selectedProject.uploads[ts].changelog :
+                        '<No changelog available>'
+                    }
+                  </Text>
+                </View>
+              </View>
+              <HorizontalSeparator thickness={0.8} color={colors.GRAY_SEPARATOR} />
+            </View>
+          )
+        }
+      </ScrollView>
 
     </View>
   );
@@ -63,5 +94,16 @@ function ProjectDetails(props) {
 ProjectDetails.propTypes = {
   selectedProject: PropTypes.object,
 };
+
+/**
+ * A helper to transform UNIX timestamps to human readable form.
+ *
+ * @param {Date} date
+ * @returns {Date}
+ */
+const format = date => {
+  return moment(date * 1000, 'x').format('Do MMM YYYY, h:mm a');
+};
+
 
 export default ProjectDetails;
