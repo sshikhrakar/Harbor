@@ -16,10 +16,15 @@ import colors from '../../config/colors';
  * @returns {JSX}
  */
 function ProjectDetails(props) {
-  const { onInstallButtonClicked, selectedProject } = props;
+  const {
+    buttonText,
+    selectedProject,
+    onInstallButtonClicked,
+  } = props;
   const {
     name,
     iconUrl,
+    uploads,
   } = selectedProject;
 
   return (
@@ -44,7 +49,7 @@ function ProjectDetails(props) {
 
         <View style={styles.buttonContainer}>
           <ButtonWithSpinner
-            text="INSTALL"
+            text={ buttonText }
             buttonStyle={styles.installButton}
             textStyle={styles.installButtonText}
             isLoading={false}
@@ -57,13 +62,13 @@ function ProjectDetails(props) {
 
       <ScrollView style={styles.bodyContainer}>
         {
-          Object.keys(props.selectedProject.uploads).map((ts, key) =>
+          Object.keys(uploads).map((ts, key) =>
             <View key={key}>
               <View style={styles.buildItemContainer}>
                 <View style={styles.title}>
                   <Text style={styles.buildTitleText}>
                     {
-                      'Version: ' + props.selectedProject.uploads[ts].version
+                      'Version: ' + uploads[ts].version
                     }
                   </Text>
                   <Text style={styles.buildSubTitleText}>
@@ -76,8 +81,8 @@ function ProjectDetails(props) {
                 <View style={styles.changelog}>
                   <Text style={styles.buildNormalText}>
                     {
-                      props.selectedProject.uploads[ts].changelog ?
-                        props.selectedProject.uploads[ts].changelog :
+                      uploads[ts].changelog ?
+                        uploads[ts].changelog :
                         '<No changelog available>'
                     }
                   </Text>

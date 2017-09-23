@@ -1,12 +1,19 @@
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
-import { compose, withHandlers } from 'recompose';
+import {
+  compose,
+  withHandlers,
+  withState,
+} from 'recompose';
 
 import ProjectDetails from './ProjectDetails';
 import { startDownload } from '../../actions/downloadActions';
 
+const selectedProjectSelector = state => state.projects[state.ui.projects.selectedProject];
+
 const mapStateToProps = state => ({
-  selectedProject: state.projects[state.ui.projects.selectedProject],
+  selectedProject: selectedProjectSelector(state),
+  downloadInfo: state.downloads.projects && state.downloads.projects[selectedProjectSelector(state).packageName],
 });
 
 const mapDispatchToProps = {
@@ -15,6 +22,16 @@ const mapDispatchToProps = {
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
+
+  withState('buttonText', 'setButtonText', props => {
+    const metadata = props.selectedProject.metadata;
+    const latestUploadData = props.downloadInfo.uploads[metadata.lastReleasedOn];
+    if (latestUploadData && latestUploadData.downloaded) {
+      return 'OPEN';
+    }
+
+    return 'INSTALLED';
+  }),
 
   withHandlers({
     onInstallButtonClicked: props => project => {
