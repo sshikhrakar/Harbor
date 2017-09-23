@@ -24,6 +24,7 @@ function ButtonWithSpinner(props) {
     onPress,
     isLoading,
     disabled,
+    textStyle,
     buttonStyle,
     activeOpacity,
   } = props;
@@ -38,7 +39,7 @@ function ButtonWithSpinner(props) {
       >
         {
           !isLoading ?
-            <Text style={ styles.buttonText }>
+            <Text style={ [styles.buttonText, textStyle] }>
               { text }
             </Text>
             :
@@ -51,6 +52,7 @@ function ButtonWithSpinner(props) {
 
 ButtonWithSpinner.propTypes = {
   text: PropTypes.string.isRequired,
+  textStyle: Text.propTypes.style,
   buttonStyle: View.propTypes.style,
   onPress: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,

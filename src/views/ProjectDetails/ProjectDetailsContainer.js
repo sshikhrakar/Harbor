@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ProjectDetails from './ProjectDetails';
 
 const mapStateToProps = state => ({
-  selectedProject: state.ui.projects.selectedProject,
+  selectedProject: state.projects[state.ui.projects.selectedProject],
 });
 
 const enhance = compose(

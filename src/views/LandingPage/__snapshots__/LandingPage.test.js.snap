@@ -179,12 +179,15 @@ exports[`VIEWS: LandingPage should render correctly 1`] = `
           disabled={false}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#ecf0f1",
-              "fontFamily": "Lato-Light",
-              "fontSize": 20,
-              "marginVertical": 5,
-            }
+            Array [
+              Object {
+                "color": "#ecf0f1",
+                "fontFamily": "Lato-Light",
+                "fontSize": 20,
+                "marginVertical": 5,
+              },
+              undefined,
+            ]
           }
         >
           LOGIN
