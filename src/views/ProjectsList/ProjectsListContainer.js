@@ -75,6 +75,9 @@ const enhance = compose(
       props.setSelectedProject(project.packageName);
 
       props.navigator.push({
+        animated: true,
+        title: project.name,
+        animationType: 'slide-horizontal',
         screen: screenRegistry.PROJECT_DETAILS,
       });
     },
