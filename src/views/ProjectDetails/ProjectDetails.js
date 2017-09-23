@@ -3,6 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { View, Text, ScrollView, Image } from 'react-native';
 
+import BottomDock from '../BottomDock';
 import { HorizontalSeparator, ButtonWithSpinner } from '../../components';
 
 import styles from './styles';
@@ -15,10 +16,11 @@ import colors from '../../config/colors';
  * @returns {JSX}
  */
 function ProjectDetails(props) {
+  const { onInstallButtonClicked, selectedProject } = props;
   const {
     name,
     iconUrl,
-  } = props.selectedProject;
+  } = selectedProject;
 
   return (
     <View style={styles.container}>
@@ -46,7 +48,7 @@ function ProjectDetails(props) {
             buttonStyle={styles.installButton}
             textStyle={styles.installButtonText}
             isLoading={false}
-            onPress={() => true}
+            onPress={ () => onInstallButtonClicked(selectedProject) }
           />
         </View>
       </View>
@@ -86,7 +88,7 @@ function ProjectDetails(props) {
           )
         }
       </ScrollView>
-
+      <BottomDock />
     </View>
   );
 }
