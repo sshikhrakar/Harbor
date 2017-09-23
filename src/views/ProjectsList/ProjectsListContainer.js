@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import {
   compose,
   branch,
@@ -72,6 +73,15 @@ const enhance = compose(
     // },
 
     onProjectListItemClicked: props => project => {
+      if (!project.uploads) {
+        Alert.alert(
+          'No builds available',
+          'There aren\'t any builds available for this project right now.'
+        );
+
+        return;
+      }
+
       props.setSelectedProject(project.packageName);
 
       props.navigator.push({
@@ -95,11 +105,11 @@ const enhance = compose(
      */
     getDownloadIcon: props => project => { // eslint-disable-line
       try {
-        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
+        if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
           return images.installIcon;
         }
 
-        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloading) {
+        if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloading) {
           return images.downloadingIcon;
         }
 
