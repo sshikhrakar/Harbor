@@ -3,6 +3,7 @@ import { AsyncStorage } from 'react-native';
 import { persistStore } from 'redux-persist';
 import { Navigation } from 'react-native-navigation';
 
+import * as fs from './utils/fs';
 import fonts from './config/fonts';
 import colors from './config/colors';
 import { firebaseService } from './services';
@@ -19,6 +20,14 @@ persistStore(store, {
 registerScreens(store, Provider);
 
 firebaseService.init();
+
+(async () => {
+  const basepath = fs.getBasePath();
+  const exists = await fs.exists(basepath);
+  if (!exists) {
+    await fs.mkdir(basepath);
+  }
+})();
 
 Navigation.startSingleScreenApp({
   screen: {
