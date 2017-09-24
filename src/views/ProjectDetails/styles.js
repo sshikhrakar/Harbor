@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
 
   installButtonText: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.WHITE,
     fontFamily: fonts.primary.BOLD,
   },

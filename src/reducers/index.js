@@ -21,6 +21,7 @@ export default rootReducer;
  *
  * @param {Object} state
  * @param {String} packageName
+ * @returns {Object}
  */
 export function getProject(state, packageName) {
   return state.projects[packageName];

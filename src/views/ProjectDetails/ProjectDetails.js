@@ -18,6 +18,7 @@ import colors from '../../config/colors';
 function ProjectDetails(props) {
   const {
     buttonText,
+    isDownloading,
     selectedProject,
     onInstallButtonClicked,
   } = props;
@@ -52,7 +53,7 @@ function ProjectDetails(props) {
             text={ buttonText }
             buttonStyle={styles.installButton}
             textStyle={styles.installButtonText}
-            isLoading={false}
+            isLoading={isDownloading}
             onPress={ () => onInstallButtonClicked(selectedProject) }
           />
         </View>

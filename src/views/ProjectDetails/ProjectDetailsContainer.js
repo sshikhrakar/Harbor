@@ -13,6 +13,7 @@ import { getSelectedProject, getDownloadInfoForSelectedProject  } from '../../re
 const mapStateToProps = state => ({
   selectedProject: getSelectedProject(state),
   downloadInfo: getDownloadInfoForSelectedProject(state),
+  isDownloading: state.downloads.isDownloading,
 });
 
 const mapDispatchToProps = {
@@ -24,33 +25,37 @@ const enhance = compose(
 
   withState('buttonText', 'setButtonText', props => {
     const { metadata } = props.selectedProject;
-    const latestUploadData = props.downloadInfo.uploads[metadata.lastReleasedOn];
+    const latestUploadData = props.downloadInfo && props.downloadInfo.uploads[metadata.lastReleasedOn];
 
     // If the build has already been downloaded, show OPEN button.
     if (latestUploadData && latestUploadData.downloaded) {
-      return 'OPEN';
+      return 'INSTALL';
     }
 
-    return 'INSTALLED';
+    return 'DOWNLOAD';
   }),
 
   withHandlers({
     onInstallButtonClicked: props => project => {
-      try {
-        if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
-          Alert.alert(
-            'Up to date',
-            'You already have the latest build for this project.'
-          );
+      if (props.buttonText === 'INSTALL') {
+        // TODO: do install action here.
+      } else {
+        try {
+          if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
+            Alert.alert(
+              'Up to date',
+              'You already have the latest build for this project.'
+            );
 
-          return;
+            return;
+          }
+        } catch (e) {
+          /* The above block may fail when no builds have been downloaded for project, and several object keys are
+           * undefined in that case. */
+          props.startDownload(project, project.metadata.lastReleasedOn);
         }
-      } catch (e) {
-        /* The above block may fail when no builds have been downloaded for project, and several object keys are
-         * undefined in that case. */
-        props.startDownload(project, project.metadata.lastReleasedOn);
-      }
 
+      }
     },
   }),
 );
