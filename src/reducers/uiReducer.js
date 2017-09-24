@@ -219,3 +219,14 @@ function uiProjectsReducer(state, action) {
       return state;
   }
 }
+
+/**
+ * Selector for currently selected project.
+ * This only returns the id(pacakgename) of the project.
+ *
+ * @param {Object} state
+ * @returns {String}
+ */
+export function getSelectedProjectPackageName(state) {
+  return state.projects.selectedProject;
+}

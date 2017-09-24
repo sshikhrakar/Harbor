@@ -8,12 +8,11 @@ import {
 
 import ProjectDetails from './ProjectDetails';
 import { startDownload } from '../../actions/downloadActions';
-
-const selectedProjectSelector = state => state.projects[state.ui.projects.selectedProject];
+import { getSelectedProject, getDownloadInfoForSelectedProject  } from '../../reducers';
 
 const mapStateToProps = state => ({
-  selectedProject: selectedProjectSelector(state),
-  downloadInfo: state.downloads.projects && state.downloads.projects[selectedProjectSelector(state).packageName],
+  selectedProject: getSelectedProject(state),
+  downloadInfo: getDownloadInfoForSelectedProject(state),
 });
 
 const mapDispatchToProps = {
@@ -24,8 +23,10 @@ const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
 
   withState('buttonText', 'setButtonText', props => {
-    const metadata = props.selectedProject.metadata;
+    const { metadata } = props.selectedProject;
     const latestUploadData = props.downloadInfo.uploads[metadata.lastReleasedOn];
+
+    // If the build has already been downloaded, show OPEN button.
     if (latestUploadData && latestUploadData.downloaded) {
       return 'OPEN';
     }
