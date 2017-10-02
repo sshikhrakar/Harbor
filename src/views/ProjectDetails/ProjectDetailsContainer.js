@@ -7,6 +7,7 @@ import {
 } from 'recompose';
 
 import ProjectDetails from './ProjectDetails';
+import { installApk } from '../../actions/projectActions';
 import { startDownload } from '../../actions/downloadActions';
 import { getSelectedProject, getDownloadInfoForSelectedProject  } from '../../reducers';
 
@@ -17,6 +18,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  installApk,
   startDownload,
 };
 
@@ -38,7 +40,8 @@ const enhance = compose(
   withHandlers({
     onInstallButtonClicked: props => project => {
       if (props.buttonText === 'INSTALL') {
-        // TODO: do install action here.
+        const { metadata } = props.selectedProject;
+        props.installApk(props.downloadInfo.uploads[metadata.lastReleasedOn].apkPath);
       } else {
         try {
           if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
