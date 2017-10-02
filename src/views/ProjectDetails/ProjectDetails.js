@@ -63,13 +63,14 @@ function ProjectDetails(props) {
 
       <ScrollView style={styles.bodyContainer}>
         {
+          // ts = timestamp
           Object.keys(uploads).map((ts, key) =>
             <View key={key}>
               <View style={styles.buildItemContainer}>
                 <View style={styles.title}>
                   <Text style={styles.buildTitleText}>
                     {
-                      'Version: ' + uploads[ts].version
+                      'Version: ' + (uploads[ts].version || 'N/A')
                     }
                   </Text>
                   <Text style={styles.buildSubTitleText}>
