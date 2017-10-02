@@ -1,3 +1,6 @@
+<img src="./METAINF/yacht.png" alt="Harbor" width="100" height="100"/>
+
+
 # Harbor &middot; [![Build Status](https://travis-ci.org/srishanbhattarai/Harbor.svg?branch=dev)](https://travis-ci.org/srishanbhattarai/Harbor)
 
 Harbor is a tool to share Android builds of React Native projects. 
