@@ -42,7 +42,7 @@ function ProjectsList(props) {
                   downloadIcon={ getDownloadIcon(projects[project]) }
                   projectIconUrl={ projects[project].iconUrl }
                   onCardPress= { () => onProjectListItemClicked(projects[project]) }
-                  versionNumber={ projects[project].currentVersionNumber || 'v1.0.0' }
+                  versionNumber={ projects[project].metadata && projects[project].metadata.currentVersion || 'v1.0.0' }
                   lastUpdatedAt={ projects[project].metadata && format(projects[project].metadata.lastReleasedOn) || 'N/A' }
                 />
                 <HorizontalSeparator

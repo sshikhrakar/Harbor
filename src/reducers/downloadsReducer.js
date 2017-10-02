@@ -153,3 +153,26 @@ function projectReducer(state = {}, action) {
 }
 
 export default downloadsReducer;
+
+/**
+ * Selector for all downloaded projects.
+ *
+ * @param {Object} state
+ * @returns {Object}
+ */
+export function getAllDownloadedProjects(state) {
+  return state.projects;
+}
+
+/**
+ * Selector for getting single downloaded project.
+ *
+ * @param {Object} state
+ * @param {String} packageName
+ * @returns {Object | undefined}
+ */
+export function getDownloadedProject(state, packageName) {
+  const allProjects = getAllDownloadedProjects(state);
+
+  return allProjects && allProjects[packageName];
+}

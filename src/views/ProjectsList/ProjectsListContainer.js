@@ -13,6 +13,7 @@ import EmptyProjectsScreen from './EmptyProjectsScreen';
 
 import { validators } from '../../utils';
 import images from '../../config/images';
+import { screenRegistry } from '../../screenRegistry';
 import { startDownload } from '../../actions/downloadActions';
 import { registerFcmToken } from '../../actions/fcmActions.js';
 import { fetchAllProjects, setSelectedProject } from '../../actions/projectActions';
@@ -36,39 +37,23 @@ const enhance = compose(
 
   withHandlers({
     onProjectListItemClicked: props => project => {
-      if (props.isDownloading) {
+      if (!project.uploads) {
         Alert.alert(
-          'You cannot do that',
-          'A download is already in progress. Please wait for it to finish before starting another one.'
-        );
-
-        return;
-      }
-
-      if (!project.metadata) {
-        Alert.alert(
-          'No updates available',
+          'No builds available',
           'There aren\'t any builds available for this project right now.'
         );
 
         return;
       }
 
-      try {
-        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
-          Alert.alert(
-            'Up to date',
-            'You already have the latest build for this project.'
-          );
+      props.setSelectedProject(project.packageName);
 
-          return;
-        }
-      } catch (e) {
-        /* The above block may fail when no builds have been downloaded for project, and several object keys are
-         * undefined in that case. */
-        props.startDownload(project, project.metadata.lastReleasedOn);
-      }
-
+      props.navigator.push({
+        animated: true,
+        title: project.name,
+        animationType: 'slide-horizontal',
+        screen: screenRegistry.PROJECT_DETAILS,
+      });
     },
 
     /**
@@ -82,18 +67,18 @@ const enhance = compose(
      * @param {Object} props
      * @returns {function}
      */
-    getDownloadIcon: props => project => { // eslint-disable-line
+    getDownloadIcon: props => project => {
       try {
-        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
+        if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloaded) {
           return images.installIcon;
         }
 
-        if(props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloading) {
+        if (props.downloadedProjects[project.packageName].uploads[project.metadata.lastReleasedOn].downloading) {
           return images.downloadingIcon;
         }
 
         return images.downloadIcon;
-      } catch (e) { // eslint-disable-line
+      } catch (e) {
         return null;
       }
     },
