@@ -4,6 +4,8 @@ import {
   FETCH_ALL_PROJECTS_FULFILLED,
 
   SET_SELECTED_PROJECT,
+
+  INSTALL_APK,
 } from './actionTypes';
 
 /**
@@ -56,6 +58,21 @@ export function setSelectedProject(projectKey) {
     type: SET_SELECTED_PROJECT,
     payload: {
       project: projectKey,
+    },
+  };
+}
+
+/**
+ * Action to install a downloaded apk
+ *
+ * @param {string} apkPath local path to apk
+ * @returns {Object}
+ */
+export function installApk(apkPath) {
+  return {
+    type: INSTALL_APK,
+    payload: {
+      apkPath,
     },
   };
 }
