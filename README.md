@@ -7,6 +7,8 @@ Harbor is a tool to share Android builds of React Native projects.
 
 With an intuitive CLI for developers, and a simple but _effective_ mobile app for clients and QAs, you won't have to deal with the hassle of building and deploying your awesome React Native projects again.
 
+_(Note: This repo houses only the mobile app for Harbor. The CLI for developers lives in a [different repo](https://github.com/srishanbhattarai/Harbor-cli).)_
+
 ## Usage
 If you are only a recipient (i.e __not__ a developer), then just sign up using the application and you're set! Your development team will invite you to the project.
 
@@ -21,7 +23,7 @@ How _awesome_ is that? :sunglasses:
 
 If you are a developer who would like to use this tool, you would probably be more interested in the [CLI](https://github.com/srishanbhattarai/Harbor-cli).
 
-## Motivation:
+## Motivation
 Why did I create this?
 
 This project exists to solve problems that me (and team) have faced, due to the lack of a deployment tool for React Native, which works without hassle and with minimal configuration.
